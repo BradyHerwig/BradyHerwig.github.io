@@ -81,9 +81,17 @@
 /* Language / metadata badges in projects */
 .badge {
   font-size: 0.7rem;
-  padding: 1px 8px;
-  border-radius: 4px;
+  padding: 1px 9px;
+  border-radius: 9999px;
   font-weight: 500;
+  background: #ecfdf5;
+  color: #166534;
+  border: 1px solid #a7f3d0;
+}
+.dark .badge {
+  background: #052e16;
+  color: #86efac;
+  border-color: #166534;
 }
 
 /* Subtle section dividers */
@@ -118,4 +126,257 @@ button:focus-visible {
 /* Small polish for the hero */
 header h1 {
   letter-spacing: -0.03em;
+}
+
+/* ============================================
+   Enhanced visual interest - more color & boxes
+   ============================================ */
+
+/* Subtle colored section backgrounds */
+section.tinted {
+  background: linear-gradient(to bottom, transparent, rgba(16, 185, 129, 0.03));
+}
+.dark section.tinted {
+  background: linear-gradient(to bottom, transparent, rgba(16, 185, 129, 0.02));
+}
+
+/* Glassmorphism (inspired by motionsites.ai Liquid Glass / Glassmorphism designs) */
+.glass {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.dark .glass {
+  background: rgba(28, 25, 23, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Info boxes / quick facts (hero) - glassmorphism */
+.info-box {
+  transition: all 0.2s ease;
+}
+.info-box,
+.info-box.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.dark .info-box,
+.dark .info-box.glass {
+  background: rgba(28, 25, 23, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.info-box:hover {
+  transform: translateY(-1px);
+  border-color: #166534;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+}
+.dark .info-box:hover {
+  border-color: #4ade80;
+}
+
+/* Colored accent cards for About and other areas - with glassmorphism */
+.accent-card {
+  border-radius: 16px;
+  padding: 1.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.accent-card,
+.accent-card.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.dark .accent-card,
+.dark .accent-card.glass {
+  background: rgba(28, 25, 23, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.accent-card:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+  border-color: #166534;
+}
+.dark .accent-card:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.25);
+  border-color: #4ade80;
+}
+
+/* Colored left accent for cards */
+.accent-card.green-accent {
+  border-left: 4px solid #166534;
+}
+.dark .accent-card.green-accent {
+  border-left-color: #4ade80;
+}
+
+/* Education card - glassmorphism */
+.edu-card {
+  border-radius: 16px;
+  padding: 1.5rem;
+  border-left: 5px solid #166534;
+  transition: all 0.2s ease;
+}
+.edu-card,
+.edu-card.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.dark .edu-card,
+.dark .edu-card.glass {
+  background: rgba(28, 25, 23, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left-color: #4ade80;
+}
+.edu-card:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.06);
+}
+
+/* Skills container - glassmorphism */
+.skills-container {
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+.skills-container,
+.skills-container.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.dark .skills-container,
+.dark .skills-container.glass {
+  background: rgba(28, 25, 23, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced project cards with top accent + glassmorphism */
+.project-card {
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0.0, 0.2, 1),
+              border-color 0.2s;
+}
+.project-card,
+.project-card.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.dark .project-card,
+.dark .project-card.glass {
+  background: rgba(28, 25, 23, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.project-card::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(to right, #166534, #4ade80);
+  opacity: 0.9;
+}
+.dark .project-card::before {
+  background: linear-gradient(to right, #4ade80, #86efac);
+}
+.project-card:hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.08);
+  border-color: #166534;
+}
+.dark .project-card:hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3);
+  border-color: #4ade80;
+}
+
+/* Contact box - glassmorphism */
+.contact-box {
+  border-radius: 20px;
+  padding: 2rem;
+}
+.contact-box,
+.contact-box.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.dark .contact-box,
+.dark .contact-box.glass {
+  background: rgba(28, 25, 23, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Nicer primary button with more color */
+.btn-primary {
+  background: linear-gradient(135deg, #166534, #15803d);
+  color: white;
+  transition: all 0.2s ease;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #15803d, #166534);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(22, 101, 52, 0.35);
+}
+
+/* Decorative accent dot / visual stimulant */
+.accent-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #166534;
+  border-radius: 9999px;
+  margin-right: 6px;
+}
+.dark .accent-dot {
+  background: #4ade80;
+}
+
+/* Better scroll reveals - smoother, more premium (inspired by Reveal Hero / Vision Reveal on motionsites.ai) */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px) scale(0.96);
+  filter: blur(2px);
+  transition: opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
+              transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
+              filter 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* Section headers get a slightly different, more pronounced reveal */
+h2.reveal, h3.reveal {
+  transform: translateY(30px);
+  transition-duration: 0.8s;
+}
+h2.reveal.visible, h3.reveal.visible {
+  transform: translateY(0);
+}
+
+/* Subtle interactive tilt motion (inspired by Cursor Follow / Interactive elements on motionsites.ai) */
+.tilt {
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+/* Basic background - clean and simple */
+body {
+  /* background is handled by Tailwind classes on body */
+}
+
+/* Subtle colored dividers */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #a7f3d0, transparent);
+}
+.dark .section-divider {
+  background: linear-gradient(to right, transparent, #166534, transparent);
 }

@@ -43,7 +43,7 @@
       <div class="flex items-center justify-between h-16">
         <!-- Logo / Name -->
         <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full bg-emerald-700 flex items-center justify-center text-white font-semibold text-lg">BH</div>
+          <div class="w-9 h-9 rounded-full bg-emerald-700 ring-2 ring-emerald-200 dark:ring-emerald-900/60 flex items-center justify-center text-white font-semibold text-lg shadow-sm">BH</div>
           <div>
             <span class="font-semibold tracking-tight text-xl">Brady S. Herwig</span>
           </div>
@@ -95,7 +95,7 @@
   <header class="max-w-5xl mx-auto px-6 pt-16 pb-20">
     <div class="max-w-3xl">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 text-xs font-medium tracking-widest mb-6">
-        CLASS OF 2028
+        <span class="accent-dot"></span> CLASS OF 2028
       </div>
 
       <h1 class="text-5xl md:text-6xl font-semibold tracking-tighter leading-none mb-4">
@@ -105,14 +105,30 @@
         Data Science Student
       </p>
 
-      <p class="max-w-lg text-lg text-stone-600 dark:text-stone-400 mb-8">
+      <p class="max-w-lg text-lg text-stone-600 dark:text-stone-400 mb-8 reveal">
         Liberty University • Passionate about turning complex data into clear, actionable insights.
         Determined leader and communicator building real impact through data science.
       </p>
 
+      <!-- Quick facts boxes for more visual interest (glassmorphism) -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+        <div class="info-box glass rounded-xl px-4 py-3 text-sm">
+          <div class="text-emerald-700 dark:text-emerald-400 font-semibold text-xs tracking-widest">UNIVERSITY</div>
+          <div class="font-medium">Liberty University</div>
+        </div>
+        <div class="info-box glass rounded-xl px-4 py-3 text-sm">
+          <div class="text-emerald-700 dark:text-emerald-400 font-semibold text-xs tracking-widest">FOCUS</div>
+          <div class="font-medium">Data Science &amp; ML</div>
+        </div>
+        <div class="info-box glass rounded-xl px-4 py-3 text-sm">
+          <div class="text-emerald-700 dark:text-emerald-400 font-semibold text-xs tracking-widest">GRADUATION</div>
+          <div class="font-medium">2028</div>
+        </div>
+      </div>
+
       <div class="flex flex-wrap gap-3">
         <a href="#projects"
-           class="px-5 py-2.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-medium text-sm transition-colors">
+           class="btn-primary px-5 py-2.5 rounded-lg font-medium text-sm">
           View Projects
         </a>
         <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/"
@@ -126,38 +142,36 @@
           GitHub
         </a>
       </div>
-
-      <div class="mt-4 text-xs text-stone-500 dark:text-stone-500">
-        Expected graduation: 2028
-      </div>
     </div>
   </header>
 
   <!-- About -->
-  <section id="about" class="max-w-5xl mx-auto px-6 py-16 border-t border-stone-200 dark:border-stone-800">
+  <section id="about" class="max-w-5xl mx-auto px-6 py-16 border-t border-stone-200 dark:border-stone-800 tinted">
     <div class="grid md:grid-cols-12 gap-8 md:gap-12">
       <div class="md:col-span-4">
         <h2 class="text-sm uppercase tracking-[2px] font-semibold text-emerald-700 dark:text-emerald-400 mb-3">About</h2>
         <h3 class="text-3xl font-semibold tracking-tight">A data-driven mindset with a human touch.</h3>
       </div>
-      <div class="md:col-span-8 text-[15px] leading-relaxed text-stone-600 dark:text-stone-400 space-y-5">
-        <p>
-          I'm a friendly, understanding, and determined Computer Science: Data Science student at Liberty University.
-          I enjoy leading teams, communicating insights clearly, and diving deep into data to find meaningful patterns.
-        </p>
-        <p>
-          My goal is to combine strong technical skills with clear storytelling so that data actually drives better decisions.
-          I'm currently focused on hands-on projects involving data acquisition, analysis, feature engineering, and machine learning.
-        </p>
-        <p>
-          Outside of coursework, I value collaboration and continuous learning. I'm excited to bring both technical rigor and approachability to data science teams.
-        </p>
+      <div class="md:col-span-8 grid md:grid-cols-3 gap-4 text-[14.5px]">
+        <!-- Visual boxes for more color and interest (glassmorphism) -->
+        <div class="accent-card glass green-accent">
+          <div class="font-semibold text-emerald-700 dark:text-emerald-400 mb-1 text-sm">Who I am</div>
+          <p class="text-stone-600 dark:text-stone-400 leading-snug">Friendly, understanding, and determined Computer Science: Data Science student at Liberty University.</p>
+        </div>
+        <div class="accent-card glass green-accent">
+          <div class="font-semibold text-emerald-700 dark:text-emerald-400 mb-1 text-sm">What drives me</div>
+          <p class="text-stone-600 dark:text-stone-400 leading-snug">Leading teams, clear communication, and diving deep into data to uncover meaningful patterns and insights.</p>
+        </div>
+        <div class="accent-card glass green-accent">
+          <div class="font-semibold text-emerald-700 dark:text-emerald-400 mb-1 text-sm">My approach</div>
+          <p class="text-stone-600 dark:text-stone-400 leading-snug">Combining technical skills with storytelling so data drives real decisions. Focused on practical ML and data projects.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Projects -->
-  <section id="projects" class="max-w-5xl mx-auto px-6 py-16 border-t border-stone-200 dark:border-stone-800">
+  <section id="projects" class="max-w-5xl mx-auto px-6 py-16 border-t border-stone-200 dark:border-stone-800 tinted">
     <div class="flex items-end justify-between mb-8">
       <div>
         <h2 class="text-sm uppercase tracking-[2px] font-semibold text-emerald-700 dark:text-emerald-400 mb-2">Data Science Projects</h2>
@@ -169,11 +183,13 @@
       </a>
     </div>
 
-    <!-- GitHub repos will be injected here -->
-    <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-      <!-- Populated by script.js -->
-      <div class="col-span-full text-stone-500 dark:text-stone-400 text-sm py-8 text-center">
-        Loading projects...
+    <!-- GitHub repos will be injected here - now wrapped for visual container -->
+    <div class="rounded-2xl p-1 bg-gradient-to-br from-emerald-100/40 to-transparent dark:from-emerald-900/10">
+      <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Populated by script.js -->
+        <div class="col-span-full text-stone-500 dark:text-stone-400 text-sm py-8 text-center">
+          Loading projects...
+        </div>
       </div>
     </div>
 
@@ -190,18 +206,24 @@
       <h3 class="text-3xl font-semibold tracking-tight">Tools &amp; strengths I bring</h3>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-10">
+    <div class="grid md:grid-cols-2 gap-4">
       <!-- Technical Skills -->
-      <div>
-        <div class="text-xs uppercase tracking-widest font-semibold text-stone-500 dark:text-stone-400 mb-3">Technical</div>
+      <div class="skills-container glass">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="accent-dot"></span>
+          <div class="text-xs uppercase tracking-widest font-semibold text-emerald-700 dark:text-emerald-400">Technical</div>
+        </div>
         <div class="flex flex-wrap gap-2" id="tech-skills">
           <!-- Populated by JS or static -->
         </div>
       </div>
 
       <!-- Soft Skills -->
-      <div>
-        <div class="text-xs uppercase tracking-widest font-semibold text-stone-500 dark:text-stone-400 mb-3">Soft Skills</div>
+      <div class="skills-container glass">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="accent-dot"></span>
+          <div class="text-xs uppercase tracking-widest font-semibold text-emerald-700 dark:text-emerald-400">Soft Skills</div>
+        </div>
         <div class="flex flex-wrap gap-2" id="soft-skills">
           <!-- Populated by JS -->
         </div>
@@ -216,8 +238,8 @@
       <h3 class="text-3xl font-semibold tracking-tight">Building a strong foundation</h3>
     </div>
 
-    <div class="space-y-6 max-w-3xl">
-      <div class="border-l-2 border-emerald-700 pl-6">
+    <div class="max-w-3xl">
+      <div class="edu-card glass">
         <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-x-4">
           <div>
             <div class="font-semibold text-lg">Liberty University</div>
@@ -225,7 +247,7 @@
           </div>
           <div class="text-sm text-stone-500 dark:text-stone-400 font-medium whitespace-nowrap">Expected 2028</div>
         </div>
-        <div class="mt-3 text-[15px] text-stone-600 dark:text-stone-400">
+        <div class="mt-3 text-[15px] text-stone-600 dark:text-stone-400 reveal">
           Developing expertise in data analysis, statistical modeling, machine learning, and communicating insights effectively.
           Emphasis on practical projects and clear problem-solving.
         </div>
@@ -238,35 +260,35 @@
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="max-w-5xl mx-auto px-6 py-16 border-t border-stone-200 dark:border-stone-800">
+  <section id="contact" class="max-w-5xl mx-auto px-6 py-16 border-t border-stone-200 dark:border-stone-800 tinted">
     <div class="max-w-2xl">
       <h2 class="text-sm uppercase tracking-[2px] font-semibold text-emerald-700 dark:text-emerald-400 mb-2">Contact Me</h2>
       <h3 class="text-3xl font-semibold tracking-tight mb-4">Let's talk data science</h3>
-      <p class="text-stone-600 dark:text-stone-400 mb-8">
+      <p class="text-stone-600 dark:text-stone-400 mb-8 reveal">
         I'm always happy to connect with fellow students, professionals, or anyone interested in data science.
         Feel free to reach out.
       </p>
 
-      <div class="space-y-4">
+      <div class="contact-box glass space-y-5">
         <a href="mailto:bradyherwig@outlook.com"
-           class="flex items-center gap-3 group">
+           class="flex items-center gap-3 group text-lg">
           <span class="text-emerald-700 dark:text-emerald-400 font-medium group-hover:underline">bradyherwig@outlook.com</span>
         </a>
 
-        <div class="flex flex-wrap gap-3 pt-2">
+        <div class="flex flex-wrap gap-3 pt-1">
           <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/"
              target="_blank" rel="noopener"
-             class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-stone-300 dark:border-stone-700 hover:border-emerald-700 dark:hover:border-emerald-400 transition-colors text-sm">
+             class="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-emerald-100 text-emerald-800 hover:bg-emerald-200 dark:bg-emerald-900/40 dark:text-emerald-300 dark:hover:bg-emerald-900/60 font-medium text-sm transition-colors">
             LinkedIn
           </a>
           <a href="https://github.com/BradyHerwig"
              target="_blank" rel="noopener"
-             class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-stone-300 dark:border-stone-700 hover:border-emerald-700 dark:hover:border-emerald-400 transition-colors text-sm">
+             class="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-emerald-100 text-emerald-800 hover:bg-emerald-200 dark:bg-emerald-900/40 dark:text-emerald-300 dark:hover:bg-emerald-900/60 font-medium text-sm transition-colors">
             GitHub
           </a>
         </div>
 
-        <div class="pt-4">
+        <div class="pt-3 border-t border-stone-200 dark:border-stone-700">
           <button onclick="alert('Resume coming soon! You can add the link in index.html or provide the file.')"
                   class="text-sm px-5 py-2.5 rounded-lg bg-stone-900 text-white dark:bg-white dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-stone-200 font-medium transition-colors">
             Download Resume (coming soon)
@@ -281,8 +303,8 @@
     <div class="max-w-5xl mx-auto px-6 text-xs text-stone-500 dark:text-stone-500 flex flex-col sm:flex-row gap-y-1 justify-between">
       <div>© 2026 Brady S. Herwig</div>
       <div class="flex gap-4">
-        <a href="https://github.com/BradyHerwig" class="hover:text-emerald-700 dark:hover:text-emerald-400">GitHub</a>
-        <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" class="hover:text-emerald-700 dark:hover:text-emerald-400">LinkedIn</a>
+        <a href="https://github.com/BradyHerwig" class="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">GitHub</a>
+        <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" class="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">LinkedIn</a>
       </div>
     </div>
   </footer>

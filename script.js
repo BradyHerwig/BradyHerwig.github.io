@@ -200,9 +200,13 @@ async function fetchGitHubRepos() {
 
     grid.innerHTML = repos.map(repo => createProjectCard(repo)).join('');
 
+    // Re-run better scroll reveals after dynamic content loads (targets the grid area)
+    initScrollReveals();
+
   } catch (err) {
     console.warn('Could not fetch GitHub repos:', err);
     renderEmptyState(grid, true);
+    initScrollReveals();
   }
 }
 
@@ -218,7 +222,7 @@ function createProjectCard(repo) {
 
   return `
     <a href="${url}" target="_blank" rel="noopener"
-       class="project-card group block rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 hover:border-emerald-700 dark:hover:border-emerald-600">
+       class="project-card glass group block p-5">
       <div class="flex items-start justify-between gap-3">
         <h4 class="font-semibold text-lg tracking-tight group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
           ${escapeHtml(name)}
@@ -231,7 +235,7 @@ function createProjectCard(repo) {
       </p>
 
       <div class="mt-4 flex items-center gap-2 flex-wrap text-xs">
-        <span class="badge bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 border border-stone-200 dark:border-stone-700">
+        <span class="badge">
           ${escapeHtml(language)}
         </span>
 
@@ -253,7 +257,7 @@ function renderEmptyState(container, hadError = false) {
     : "I'm currently building my first data science projects. Check back soon — or explore my GitHub for the latest work in progress.";
 
   container.innerHTML = `
-    <div class="col-span-full border border-dashed border-stone-300 dark:border-stone-700 rounded-2xl p-8 text-center">
+    <div class="col-span-full accent-card glass p-8 text-center">
       <div class="mx-auto w-9 h-9 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mb-4">
         <span class="text-emerald-700 dark:text-emerald-400 text-lg">📊</span>
       </div>
@@ -277,6 +281,80 @@ function escapeHtml(str) {
 }
 
 // ----------------------
+// Better scroll reveals (enhanced with smoother timing, scale + blur for a more premium feel inspired by Reveal Hero / Scroll Landing Page on motionsites.ai)
+function initScrollReveals() {
+  // Focus on content, headings and main areas (avoiding further work on boxes per request)
+  const elements = document.querySelectorAll('h2, h3, .max-w-3xl p, #projects-grid, .skills-container > div, .edu-card > div, .contact-box p, .contact-box a');
+  applyRevealToElements(elements);
+}
+
+function applyRevealToElements(elements) {
+  if (!('IntersectionObserver' in window) || elements.length === 0) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        // Smoother stagger with better rhythm
+        const delay = Math.min(index * 70, 280);
+        setTimeout(() => {
+          entry.target.classList.add('reveal', 'visible');
+        }, delay);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -80px 0px'
+  });
+
+  elements.forEach(el => {
+    if (!el.classList.contains('reveal')) {
+      el.classList.add('reveal');
+    }
+    observer.observe(el);
+  });
+}
+
+// ----------------------
+// Interactive tilt motion on cards (inspired by Cursor Follow / Interactive Portfolio on motionsites.ai)
+function initCardTilts() {
+  const tiltCards = document.querySelectorAll('.project-card, .accent-card, .edu-card, .skills-container, .contact-box, .info-box');
+
+  tiltCards.forEach(card => {
+    // Avoid adding multiple listeners
+    if (card.dataset.tiltInit) return;
+    card.dataset.tiltInit = 'true';
+
+    card.classList.add('tilt');
+
+    const maxTilt = 8; // subtle degrees
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) - 0.5;
+      const y = ((e.clientY - rect.top) / rect.height) - 0.5;
+
+      const rotateX = -y * maxTilt; // invert for natural feel
+      const rotateY = x * maxTilt;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transition = 'transform 0.4s ease';
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+
+      // reset transition for next mousemove
+      setTimeout(() => {
+        card.style.transition = 'transform 0.1s ease-out';
+      }, 400);
+    });
+  });
+}
+
+
+
+// ----------------------
 // Main initialization
 function init() {
   initTailwind();
@@ -287,6 +365,12 @@ function init() {
 
   // Fetch GitHub repos (non-blocking)
   fetchGitHubRepos();
+
+  // Initial scroll reveals for static elements
+  initScrollReveals();
+
+  // Interactive tilt motion on static cards
+  initCardTilts();
 
   // Optional: keyboard support for theme toggle
   document.addEventListener('keydown', (e) => {

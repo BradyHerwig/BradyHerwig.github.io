@@ -22,11 +22,13 @@ Clean, modern personal portfolio for a data science student at Liberty Universit
 - Smooth, uncluttered, modern aesthetic with generous whitespace
 - Fully responsive
 
-## Tech Stack (v1 — intentionally simple)
+## Tech Stack (v1 — simple)
 
-- Plain HTML + Tailwind CSS (via CDN for zero-build experience)
+- Plain HTML + Tailwind CSS (via CDN for zero-build)
 - Vanilla JavaScript
 - No framework — easy to edit and iterate
+
+Basic background using the theme colors.
 
 This keeps the first version approachable and fast to modify.
 
