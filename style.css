@@ -1,0 +1,121 @@
+/* Custom styles for Brady Herwig Portfolio
+   Clean, modern, uncluttered aesthetic with forest greens + earth browns
+*/
+
+:root {
+  /* Forest / muted greens */
+  --green-700: #166534;
+  --green-600: #15803d;
+  --green-500: #22c55e;
+  --green-400: #4ade80;
+
+  /* Warm brown / earth tones */
+  --brown-800: #78350f;
+  --brown-700: #92400e;
+  --brown-600: #a16207;
+
+  /* Neutral base (stone) */
+  --stone-light: #fafaf9;
+  --stone-dark: #0c0a09;
+}
+
+/* Tailwind play CDN will handle most of it. These are targeted overrides + extras */
+
+.project-card {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0.0, 0.2, 1),
+              border-color 0.2s;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+}
+
+.dark .project-card:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2);
+}
+
+/* Skill pills */
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  border: 1px solid;
+  transition: all 0.15s ease;
+}
+
+.skill-pill:hover {
+  transform: translateY(-1px);
+}
+
+/* Light mode skill colors */
+.skill-pill.tech {
+  background-color: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #166534;
+}
+
+.dark .skill-pill.tech {
+  background-color: #052e16;
+  border-color: #166534;
+  color: #86efac;
+}
+
+/* Brown-ish for soft skills to differentiate */
+.skill-pill.soft {
+  background-color: #fefce8;
+  border-color: #fde047;
+  color: #854d0e;
+}
+
+.dark .skill-pill.soft {
+  background-color: #1c1917;
+  border-color: #78350f;
+  color: #fde047;
+}
+
+/* Language / metadata badges in projects */
+.badge {
+  font-size: 0.7rem;
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* Subtle section dividers */
+section {
+  scroll-margin-top: 4rem;
+}
+
+/* Nice focus styles */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #166534;
+  outline-offset: 2px;
+}
+
+/* Mobile nav links */
+.mobile-link {
+  color: #44403c;
+}
+
+.dark .mobile-link {
+  color: #e7e5e4;
+}
+
+.mobile-link:hover {
+  color: #166534;
+}
+
+.dark .mobile-link:hover {
+  color: #4ade80;
+}
+
+/* Small polish for the hero */
+header h1 {
+  letter-spacing: -0.03em;
+}
