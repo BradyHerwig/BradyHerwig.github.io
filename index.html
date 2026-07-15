@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brady S. Herwig | Data Science Student</title>
   <meta name="description" content="Brady S. Herwig — Data Science student at Liberty University. Passionate about turning data into actionable insights.">
-  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f0fdf4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#052e16" media="(prefers-color-scheme: dark)">
 
   <!-- Prevent flash of wrong theme -->
   <script>
@@ -21,14 +21,25 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Configure after CDN loads so darkMode + fonts apply reliably
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"DM Sans"', 'system-ui', '-apple-system', 'sans-serif'],
-            display: ['Outfit', 'system-ui', 'sans-serif'],
+            sans: ['"Roboto Mono"', 'ui-monospace', 'monospace'],
+            display: ['Exo', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            canvas: 'var(--color-background)',
+            ink: 'var(--color-foreground)',
+            brand: {
+              primary: 'var(--color-primary)',
+              secondary: 'var(--color-secondary)',
+              accent: 'var(--color-accent)',
+              muted: 'var(--color-muted)',
+              border: 'var(--color-border)',
+              surface: 'var(--color-surface)',
+            },
           },
         },
       },
@@ -37,21 +48,20 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="font-sans bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased">
+<body class="font-sans antialiased">
 
   <!-- Nav -->
-  <nav id="site-nav" class="sticky top-0 z-50 border-b border-transparent bg-slate-50/85 dark:bg-slate-950/85 backdrop-blur-md transition-colors duration-200">
+  <nav id="site-nav" class="sticky top-0 z-50 border-b backdrop-blur-md transition-colors duration-200">
     <div class="mx-auto max-w-5xl px-5 sm:px-6">
       <div class="flex h-16 items-center justify-between">
-        <a href="#top" class="flex min-h-[44px] items-center gap-2.5 cursor-pointer group" aria-label="Home">
-          <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-sm font-bold text-white shadow-sm font-display tracking-tight group-hover:bg-blue-700 transition-colors duration-200">BH</span>
-          <span class="hidden sm:inline font-display font-semibold tracking-tight text-slate-900 dark:text-white">Brady S. Herwig</span>
+        <a href="#top" class="group flex min-h-[44px] items-center gap-2.5 cursor-pointer" aria-label="Home">
+          <span class="logo-mark flex h-9 w-9 items-center justify-center rounded-xl text-sm font-bold font-display tracking-tight shadow-sm">BH</span>
+          <span class="hidden font-display font-semibold tracking-tight text-foreground sm:inline">Brady S. Herwig</span>
         </a>
 
-        <div class="hidden md:flex items-center gap-1 text-sm font-medium">
+        <div class="hidden items-center gap-1 text-sm font-medium md:flex">
           <a href="#about" class="nav-link" data-nav="about">About</a>
           <a href="#projects" class="nav-link" data-nav="projects">Projects</a>
           <a href="#skills" class="nav-link" data-nav="skills">Skills</a>
@@ -67,7 +77,7 @@
             <svg id="menu-icon-open" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
             </svg>
-            <svg id="menu-icon-close" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <svg id="menu-icon-close" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -75,8 +85,8 @@
       </div>
     </div>
 
-    <div id="mobile-menu" class="hidden border-t border-slate-200 dark:border-slate-800 md:hidden" hidden>
-      <div class="mx-auto max-w-5xl px-5 py-3 flex flex-col gap-1 text-sm font-medium">
+    <div id="mobile-menu" class="section-divider hidden border-t md:hidden" hidden>
+      <div class="mx-auto flex max-w-5xl flex-col gap-1 px-5 py-3 text-sm font-medium">
         <a href="#about" class="mobile-link" data-nav="about">About</a>
         <a href="#projects" class="mobile-link" data-nav="projects">Projects</a>
         <a href="#skills" class="mobile-link" data-nav="skills">Skills</a>
@@ -88,38 +98,38 @@
 
   <main id="top">
     <!-- Hero -->
-    <header class="mx-auto max-w-5xl px-5 sm:px-6 pt-16 sm:pt-20 pb-16 sm:pb-24">
-      <div class="max-w-2xl">
-        <p class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:border-blue-500/30 dark:bg-blue-500/10 dark:text-blue-200">
-          <span class="h-1.5 w-1.5 rounded-full bg-blue-600 dark:bg-blue-400" aria-hidden="true"></span>
+    <header class="hero-grid relative mx-auto max-w-5xl px-5 pb-16 pt-16 sm:px-6 sm:pb-24 sm:pt-20">
+      <div class="relative max-w-2xl">
+        <p class="badge-pill px-3 py-1">
+          <span class="badge-pill__dot" aria-hidden="true"></span>
           Class of 2028
         </p>
 
-        <h1 class="mt-6 font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.05]">
+        <h1 class="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-6xl">
           Brady S. Herwig
         </h1>
 
-        <p class="mt-3 text-xl sm:text-2xl font-medium text-slate-600 dark:text-slate-300">
+        <p class="mt-3 text-xl font-medium text-subtle sm:text-2xl">
           Data Science Student
         </p>
 
-        <p class="mt-5 max-w-xl text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+        <p class="mt-5 max-w-xl text-base leading-relaxed text-subtle sm:text-lg">
           Liberty University · Turning complex data into clear, actionable insights.
           Determined leader and communicator building real impact through data science.
         </p>
 
-        <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
           <div class="card p-4">
-            <p class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">University</p>
-            <p class="mt-1 font-display font-semibold text-slate-900 dark:text-white">Liberty University</p>
+            <p class="section-label !mb-1 !text-[0.65rem]">University</p>
+            <p class="font-display font-semibold text-foreground">Liberty University</p>
           </div>
           <div class="card p-4">
-            <p class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">Focus</p>
-            <p class="mt-1 font-display font-semibold text-slate-900 dark:text-white">Data Science &amp; ML</p>
+            <p class="section-label !mb-1 !text-[0.65rem]">Focus</p>
+            <p class="font-display font-semibold text-foreground">Data Science &amp; ML</p>
           </div>
           <div class="card p-4">
-            <p class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">Graduation</p>
-            <p class="mt-1 font-display font-semibold text-slate-900 dark:text-white">2028</p>
+            <p class="section-label !mb-1 !text-[0.65rem]">Graduation</p>
+            <p class="font-display font-semibold text-foreground">2028</p>
           </div>
         </div>
 
@@ -141,40 +151,40 @@
     </header>
 
     <!-- About -->
-    <section id="about" class="scroll-mt-20 border-t border-slate-200 dark:border-slate-800">
-      <div class="mx-auto max-w-5xl px-5 sm:px-6 py-16 sm:py-20">
+    <section id="about" class="section-divider scroll-mt-20 border-t">
+      <div class="mx-auto max-w-5xl px-5 py-16 sm:px-6 sm:py-20">
         <div class="grid gap-10 lg:grid-cols-12 lg:gap-12">
           <div class="lg:col-span-4">
             <p class="section-label">About</p>
             <h2 class="section-title">A data-driven mindset with a human touch.</h2>
           </div>
-          <div class="lg:col-span-8 grid gap-4 sm:grid-cols-3">
+          <div class="grid gap-4 sm:grid-cols-3 lg:col-span-8">
             <article class="card p-5">
-              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-300" aria-hidden="true">
+              <div class="icon-well mb-3 h-10 w-10 rounded-lg" aria-hidden="true">
                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                 </svg>
               </div>
-              <h3 class="font-display font-semibold text-slate-900 dark:text-white">Who I am</h3>
-              <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Friendly, understanding, and determined Computer Science: Data Science student at Liberty University.</p>
+              <h3 class="font-display font-semibold text-foreground">Who I am</h3>
+              <p class="mt-2 text-sm leading-relaxed text-subtle">Friendly, understanding, and determined Computer Science: Data Science student at Liberty University.</p>
             </article>
             <article class="card p-5">
-              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-300" aria-hidden="true">
+              <div class="icon-well mb-3 h-10 w-10 rounded-lg" aria-hidden="true">
                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                 </svg>
               </div>
-              <h3 class="font-display font-semibold text-slate-900 dark:text-white">What drives me</h3>
-              <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Leading teams, clear communication, and diving deep into data to uncover meaningful patterns and insights.</p>
+              <h3 class="font-display font-semibold text-foreground">What drives me</h3>
+              <p class="mt-2 text-sm leading-relaxed text-subtle">Leading teams, clear communication, and diving deep into data to uncover meaningful patterns and insights.</p>
             </article>
             <article class="card p-5">
-              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-300" aria-hidden="true">
+              <div class="icon-well mb-3 h-10 w-10 rounded-lg" aria-hidden="true">
                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
                 </svg>
               </div>
-              <h3 class="font-display font-semibold text-slate-900 dark:text-white">My approach</h3>
-              <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Combining technical skills with storytelling so data drives real decisions. Focused on practical ML and data projects.</p>
+              <h3 class="font-display font-semibold text-foreground">My approach</h3>
+              <p class="mt-2 text-sm leading-relaxed text-subtle">Combining technical skills with storytelling so data drives real decisions. Focused on practical ML and data projects.</p>
             </article>
           </div>
         </div>
@@ -182,15 +192,15 @@
     </section>
 
     <!-- Projects -->
-    <section id="projects" class="scroll-mt-20 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
-      <div class="mx-auto max-w-5xl px-5 sm:px-6 py-16 sm:py-20">
-        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-10">
+    <section id="projects" class="section-alt section-divider scroll-mt-20 border-t">
+      <div class="mx-auto max-w-5xl px-5 py-16 sm:px-6 sm:py-20">
+        <div class="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p class="section-label">Projects</p>
             <h2 class="section-title">What I'm building</h2>
           </div>
           <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer"
-             class="inline-flex min-h-[44px] items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-200 cursor-pointer">
+             class="link-accent inline-flex min-h-[44px] items-center gap-1.5 text-sm font-semibold">
             View all on GitHub
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -201,21 +211,21 @@
         <div id="projects-grid" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list" aria-live="polite">
           <div class="skeleton h-44 rounded-2xl" aria-hidden="true"></div>
           <div class="skeleton h-44 rounded-2xl" aria-hidden="true"></div>
-          <div class="skeleton h-44 rounded-2xl hidden sm:block" aria-hidden="true"></div>
+          <div class="skeleton hidden h-44 rounded-2xl sm:block" aria-hidden="true"></div>
         </div>
       </div>
     </section>
 
     <!-- Skills -->
-    <section id="skills" class="scroll-mt-20 border-t border-slate-200 dark:border-slate-800">
-      <div class="mx-auto max-w-5xl px-5 sm:px-6 py-16 sm:py-20">
+    <section id="skills" class="section-divider scroll-mt-20 border-t">
+      <div class="mx-auto max-w-5xl px-5 py-16 sm:px-6 sm:py-20">
         <p class="section-label">Skills</p>
         <h2 class="section-title mb-10">Tools &amp; strengths I bring</h2>
 
         <div class="grid gap-4 md:grid-cols-2">
           <div class="card p-6">
-            <h3 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-              <svg class="h-4 w-4 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <h3 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted">
+              <svg class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
               </svg>
               Technical
@@ -223,8 +233,8 @@
             <div id="tech-skills" class="mt-4 flex flex-wrap gap-2"></div>
           </div>
           <div class="card p-6">
-            <h3 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-              <svg class="h-4 w-4 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <h3 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted">
+              <svg class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
               </svg>
               Soft Skills
@@ -236,47 +246,47 @@
     </section>
 
     <!-- Education -->
-    <section id="education" class="scroll-mt-20 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
-      <div class="mx-auto max-w-5xl px-5 sm:px-6 py-16 sm:py-20">
+    <section id="education" class="section-alt section-divider scroll-mt-20 border-t">
+      <div class="mx-auto max-w-5xl px-5 py-16 sm:px-6 sm:py-20">
         <p class="section-label">Education</p>
         <h2 class="section-title mb-10">Building a strong foundation</h2>
 
-        <article class="card max-w-3xl p-6 sm:p-8 border-l-4 border-l-blue-600">
+        <article class="card accent-border max-w-3xl p-6 sm:p-8">
           <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <h3 class="font-display text-xl font-semibold text-slate-900 dark:text-white">Liberty University</h3>
-              <p class="mt-1 text-slate-600 dark:text-slate-400">Bachelor of Science — Computer Science: Data Science</p>
+              <h3 class="font-display text-xl font-semibold text-foreground">Liberty University</h3>
+              <p class="mt-1 text-subtle">Bachelor of Science — Computer Science: Data Science</p>
             </div>
-            <span class="inline-flex w-fit items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-500/15 dark:text-blue-300">
+            <span class="status-chip w-fit px-3 py-1">
               Expected 2028
             </span>
           </div>
-          <p class="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+          <p class="mt-4 leading-relaxed text-subtle">
             Developing expertise in data analysis, statistical modeling, machine learning, and communicating insights effectively.
             Emphasis on practical projects and clear problem-solving.
           </p>
         </article>
 
-        <p class="mt-6 text-sm text-slate-500 dark:text-slate-400 max-w-2xl">
+        <p class="mt-6 max-w-2xl text-sm text-muted">
           Actively seeking opportunities to apply classroom learning in real-world data science settings.
         </p>
       </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="scroll-mt-20 border-t border-slate-200 dark:border-slate-800">
-      <div class="mx-auto max-w-5xl px-5 sm:px-6 py-16 sm:py-20">
+    <section id="contact" class="section-divider scroll-mt-20 border-t">
+      <div class="mx-auto max-w-5xl px-5 py-16 sm:px-6 sm:py-20">
         <p class="section-label">Contact</p>
         <h2 class="section-title">Let's talk data science</h2>
-        <p class="mt-4 max-w-xl text-slate-600 dark:text-slate-400 leading-relaxed">
+        <p class="mt-4 max-w-xl leading-relaxed text-subtle">
           I'm always happy to connect with fellow students, professionals, or anyone interested in data science.
           Feel free to reach out.
         </p>
 
-        <div class="card mt-8 max-w-xl p-6 sm:p-8 space-y-5">
+        <div class="card mt-8 max-w-xl space-y-5 p-6 sm:p-8">
           <a href="mailto:bradyherwig@outlook.com"
-             class="inline-flex min-h-[44px] items-center gap-3 font-display text-lg font-semibold text-slate-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-400 transition-colors duration-200 cursor-pointer">
-            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-300" aria-hidden="true">
+             class="link-accent inline-flex min-h-[44px] items-center gap-3 font-display text-lg font-semibold text-foreground">
+            <span class="icon-well h-10 w-10 shrink-0 rounded-lg" aria-hidden="true">
               <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
               </svg>
@@ -289,25 +299,25 @@
             <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer" class="btn btn-soft cursor-pointer">GitHub</a>
           </div>
 
-          <div class="border-t border-slate-200 dark:border-slate-700 pt-5">
+          <div class="section-divider border-t pt-5">
             <button type="button" id="resume-btn" class="btn btn-dark cursor-pointer" aria-describedby="resume-note">
               Download Resume
               <span class="text-[10px] font-semibold uppercase tracking-wider opacity-70">Soon</span>
             </button>
-            <p id="resume-note" class="mt-2 text-xs text-slate-500 dark:text-slate-400">PDF coming soon — check back shortly.</p>
+            <p id="resume-note" class="mt-2 text-xs text-muted">PDF coming soon — check back shortly.</p>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="border-t border-slate-200 dark:border-slate-800">
-    <div class="mx-auto max-w-5xl px-5 sm:px-6 py-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-      <p class="text-xs text-slate-500 dark:text-slate-400">© 2026 Brady S. Herwig</p>
+  <footer class="section-divider border-t">
+    <div class="mx-auto flex max-w-5xl flex-col gap-4 px-5 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <p class="text-xs text-muted">© 2026 Brady S. Herwig</p>
       <div class="flex gap-5 text-xs font-medium">
-        <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors duration-200 cursor-pointer">GitHub</a>
-        <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors duration-200 cursor-pointer">LinkedIn</a>
-        <a href="mailto:bradyherwig@outlook.com" class="text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors duration-200 cursor-pointer">Email</a>
+        <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+        <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+        <a href="mailto:bradyherwig@outlook.com" class="footer-link">Email</a>
       </div>
     </div>
   </footer>

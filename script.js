@@ -219,7 +219,7 @@ function createProjectCard(repo) {
        class="project-card" role="listitem">
       <div class="flex items-start justify-between gap-3">
         <h3 class="project-card__title">${escapeHtml(repo.name)}</h3>
-        <svg class="h-4 w-4 shrink-0 mt-0.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+        <svg class="h-4 w-4 shrink-0 mt-0.5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
         </svg>
       </div>
@@ -245,12 +245,12 @@ function renderEmptyState(container, hadError) {
 
   container.innerHTML = `
     <div class="empty-state">
-      <div class="mx-auto mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-300" aria-hidden="true">
+      <div class="icon-well mx-auto mb-4 h-11 w-11 rounded-xl" aria-hidden="true">
         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
         </svg>
       </div>
-      <p class="mx-auto max-w-sm text-sm leading-relaxed text-slate-600 dark:text-slate-400">${message}</p>
+      <p class="mx-auto max-w-sm text-sm leading-relaxed text-subtle">${message}</p>
       <a href="https://github.com/${GITHUB_USER}" target="_blank" rel="noopener noreferrer" class="btn btn-soft mt-5 cursor-pointer">
         Visit GitHub
       </a>
