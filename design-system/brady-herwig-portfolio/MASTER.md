@@ -7,9 +7,9 @@
 ---
 
 **Project:** Brady Herwig Portfolio
-**Generated:** 2026-07-15 10:26:55
-**Category:** Biohacking / Longevity App
-**Design Dials:** Variance 7/10 (Balanced / Modern) | Motion 6/10 (Standard) | Density 4/10 (Standard)
+**Generated:** 2026-07-15 10:33:04
+**Category:** Biotech / Life Sciences
+**Design Dials:** Variance 5/10 (Balanced / Modern) | Motion 4/10 (Standard) | Density 4/10 (Standard)
 
 ---
 
@@ -161,21 +161,21 @@
 
 ## Style Guidelines
 
-**Style:** Modern Dark (Cinema Mobile)
+**Style:** Soft UI Evolution
 
-**Keywords:** dark mode, cinematic, ambient light, glassmorphism, deep black, indigo, glow, blur, atmospheric, reanimated, haptic, premium, layered, frosted glass, linear gradient
+**Keywords:** Evolved soft UI, better contrast, modern aesthetics, subtle depth, accessibility-focused, improved shadows, hybrid
 
-**Best For:** Developer tools, pro productivity apps, fintech/trading dashboards, media/streaming platforms, AI tool interfaces, high-end gaming companion apps
+**Best For:** Modern enterprise apps, SaaS platforms, health/wellness, modern business tools, professional, hybrid
 
-**Key Effects:** Expo.out Bezier(0.16,1,0.3,1) easing; spring modals (damping:20 stiffness:90); haptic-linked press (Impact Light/Medium); animated ambient light blobs (Reanimated translateX/Y slow oscillation); BlurView glassmorphism headers/nav (intensity 20); scale press 0.97 → 1.0; avoid pure #000000 (OLED smear)
+**Key Effects:** Improved shadows (softer than flat, clearer than neumorphism), modern (200-300ms), focus visible, WCAG AA/AAA
 
 ### Page Pattern
 
-**Pattern Name:** Portfolio Grid
+**Pattern Name:** Minimal Single Column
 
-- **Conversion Strategy:** Visuals first. Filter by category. Fast loading essential.
-- **CTA Placement:** Project Card Hover + Footer Contact
-- **Section Order:** 1. Hero (Name/Role), 2. Project Grid (Masonry), 3. About/Philosophy, 4. Contact
+- **Conversion Strategy:** Single CTA focus. Large typography. Lots of whitespace. No nav clutter. Mobile-first.
+- **CTA Placement:** Center, large CTA button
+- **Section Order:** 1. Hero headline, 2. Short description, 3. Benefit bullets (3 max), 4. CTA, 5. Footer
 
 ---
 
@@ -197,8 +197,8 @@ gsap.from('.grid-item', { opacity: 0, scale: 0.92, y: 16, duration: 0.4, stagger
 
 ## Anti-Patterns (Do NOT Use)
 
-- ❌ Generic health app
-- ❌ No privacy
+- ❌ Cluttered data
+- ❌ Poor credibility
 
 ### Additional Forbidden Patterns
 

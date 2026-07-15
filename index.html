@@ -5,18 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brady S. Herwig | Data Science Student</title>
   <meta name="description" content="Brady S. Herwig — Data Science student at Liberty University. Passionate about turning data into actionable insights.">
-  <meta name="theme-color" content="#09090B" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
 
-  <!-- Design system fonts: Exo (display) + DM Sans (body) + Roboto Mono (labels) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Exo:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
+  <!-- Prevent flash of wrong theme -->
   <script>
-    // Early theme flash prevention
     (function () {
       try {
         var saved = localStorage.getItem('brady-theme');
@@ -24,71 +17,38 @@
         if (dark) document.documentElement.classList.add('dark');
       } catch (e) {}
     })();
-
-    function configureTailwind() {
-      if (typeof tailwind === 'undefined') return;
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            colors: {
-              surface: {
-                DEFAULT: 'var(--color-background)',
-                raised: 'var(--color-surface)',
-                muted: 'var(--color-muted)',
-              },
-              ink: {
-                DEFAULT: 'var(--color-foreground)',
-                muted: 'var(--color-foreground-muted)',
-                subtle: 'var(--color-foreground-subtle)',
-              },
-              accent: {
-                DEFAULT: 'var(--color-accent)',
-                soft: 'var(--color-accent-soft)',
-                hover: 'var(--color-accent-hover)',
-              },
-              line: 'var(--color-border)',
-            },
-            fontFamily: {
-              display: ['Exo', 'system-ui', 'sans-serif'],
-              sans: ['DM Sans', 'system-ui', 'sans-serif'],
-              mono: ['Roboto Mono', 'ui-monospace', 'monospace'],
-            },
-            maxWidth: {
-              content: '72rem',
-            },
-            boxShadow: {
-              glow: '0 0 40px -8px var(--color-accent-glow)',
-              card: 'var(--shadow-card)',
-            },
-            transitionTimingFunction: {
-              'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
-            },
-          }
-        }
-      };
-    }
-    configureTailwind();
   </script>
-</head>
-<body class="font-sans bg-surface text-ink antialiased selection:bg-accent/20 selection:text-ink">
-  <!-- Ambient background -->
-  <div class="ambient" aria-hidden="true">
-    <div class="ambient-blob ambient-blob--a"></div>
-    <div class="ambient-blob ambient-blob--b"></div>
-    <div class="ambient-blob ambient-blob--c"></div>
-    <div class="ambient-grid"></div>
-  </div>
 
-  <!-- Navbar -->
-  <nav class="site-nav sticky top-0 z-50" id="site-nav">
-    <div class="max-w-content mx-auto px-5 sm:px-8">
-      <div class="flex items-center justify-between h-16 md:h-[4.25rem]">
-        <a href="#top" class="flex items-center gap-3 group cursor-pointer min-h-[44px]" aria-label="Brady S. Herwig — home">
-          <span class="logo-mark" aria-hidden="true">BH</span>
-          <span class="font-display font-semibold tracking-tight text-base sm:text-lg hidden sm:inline">
-            Brady S. Herwig
-          </span>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Configure after CDN loads so darkMode + fonts apply reliably
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"DM Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['Outfit', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-sans bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased">
+
+  <!-- Nav -->
+  <nav id="site-nav" class="sticky top-0 z-50 border-b border-transparent bg-slate-50/85 dark:bg-slate-950/85 backdrop-blur-md transition-colors duration-200">
+    <div class="mx-auto max-w-5xl px-5 sm:px-6">
+      <div class="flex h-16 items-center justify-between">
+        <a href="#top" class="flex min-h-[44px] items-center gap-2.5 cursor-pointer group" aria-label="Home">
+          <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-sm font-bold text-white shadow-sm font-display tracking-tight group-hover:bg-blue-700 transition-colors duration-200">BH</span>
+          <span class="hidden sm:inline font-display font-semibold tracking-tight text-slate-900 dark:text-white">Brady S. Herwig</span>
         </a>
 
         <div class="hidden md:flex items-center gap-1 text-sm font-medium">
@@ -99,24 +59,15 @@
           <a href="#contact" class="nav-link" data-nav="contact">Contact</a>
         </div>
 
-        <div class="flex items-center gap-1.5">
-          <button id="theme-toggle"
-                  type="button"
-                  class="icon-btn"
-                  aria-label="Toggle dark mode">
+        <div class="flex items-center gap-1">
+          <button id="theme-toggle" type="button" class="icon-btn" aria-label="Toggle dark mode">
             <span id="theme-icon" aria-hidden="true"></span>
           </button>
-
-          <button id="mobile-menu-btn"
-                  type="button"
-                  class="icon-btn md:hidden"
-                  aria-label="Toggle menu"
-                  aria-expanded="false"
-                  aria-controls="mobile-menu">
-            <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+          <button id="mobile-menu-btn" type="button" class="icon-btn md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg id="menu-icon-open" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
             </svg>
-            <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <svg id="menu-icon-close" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -124,9 +75,8 @@
       </div>
     </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu hidden md:hidden" hidden>
-      <div class="px-5 sm:px-8 py-4 flex flex-col gap-1 text-sm font-medium">
+    <div id="mobile-menu" class="hidden border-t border-slate-200 dark:border-slate-800 md:hidden" hidden>
+      <div class="mx-auto max-w-5xl px-5 py-3 flex flex-col gap-1 text-sm font-medium">
         <a href="#about" class="mobile-link" data-nav="about">About</a>
         <a href="#projects" class="mobile-link" data-nav="projects">Projects</a>
         <a href="#skills" class="mobile-link" data-nav="skills">Skills</a>
@@ -138,64 +88,52 @@
 
   <main id="top">
     <!-- Hero -->
-    <header class="relative max-w-content mx-auto px-5 sm:px-8 pt-16 sm:pt-20 md:pt-28 pb-20 md:pb-28">
-      <div class="max-w-3xl">
-        <div class="status-pill reveal">
-          <span class="status-pill__dot" aria-hidden="true"></span>
-          <span class="font-mono text-[11px] uppercase tracking-[0.18em]">Class of 2028 · Data Science</span>
-        </div>
+    <header class="mx-auto max-w-5xl px-5 sm:px-6 pt-16 sm:pt-20 pb-16 sm:pb-24">
+      <div class="max-w-2xl">
+        <p class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:border-blue-500/30 dark:bg-blue-500/10 dark:text-blue-200">
+          <span class="h-1.5 w-1.5 rounded-full bg-blue-600 dark:bg-blue-400" aria-hidden="true"></span>
+          Class of 2028
+        </p>
 
-        <h1 class="font-display font-extrabold tracking-tight leading-[0.95] mt-6 mb-5 text-[clamp(2.75rem,8vw,4.5rem)] reveal">
-          Brady S.<br class="sm:hidden">
-          <span class="text-gradient"> Herwig</span>
+        <h1 class="mt-6 font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.05]">
+          Brady S. Herwig
         </h1>
 
-        <p class="text-xl sm:text-2xl text-ink-muted font-medium tracking-tight mb-4 reveal">
+        <p class="mt-3 text-xl sm:text-2xl font-medium text-slate-600 dark:text-slate-300">
           Data Science Student
         </p>
 
-        <p class="max-w-xl text-base sm:text-lg text-ink-muted leading-relaxed mb-10 reveal">
+        <p class="mt-5 max-w-xl text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-400">
           Liberty University · Turning complex data into clear, actionable insights.
           Determined leader and communicator building real impact through data science.
         </p>
 
-        <!-- Quick facts -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10 reveal-stagger">
-          <div class="stat-card">
-            <div class="stat-card__label">University</div>
-            <div class="stat-card__value">Liberty University</div>
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="card p-4">
+            <p class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">University</p>
+            <p class="mt-1 font-display font-semibold text-slate-900 dark:text-white">Liberty University</p>
           </div>
-          <div class="stat-card">
-            <div class="stat-card__label">Focus</div>
-            <div class="stat-card__value">Data Science &amp; ML</div>
+          <div class="card p-4">
+            <p class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">Focus</p>
+            <p class="mt-1 font-display font-semibold text-slate-900 dark:text-white">Data Science &amp; ML</p>
           </div>
-          <div class="stat-card">
-            <div class="stat-card__label">Graduation</div>
-            <div class="stat-card__value">2028</div>
+          <div class="card p-4">
+            <p class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">Graduation</p>
+            <p class="mt-1 font-display font-semibold text-slate-900 dark:text-white">2028</p>
           </div>
         </div>
 
-        <div class="flex flex-wrap gap-3 reveal">
+        <div class="mt-8 flex flex-wrap gap-3">
           <a href="#projects" class="btn btn-primary cursor-pointer">
-            <span>View Projects</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            View Projects
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </a>
-          <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/"
-             target="_blank" rel="noopener noreferrer"
-             class="btn btn-secondary cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
+          <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary cursor-pointer">
             LinkedIn
           </a>
-          <a href="https://github.com/BradyHerwig"
-             target="_blank" rel="noopener noreferrer"
-             class="btn btn-secondary cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-            </svg>
+          <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer" class="btn btn-secondary cursor-pointer">
             GitHub
           </a>
         </div>
@@ -203,42 +141,40 @@
     </header>
 
     <!-- About -->
-    <section id="about" class="section" aria-labelledby="about-heading">
-      <div class="max-w-content mx-auto px-5 sm:px-8">
-        <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+    <section id="about" class="scroll-mt-20 border-t border-slate-200 dark:border-slate-800">
+      <div class="mx-auto max-w-5xl px-5 sm:px-6 py-16 sm:py-20">
+        <div class="grid gap-10 lg:grid-cols-12 lg:gap-12">
           <div class="lg:col-span-4">
-            <p class="section-kicker reveal">About</p>
-            <h2 id="about-heading" class="section-title reveal">
-              A data-driven mindset with a human touch.
-            </h2>
+            <p class="section-label">About</p>
+            <h2 class="section-title">A data-driven mindset with a human touch.</h2>
           </div>
-          <div class="lg:col-span-8 grid sm:grid-cols-3 gap-4 reveal-stagger">
-            <article class="feature-card">
-              <div class="feature-card__icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+          <div class="lg:col-span-8 grid gap-4 sm:grid-cols-3">
+            <article class="card p-5">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-300" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                 </svg>
               </div>
-              <h3 class="feature-card__title">Who I am</h3>
-              <p class="feature-card__body">Friendly, understanding, and determined Computer Science: Data Science student at Liberty University.</p>
+              <h3 class="font-display font-semibold text-slate-900 dark:text-white">Who I am</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Friendly, understanding, and determined Computer Science: Data Science student at Liberty University.</p>
             </article>
-            <article class="feature-card">
-              <div class="feature-card__icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+            <article class="card p-5">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-300" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                 </svg>
               </div>
-              <h3 class="feature-card__title">What drives me</h3>
-              <p class="feature-card__body">Leading teams, clear communication, and diving deep into data to uncover meaningful patterns and insights.</p>
+              <h3 class="font-display font-semibold text-slate-900 dark:text-white">What drives me</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Leading teams, clear communication, and diving deep into data to uncover meaningful patterns and insights.</p>
             </article>
-            <article class="feature-card">
-              <div class="feature-card__icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+            <article class="card p-5">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-300" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
                 </svg>
               </div>
-              <h3 class="feature-card__title">My approach</h3>
-              <p class="feature-card__body">Combining technical skills with storytelling so data drives real decisions. Focused on practical ML and data projects.</p>
+              <h3 class="font-display font-semibold text-slate-900 dark:text-white">My approach</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Combining technical skills with storytelling so data drives real decisions. Focused on practical ML and data projects.</p>
             </article>
           </div>
         </div>
@@ -246,168 +182,137 @@
     </section>
 
     <!-- Projects -->
-    <section id="projects" class="section" aria-labelledby="projects-heading">
-      <div class="max-w-content mx-auto px-5 sm:px-8">
-        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+    <section id="projects" class="scroll-mt-20 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
+      <div class="mx-auto max-w-5xl px-5 sm:px-6 py-16 sm:py-20">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-10">
           <div>
-            <p class="section-kicker reveal">Data Science Projects</p>
-            <h2 id="projects-heading" class="section-title reveal">What I'm building</h2>
+            <p class="section-label">Projects</p>
+            <h2 class="section-title">What I'm building</h2>
           </div>
-          <a href="https://github.com/BradyHerwig"
-             target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:text-accent-hover transition-colors duration-200 cursor-pointer self-start sm:self-auto reveal">
+          <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer"
+             class="inline-flex min-h-[44px] items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-200 cursor-pointer">
             View all on GitHub
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
             </svg>
           </a>
         </div>
 
-        <div id="projects-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5" role="list" aria-live="polite">
-          <!-- Loading skeletons -->
-          <div class="project-skeleton" aria-hidden="true"></div>
-          <div class="project-skeleton" aria-hidden="true"></div>
-          <div class="project-skeleton hidden sm:block" aria-hidden="true"></div>
+        <div id="projects-grid" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list" aria-live="polite">
+          <div class="skeleton h-44 rounded-2xl" aria-hidden="true"></div>
+          <div class="skeleton h-44 rounded-2xl" aria-hidden="true"></div>
+          <div class="skeleton h-44 rounded-2xl hidden sm:block" aria-hidden="true"></div>
         </div>
-        <p id="projects-loading-label" class="sr-only">Loading projects…</p>
       </div>
     </section>
 
     <!-- Skills -->
-    <section id="skills" class="section" aria-labelledby="skills-heading">
-      <div class="max-w-content mx-auto px-5 sm:px-8">
-        <div class="mb-10">
-          <p class="section-kicker reveal">Skills</p>
-          <h2 id="skills-heading" class="section-title reveal">Tools &amp; strengths I bring</h2>
-        </div>
+    <section id="skills" class="scroll-mt-20 border-t border-slate-200 dark:border-slate-800">
+      <div class="mx-auto max-w-5xl px-5 sm:px-6 py-16 sm:py-20">
+        <p class="section-label">Skills</p>
+        <h2 class="section-title mb-10">Tools &amp; strengths I bring</h2>
 
-        <div class="grid md:grid-cols-2 gap-4 md:gap-5 reveal-stagger">
-          <div class="panel">
-            <div class="panel__header">
-              <span class="panel__icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
-                </svg>
-              </span>
-              <h3 class="panel__title">Technical</h3>
-            </div>
-            <div class="flex flex-wrap gap-2" id="tech-skills"></div>
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="card p-6">
+            <h3 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              <svg class="h-4 w-4 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+              </svg>
+              Technical
+            </h3>
+            <div id="tech-skills" class="mt-4 flex flex-wrap gap-2"></div>
           </div>
-
-          <div class="panel">
-            <div class="panel__header">
-              <span class="panel__icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
-                </svg>
-              </span>
-              <h3 class="panel__title">Soft Skills</h3>
-            </div>
-            <div class="flex flex-wrap gap-2" id="soft-skills"></div>
+          <div class="card p-6">
+            <h3 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              <svg class="h-4 w-4 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+              </svg>
+              Soft Skills
+            </h3>
+            <div id="soft-skills" class="mt-4 flex flex-wrap gap-2"></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Education -->
-    <section id="education" class="section" aria-labelledby="education-heading">
-      <div class="max-w-content mx-auto px-5 sm:px-8">
-        <div class="mb-10">
-          <p class="section-kicker reveal">Education</p>
-          <h2 id="education-heading" class="section-title reveal">Building a strong foundation</h2>
-        </div>
+    <section id="education" class="scroll-mt-20 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
+      <div class="mx-auto max-w-5xl px-5 sm:px-6 py-16 sm:py-20">
+        <p class="section-label">Education</p>
+        <h2 class="section-title mb-10">Building a strong foundation</h2>
 
-        <div class="max-w-3xl reveal">
-          <article class="edu-card">
-            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
-              <div>
-                <h3 class="font-display font-semibold text-xl tracking-tight">Liberty University</h3>
-                <p class="text-ink-muted mt-1">Bachelor of Science — Computer Science: Data Science</p>
-              </div>
-              <time class="edu-card__badge font-mono" datetime="2028">Expected 2028</time>
+        <article class="card max-w-3xl p-6 sm:p-8 border-l-4 border-l-blue-600">
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <h3 class="font-display text-xl font-semibold text-slate-900 dark:text-white">Liberty University</h3>
+              <p class="mt-1 text-slate-600 dark:text-slate-400">Bachelor of Science — Computer Science: Data Science</p>
             </div>
-            <p class="mt-4 text-ink-muted leading-relaxed">
-              Developing expertise in data analysis, statistical modeling, machine learning, and communicating insights effectively.
-              Emphasis on practical projects and clear problem-solving.
-            </p>
-          </article>
-        </div>
+            <span class="inline-flex w-fit items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-500/15 dark:text-blue-300">
+              Expected 2028
+            </span>
+          </div>
+          <p class="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+            Developing expertise in data analysis, statistical modeling, machine learning, and communicating insights effectively.
+            Emphasis on practical projects and clear problem-solving.
+          </p>
+        </article>
 
-        <p class="mt-8 text-sm text-ink-subtle max-w-2xl reveal">
+        <p class="mt-6 text-sm text-slate-500 dark:text-slate-400 max-w-2xl">
           Actively seeking opportunities to apply classroom learning in real-world data science settings.
         </p>
       </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="section section--last" aria-labelledby="contact-heading">
-      <div class="max-w-content mx-auto px-5 sm:px-8">
-        <div class="contact-shell">
-          <div class="max-w-2xl">
-            <p class="section-kicker reveal">Contact</p>
-            <h2 id="contact-heading" class="section-title reveal">Let's talk data science</h2>
-            <p class="text-ink-muted mt-4 mb-8 leading-relaxed reveal">
-              I'm always happy to connect with fellow students, professionals, or anyone interested in data science.
-              Feel free to reach out.
-            </p>
+    <section id="contact" class="scroll-mt-20 border-t border-slate-200 dark:border-slate-800">
+      <div class="mx-auto max-w-5xl px-5 sm:px-6 py-16 sm:py-20">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title">Let's talk data science</h2>
+        <p class="mt-4 max-w-xl text-slate-600 dark:text-slate-400 leading-relaxed">
+          I'm always happy to connect with fellow students, professionals, or anyone interested in data science.
+          Feel free to reach out.
+        </p>
 
-            <div class="contact-panel reveal">
-              <a href="mailto:bradyherwig@outlook.com"
-                 class="contact-email cursor-pointer group">
-                <span class="contact-email__icon" aria-hidden="true">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                  </svg>
-                </span>
-                <span class="group-hover:underline underline-offset-4 decoration-accent/50">bradyherwig@outlook.com</span>
-              </a>
+        <div class="card mt-8 max-w-xl p-6 sm:p-8 space-y-5">
+          <a href="mailto:bradyherwig@outlook.com"
+             class="inline-flex min-h-[44px] items-center gap-3 font-display text-lg font-semibold text-slate-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-400 transition-colors duration-200 cursor-pointer">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-300" aria-hidden="true">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+              </svg>
+            </span>
+            bradyherwig@outlook.com
+          </a>
 
-              <div class="flex flex-wrap gap-3 pt-1">
-                <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/"
-                   target="_blank" rel="noopener noreferrer"
-                   class="btn btn-soft cursor-pointer">
-                  LinkedIn
-                </a>
-                <a href="https://github.com/BradyHerwig"
-                   target="_blank" rel="noopener noreferrer"
-                   class="btn btn-soft cursor-pointer">
-                  GitHub
-                </a>
-              </div>
+          <div class="flex flex-wrap gap-3">
+            <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer" class="btn btn-soft cursor-pointer">LinkedIn</a>
+            <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer" class="btn btn-soft cursor-pointer">GitHub</a>
+          </div>
 
-              <div class="pt-5 mt-1 border-t border-line">
-                <button type="button"
-                        id="resume-btn"
-                        class="btn btn-ink cursor-pointer"
-                        aria-describedby="resume-note">
-                  Download Resume
-                  <span class="font-mono text-[10px] uppercase tracking-wider opacity-70">Soon</span>
-                </button>
-                <p id="resume-note" class="mt-2 text-xs text-ink-subtle">PDF coming soon — check back shortly.</p>
-              </div>
-            </div>
+          <div class="border-t border-slate-200 dark:border-slate-700 pt-5">
+            <button type="button" id="resume-btn" class="btn btn-dark cursor-pointer" aria-describedby="resume-note">
+              Download Resume
+              <span class="text-[10px] font-semibold uppercase tracking-wider opacity-70">Soon</span>
+            </button>
+            <p id="resume-note" class="mt-2 text-xs text-slate-500 dark:text-slate-400">PDF coming soon — check back shortly.</p>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="max-w-content mx-auto px-5 sm:px-8 py-8 flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
-      <p class="text-xs text-ink-subtle font-mono">© 2026 Brady S. Herwig</p>
+  <footer class="border-t border-slate-200 dark:border-slate-800">
+    <div class="mx-auto max-w-5xl px-5 sm:px-6 py-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-xs text-slate-500 dark:text-slate-400">© 2026 Brady S. Herwig</p>
       <div class="flex gap-5 text-xs font-medium">
-        <a href="https://github.com/BradyHerwig"
-           target="_blank" rel="noopener noreferrer"
-           class="text-ink-muted hover:text-accent transition-colors duration-200 cursor-pointer">GitHub</a>
-        <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/"
-           target="_blank" rel="noopener noreferrer"
-           class="text-ink-muted hover:text-accent transition-colors duration-200 cursor-pointer">LinkedIn</a>
-        <a href="mailto:bradyherwig@outlook.com"
-           class="text-ink-muted hover:text-accent transition-colors duration-200 cursor-pointer">Email</a>
+        <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors duration-200 cursor-pointer">GitHub</a>
+        <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors duration-200 cursor-pointer">LinkedIn</a>
+        <a href="mailto:bradyherwig@outlook.com" class="text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors duration-200 cursor-pointer">Email</a>
       </div>
     </div>
   </footer>
 
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
   <script src="script.js"></script>
 </body>
 </html>
