@@ -1,81 +1,66 @@
 # Brady S. Herwig — Personal Website
 
-Clean, modern personal portfolio for a data science student at Liberty University.
+Modern personal portfolio for a data science student at Liberty University.
 
 **Live version:** Deployed via GitHub Pages (see below)
 
-## Features (Current Baseline)
+## Features
 
-- **Intro / Hero** — Clear name, role, university, and strong first impression
-- **About** — Short, human description highlighting strengths (determined, communicator, leader, friendly)
-- **Data Science Projects** — Dynamic cards pulled from GitHub API (hybrid approach)
-  - Currently shows the public `stocks-ds` repo
-  - Graceful empty state for future projects
-- **Skills** — Technical + soft skills in clean pill layout
+- **Hero** — Name, role, university, quick-fact cards, and primary CTAs
+- **About** — Three focus cards (who / drive / approach)
+- **Data Science Projects** — Dynamic cards from the GitHub API with skeleton loading
+- **Skills** — Technical + soft skills as pill tags
 - **Education** — Liberty University details
-- **Contact** — Email + social links + resume placeholder
+- **Contact** — Email, social links, resume placeholder with toast feedback
 
-### Design
-- Forest / muted greens + warm brown accents
-- Light and dark mode (follows system preference by default)
-- Manual toggle with localStorage persistence
-- Smooth, uncluttered, modern aesthetic with generous whitespace
-- Fully responsive
+### Design system
 
-## Tech Stack (v1 — simple)
+Generated with UI/UX Pro Max and persisted under `design-system/brady-herwig-portfolio/`.
 
-- Plain HTML + Tailwind CSS (via CDN for zero-build)
-- Vanilla JavaScript
-- No framework — easy to edit and iterate
+- **Style:** Modern cinematic — monochrome surfaces + electric blue accent
+- **Mode:** Light + dark (system default, manual toggle, `localStorage` persistence)
+- **Typography:** Exo (display) · DM Sans (body) · Roboto Mono (labels / stats)
+- **Effects:** Ambient gradient blobs, subtle grid, glass nav, scroll reveals
+- **Accessibility:** Focus rings, 44px targets, SVG icons (no emoji), `prefers-reduced-motion`
 
-Basic background using the theme colors.
+### Colors (semantic tokens)
 
-This keeps the first version approachable and fast to modify.
+| Token | Light | Dark |
+|-------|-------|------|
+| Background | `#FAFAFA` | `#09090B` |
+| Foreground | `#09090B` | `#FAFAFA` |
+| Accent | `#2563EB` | `#3B82F6` |
+| Border | `#E4E4E7` | `#27272A` |
 
-## Local Development
+## Tech stack
+
+- Plain HTML + Tailwind CSS (CDN)
+- Custom design tokens in `style.css`
+- Vanilla JavaScript (`script.js`)
+- No build step — easy to edit and deploy
+
+## Local development
 
 ```bash
-# Option 1: Python (built-in)
+# Option 1: Python
 python -m http.server 8000
 
-# Option 2: Node (if you have npx)
+# Option 2: Node
 npx serve .
 ```
 
 Open http://localhost:8000
 
-## GitHub Pages Deployment
+## GitHub Pages
 
-1. Push everything to the `main` branch of this repo
-2. Go to **Settings → Pages**
-3. Source: "Deploy from a branch" → `main` / root
-4. Save — your site will be live at `https://bradyherwig.github.io`
+1. Push to the `main` branch
+2. **Settings → Pages** → Deploy from branch → `main` / root
+3. Live at `https://bradyherwig.github.io` (or your Pages URL)
 
-(You can also use a custom domain later.)
+## Updating projects
 
-## Next Steps / Iteration Ideas
-
-- Add your actual resume PDF and wire up the download button
-- Add more custom project descriptions (hybrid model)
-- Add a small "Featured Project" highlight when you finish the first one
-- Add project screenshots or data visualizations
-- Turn this into a small Vite + React or Astro site in a future version
-- Add a contact form (Formspree, Netlify Forms, etc.)
-
-## Updating Projects
-
-The Projects section automatically pulls your latest public repositories via the GitHub API. No code changes needed when you push new repos.
-
-## Colors
-
-- Primary: Forest greens (`#166534` and family)
-- Accents: Warm browns / earth tones
-- Backgrounds: Stone / near-white and near-black
+The Projects section pulls public repositories from the GitHub API. New public repos appear automatically after the API cache refreshes.
 
 ## License
 
 Personal use. Feel free to use this structure as a starting point for your own work.
-
----
-
-Built iteratively as a clean baseline. More features coming in future passes.
