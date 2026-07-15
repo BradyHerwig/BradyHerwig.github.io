@@ -1,11 +1,42 @@
 // Brady S. Herwig — Portfolio
-// Theme, nav, GitHub projects (Tailwind config lives in index.html BEFORE CDN)
+// Theme, nav, scroll reveal, GitHub projects (Tailwind config lives in index.html BEFORE CDN)
 
 const THEME_KEY = 'brady-theme';
 const GITHUB_USER = 'BradyHerwig';
 
 function prefersReducedMotion() {
   return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+}
+
+// ----------------------
+// Scroll reveal (subtle fade-up; skipped when reduced-motion)
+function initReveal() {
+  // Above-the-fold hero should never flash empty
+  document.querySelectorAll('.hero .reveal:not(.is-visible)').forEach((el) => {
+    el.classList.add('is-visible');
+  });
+
+  const nodes = document.querySelectorAll('.reveal:not(.is-visible)');
+  if (!nodes.length) return;
+
+  if (prefersReducedMotion() || !('IntersectionObserver' in window)) {
+    nodes.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+  );
+
+  nodes.forEach((el) => observer.observe(el));
 }
 
 // ----------------------
@@ -199,6 +230,7 @@ async function fetchGitHubRepos() {
     }
 
     grid.innerHTML = repos.map(createProjectCard).join('');
+    initReveal();
   } catch (err) {
     console.warn('Could not fetch GitHub repos:', err);
     renderEmptyState(grid, true);
@@ -216,7 +248,7 @@ function createProjectCard(repo) {
 
   return `
     <a href="${escapeAttr(repo.html_url)}" target="_blank" rel="noopener noreferrer"
-       class="project-card" role="listitem">
+       class="project-card reveal" role="listitem">
       <div class="flex items-start justify-between gap-3">
         <h3 class="project-card__title">${escapeHtml(repo.name)}</h3>
         <svg class="h-4 w-4 shrink-0 mt-0.5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
@@ -304,6 +336,7 @@ function init() {
   initActiveSection();
   initSkills();
   initResumeButton();
+  initReveal();
   fetchGitHubRepos();
 }
 

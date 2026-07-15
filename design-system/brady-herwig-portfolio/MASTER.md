@@ -6,222 +6,168 @@
 
 ---
 
-**Project:** Brady Herwig Portfolio
-**Generated:** 2026-07-15 10:33:04
-**Category:** Biotech / Life Sciences
-**Design Dials:** Variance 5/10 (Balanced / Modern) | Motion 4/10 (Standard) | Density 4/10 (Standard)
+**Project:** Brady Herwig Portfolio  
+**Updated:** 2026-07-15  
+**Category:** Data Science / Personal Portfolio  
+**Style:** Soft UI Evolution + Minimal Swiss structure  
+**Mood:** Calm, professional, intriguing  
+
+**Design Dials:** Variance 5/10 (Balanced / Modern) | Motion 4/10 (Subtle scroll reveal) | Density 4/10 (Spacious)
 
 ---
 
 ## Global Rules
 
-### Color Palette
+### Color Palette — Deep Ocean Mist
 
-| Role | Hex | CSS Variable |
-|------|-----|--------------|
-| Primary | `#18181B` | `--color-primary` |
-| On Primary | `#FFFFFF` | `--color-on-primary` |
-| Secondary | `#3F3F46` | `--color-secondary` |
-| Accent/CTA | `#2563EB` | `--color-accent` |
-| Background | `#FAFAFA` | `--color-background` |
-| Foreground | `#09090B` | `--color-foreground` |
-| Muted | `#E8ECF0` | `--color-muted` |
-| Border | `#E4E4E7` | `--color-border` |
-| Destructive | `#DC2626` | `--color-destructive` |
-| Ring | `#18181B` | `--color-ring` |
+Calm teal for trust and focus; slate-indigo undertones for intrigue. Cool mist surfaces keep the page quiet and readable.
 
-**Color Notes:** Monochrome + blue accent
+| Role | Light | Dark | CSS Variable |
+|------|-------|------|--------------|
+| Primary | `#0F2744` | `#E8F4F8` | `--color-primary` |
+| On Primary | `#F8FAFC` | `#0A1220` | `--color-on-primary` |
+| Secondary | `#3D5470` | `#94A8BC` | `--color-secondary` |
+| Accent / CTA | `#0E7490` | `#2DD4BF` | `--color-accent` |
+| Accent Hover | `#0F8AA8` | `#5EEAD4` | `--color-accent-hover` |
+| Background | `#F3F6F8` | `#070B14` | `--color-background` |
+| Foreground | `#0C1222` | `#EEF3F7` | `--color-foreground` |
+| Muted | `#E8EEF3` | `#141C2B` | `--color-muted` |
+| Muted FG | `#5B6B7C` | `#8B9CB0` | `--color-muted-fg` |
+| Subtle FG | `#3D4F63` | `#B6C4D4` | `--color-subtle-fg` |
+| Border | `#D5DEE8` | `rgba(148,168,188,0.14)` | `--color-border` |
+| Surface | `#FFFFFF` | `#0E1522` | `--color-surface` |
+| Surface Alt | `#EAF0F4` | `#0A101C` | `--color-surface-alt` |
+| Ring | `#0E7490` | `#2DD4BF` | `--color-ring` |
+| Gradient | `#0E7490 → #4338CA` | `#2DD4BF → #818CF8` | `--color-gradient-*` |
+
+**Notes:** Synthesized from UI/UX Pro Max calm teal / sage neutral / indigo intrigue palettes. WCAG AA+ body contrast on both themes.
 
 ### Typography
 
-- **Heading Font:** Exo
-- **Body Font:** Roboto Mono
-- **Mood:** science, technology, research, data, futuristic, precise
-- **Google Fonts:** [Exo + Roboto Mono](https://fonts.googleapis.com/css2?family=Exo:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;700&display=swap)
+- **Display / Headings:** Space Grotesk  
+- **Body:** Archivo  
+- **Mood:** minimal, portfolio, professional, geometric calm  
+- **Google Fonts:** [Space Grotesk + Archivo](https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&family=Space+Grotesk:wght@400;500;600;700&display=swap)
 
-**CSS Import:**
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Exo:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,300..700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 ```
 
-### Spacing Variables
+- Base size: `16px` / `1rem`
+- Body line-height: `1.6`
+- Section titles: `clamp(1.625rem, 3.2vw, 2.125rem)`, tracking `-0.03em`
 
-*Density: 4/10 — Standard*
+### Spacing
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--space-xs` | `4px` / `0.25rem` | Tight gaps |
-| `--space-sm` | `8px` / `0.5rem` | Icon gaps, inline spacing |
-| `--space-md` | `16px` / `1rem` | Standard padding |
-| `--space-lg` | `24px` / `1.5rem` | Section padding |
-| `--space-xl` | `32px` / `2rem` | Large gaps |
-| `--space-2xl` | `48px` / `3rem` | Section margins |
-| `--space-3xl` | `64px` / `4rem` | Hero padding |
+| Token | Value |
+|-------|-------|
+| `--space-xs` | `0.25rem` |
+| `--space-sm` | `0.5rem` |
+| `--space-md` | `1rem` |
+| `--space-lg` | `1.5rem` |
+| `--space-xl` | `2rem` |
+| `--space-2xl` | `3rem` |
+| `--space-3xl` | `4.5rem` |
 
-### Shadow Depths
+Section vertical padding: `py-16` mobile → `py-24` desktop.
 
-| Level | Value | Usage |
-|-------|-------|-------|
-| `--shadow-sm` | `0 1px 2px rgba(0,0,0,0.05)` | Subtle lift |
-| `--shadow-md` | `0 4px 6px rgba(0,0,0,0.1)` | Cards, buttons |
-| `--shadow-lg` | `0 10px 15px rgba(0,0,0,0.1)` | Modals, dropdowns |
-| `--shadow-xl` | `0 20px 25px rgba(0,0,0,0.15)` | Hero images, featured cards |
+### Shadows (Soft UI Evolution)
+
+Multi-layer soft shadows — softer than flat, clearer than neumorphism.
+
+| Level | Usage |
+|-------|-------|
+| `--shadow-sm` | Cards at rest, nav |
+| `--shadow-md` | Hover lift mid |
+| `--shadow-lg` | Project cards hover |
+| `--shadow-xl` | Toast |
+| `--shadow-glow` | Primary CTA + card accent glow |
+
+### Radius & Motion
+
+| Token | Value |
+|-------|-------|
+| `--radius-sm` | `0.5rem` |
+| `--radius-md` | `0.75rem` |
+| `--radius-lg` | `1rem` |
+| `--radius-xl` | `1.25rem` |
+| `--transition` | `200ms cubic-bezier(0.16, 1, 0.3, 1)` |
+| Reveal | `~450ms` fade + 14px translateY, stagger 60–240ms |
+
+Respect `prefers-reduced-motion: reduce` (disables scroll animation, forces visible).
 
 ---
 
-## Component Specs
+## Layout Pattern
+
+**Portfolio Grid** (UI/UX Pro Max)
+
+1. Hero (name / role / stats / CTAs)  
+2. About philosophy cards  
+3. Project grid (live GitHub)  
+4. Skills  
+5. Education  
+6. Contact  
+
+**CTA hierarchy:** Primary → View Projects · Secondary → LinkedIn / GitHub · Contact email + socials.
+
+---
+
+## Components
 
 ### Buttons
 
-```css
-/* Primary Button */
-.btn-primary {
-  background: #2563EB;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 200ms ease;
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-/* Secondary Button */
-.btn-secondary {
-  background: transparent;
-  color: #18181B;
-  border: 2px solid #18181B;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 200ms ease;
-  cursor: pointer;
-}
-```
+- `.btn-primary` — teal→indigo gradient, glow shadow  
+- `.btn-secondary` — surface + border  
+- `.btn-soft` — accent-tinted  
+- `.btn-dark` — primary ink fill  
+- Min height **44px**, `cursor-pointer`, 150–200ms hover
 
 ### Cards
 
-```css
-.card {
-  background: #FAFAFA;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: var(--shadow-md);
-  transition: all 200ms ease;
-  cursor: pointer;
-}
+- Soft border + multi-layer shadow  
+- `.card--feature` top gradient bar on hover  
+- `.project-card` same accent bar + title color shift  
+- Lift: `translateY(-2px to -3px)` + glow
 
-.card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
-}
-```
+### Nav
 
-### Inputs
+- Frosted glass (`backdrop-filter: blur(16px)`)  
+- Active link uses accent tint background  
+- Sticky with scrolled border/shadow
 
-```css
-.input {
-  padding: 12px 16px;
-  border: 1px solid #E2E8F0;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: border-color 200ms ease;
-}
+### Ambient
 
-.input:focus {
-  border-color: #18181B;
-  outline: none;
-  box-shadow: 0 0 0 3px #18181B20;
-}
-```
+- Fixed page orbs (teal / indigo / cyan, low opacity)  
+- Hero glow + faint grid mask  
+- Decorative gradient rule under name
 
-### Modals
+### Icons
 
-```css
-.modal-overlay {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-}
-
-.modal {
-  background: white;
-  border-radius: 16px;
-  padding: 32px;
-  box-shadow: var(--shadow-xl);
-  max-width: 500px;
-  width: 90%;
-}
-```
+- Heroicons outline only (stroke 1.75)  
+- Never emoji as structural icons  
+- Icon wells use soft accent gradient fill
 
 ---
 
-## Style Guidelines
+## Accessibility Checklist
 
-**Style:** Soft UI Evolution
-
-**Keywords:** Evolved soft UI, better contrast, modern aesthetics, subtle depth, accessibility-focused, improved shadows, hybrid
-
-**Best For:** Modern enterprise apps, SaaS platforms, health/wellness, modern business tools, professional, hybrid
-
-**Key Effects:** Improved shadows (softer than flat, clearer than neumorphism), modern (200-300ms), focus visible, WCAG AA/AAA
-
-### Page Pattern
-
-**Pattern Name:** Minimal Single Column
-
-- **Conversion Strategy:** Single CTA focus. Large typography. Lots of whitespace. No nav clutter. Mobile-first.
-- **CTA Placement:** Center, large CTA button
-- **Section Order:** 1. Hero headline, 2. Short description, 3. Benefit bullets (3 max), 4. CTA, 5. Footer
+- [x] Text contrast ≥ 4.5:1 (body) on light and dark  
+- [x] Focus-visible rings (`--color-ring`)  
+- [x] Touch targets ≥ 44×44  
+- [x] `prefers-reduced-motion` respected  
+- [x] No emoji icons  
+- [x] Reveal has `@media (scripting: none)` fallback  
+- [x] Theme flash prevented via head script  
+- [x] `aria-live` on projects grid / toast  
 
 ---
 
-## Motion
+## Anti-Patterns to Avoid
 
-**Stagger List** (Standard) — Trigger: load or scroll | Duration: 300-450ms | Easing: `back.out(1.4)`
-
-```js
-gsap.from('.grid-item', { opacity: 0, scale: 0.92, y: 16, duration: 0.4, stagger: { each: 0.06, from: 'start', grid: 'auto' }, ease: 'back.out(1.4)' });
-```
-
-**Framework notes:** grid: 'auto' lets GSAP infer rows/columns from a CSS grid layout for a natural wave stagger
-
-- ✅ Combine with from: 'center' for a bento-grid layout to draw the eye inward first
-- ❌ Don't use back.out on dense data tables; the overshoot reads as sloppy on informational UI
-- ⚡ Group DOM writes; avoid interleaving layout reads (getBoundingClientRect) between staggered tweens
-
----
-
-## Anti-Patterns (Do NOT Use)
-
-- ❌ Cluttered data
-- ❌ Poor credibility
-
-### Additional Forbidden Patterns
-
-- ❌ **Emojis as icons** — Use SVG icons (Heroicons, Lucide, Simple Icons)
-- ❌ **Missing cursor:pointer** — All clickable elements must have cursor:pointer
-- ❌ **Layout-shifting hovers** — Avoid scale transforms that shift layout
-- ❌ **Low contrast text** — Maintain 4.5:1 minimum contrast ratio
-- ❌ **Instant state changes** — Always use transitions (150-300ms)
-- ❌ **Invisible focus states** — Focus states must be visible for a11y
-
----
-
-## Pre-Delivery Checklist
-
-Before delivering any UI code, verify:
-
-- [ ] No emojis used as icons (use SVG instead)
-- [ ] All icons from consistent icon set (Heroicons/Lucide)
-- [ ] `cursor-pointer` on all clickable elements
-- [ ] Hover states with smooth transitions (150-300ms)
-- [ ] Light mode: text contrast 4.5:1 minimum
-- [ ] Focus states visible for keyboard navigation
-- [ ] `prefers-reduced-motion` respected
-- [ ] Responsive: 375px, 768px, 1024px, 1440px
-- [ ] No content hidden behind fixed navbars
-- [ ] No horizontal scroll on mobile
+- Generic pure blue SaaS look (use teal, not `#2563EB` as sole accent)  
+- Harsh pure black backgrounds (use `#070B14`)  
+- Instant hover transitions  
+- Removing focus outlines  
+- Layout-shifting press states beyond subtle scale  
+- Infinite decorative animation (pulse-dot is the only loop; keep subtle)  
