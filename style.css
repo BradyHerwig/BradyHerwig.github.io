@@ -513,7 +513,7 @@ a.card:hover,
   color: var(--color-subtle-fg);
 }
 
-/* Project cards */
+/* Project cards (compact — reserved if needed elsewhere) */
 .project-card {
   display: flex;
   flex-direction: column;
@@ -593,6 +593,161 @@ a.card:hover,
   background: color-mix(in srgb, var(--color-accent) 10%, var(--color-muted));
   color: var(--color-accent);
   border: 1px solid color-mix(in srgb, var(--color-accent) 18%, var(--color-border));
+}
+
+/* ---------------------------------------------------------
+   Project showcase page — case-study sections
+   design-system/brady-herwig-portfolio/pages/projects.md
+   --------------------------------------------------------- */
+
+.project-showcase {
+  position: relative;
+}
+
+.project-showcase + .project-showcase {
+  border-top: 1px solid var(--color-border);
+}
+
+.project-showcase:nth-child(even) {
+  background-color: var(--color-surface-alt);
+}
+
+.project-showcase:nth-child(even)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 50% 80% at 0% 30%, var(--color-hero-orb-1), transparent 70%);
+  opacity: 0.5;
+}
+
+.project-showcase > * {
+  position: relative;
+}
+
+.project-showcase__media {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .project-showcase__media {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+}
+
+.shot-frame {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  aspect-ratio: 16 / 10;
+}
+
+.shot-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.shot-frame--empty,
+.shot-frame:not(:has(img)) {
+  background: color-mix(in srgb, var(--color-muted) 70%, var(--color-surface));
+  border-style: dashed;
+}
+
+.shot-frame__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 1.25rem;
+  text-align: center;
+  color: var(--color-muted-fg);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.shot-frame__placeholder svg {
+  opacity: 0.55;
+  color: var(--color-accent);
+}
+
+.project-showcase__block {
+  height: 100%;
+}
+
+.project-showcase__block h3 {
+  letter-spacing: -0.02em;
+}
+
+.project-showcase__block ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Jump links under page hero */
+.project-jump-nav {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  padding-bottom: 0.15rem;
+}
+
+@media (min-width: 768px) {
+  .project-jump-nav {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+}
+
+.project-jump-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.45rem 0.95rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-subtle-fg);
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--transition), background-color var(--transition),
+    border-color var(--transition), box-shadow var(--transition);
+}
+
+.project-jump-link:hover {
+  color: var(--color-accent);
+  border-color: color-mix(in srgb, var(--color-accent) 30%, var(--color-border));
+  background: color-mix(in srgb, var(--color-accent) 8%, var(--color-surface));
+  box-shadow: var(--shadow-sm);
+}
+
+.project-jump-link.is-active {
+  color: var(--color-accent);
+  border-color: color-mix(in srgb, var(--color-accent) 28%, var(--color-border));
+  background: color-mix(in srgb, var(--color-accent) 12%, var(--color-muted));
 }
 
 /* Text utilities */

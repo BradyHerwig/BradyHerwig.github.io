@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Brady S. Herwig</title>
+  <meta name="description" content="Selected data science and software projects by Brady S. Herwig — in-depth write-ups, screenshots, learnings, and tools used.">
+  <meta name="theme-color" content="#f3f6f8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#070b14" media="(prefers-color-scheme: dark)">
+
+  <!-- Prevent flash of wrong theme -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('brady-theme');
+        var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (dark) document.documentElement.classList.add('dark');
+      } catch (e) {}
+    })();
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Archivo', 'system-ui', 'sans-serif'],
+            display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            canvas: 'var(--color-background)',
+            ink: 'var(--color-foreground)',
+            brand: {
+              primary: 'var(--color-primary)',
+              secondary: 'var(--color-secondary)',
+              accent: 'var(--color-accent)',
+              muted: 'var(--color-muted)',
+              border: 'var(--color-border)',
+              surface: 'var(--color-surface)',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-sans antialiased" data-page="projects">
+
+  <!-- Nav -->
+  <nav id="site-nav" class="sticky top-0 z-50 border-b transition-colors duration-200">
+    <div class="mx-auto max-w-5xl px-5 sm:px-6">
+      <div class="flex h-16 items-center justify-between">
+        <a href="index.html" class="group flex min-h-[44px] items-center gap-2.5 cursor-pointer" aria-label="Home">
+          <span class="logo-mark flex h-9 w-9 items-center justify-center rounded-xl text-sm font-bold font-display tracking-tight">BH</span>
+          <span class="hidden font-display font-semibold tracking-tight text-foreground sm:inline">Brady S. Herwig</span>
+        </a>
+
+        <div class="hidden items-center gap-0.5 text-sm font-medium md:flex">
+          <a href="index.html#about" class="nav-link">About</a>
+          <a href="projects.html" class="nav-link is-active" aria-current="page">Projects</a>
+          <a href="index.html#skills" class="nav-link">Skills</a>
+          <a href="index.html#education" class="nav-link">Education</a>
+          <a href="index.html#contact" class="nav-link">Contact</a>
+        </div>
+
+        <div class="flex items-center gap-1">
+          <button id="theme-toggle" type="button" class="icon-btn" aria-label="Toggle dark mode">
+            <span id="theme-icon" aria-hidden="true"></span>
+          </button>
+          <button id="mobile-menu-btn" type="button" class="icon-btn md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg id="menu-icon-open" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
+            </svg>
+            <svg id="menu-icon-close" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="section-divider hidden border-t md:hidden" hidden>
+      <div class="mx-auto flex max-w-5xl flex-col gap-1 px-5 py-3 text-sm font-medium">
+        <a href="index.html#about" class="mobile-link">About</a>
+        <a href="projects.html" class="mobile-link is-active" aria-current="page">Projects</a>
+        <a href="index.html#skills" class="mobile-link">Skills</a>
+        <a href="index.html#education" class="mobile-link">Education</a>
+        <a href="index.html#contact" class="mobile-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Page hero -->
+    <header class="hero mx-auto max-w-5xl px-5 pb-14 pt-14 sm:px-6 sm:pb-20 sm:pt-20">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__grid" aria-hidden="true"></div>
+
+      <div class="relative max-w-2xl">
+        <p class="section-label reveal">Projects</p>
+        <h1 class="reveal reveal-delay-1 font-display text-3xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-4xl md:text-5xl">
+          Selected work, documented in depth
+        </h1>
+        <div class="hero-rule reveal reveal-delay-1" aria-hidden="true"></div>
+        <p class="reveal reveal-delay-2 mt-5 max-w-xl text-base leading-relaxed text-subtle sm:text-lg">
+          Each showcase covers what the project demonstrates, what I learned building it,
+          and the exact tools and libraries I put to use — with screenshots as they land.
+        </p>
+        <div class="reveal reveal-delay-3 mt-8 flex flex-wrap gap-3">
+          <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer" class="btn btn-secondary cursor-pointer">
+            GitHub
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+            </svg>
+          </a>
+          <a href="index.html#contact" class="btn btn-soft cursor-pointer">Get in touch</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Jump nav: shown when showcase sections exist -->
+    <div id="project-jump" class="section-divider border-t" hidden>
+      <div class="mx-auto max-w-5xl px-5 py-4 sm:px-6">
+        <nav aria-label="Project sections" class="project-jump-nav reveal">
+          <!-- Populated by script when .project-showcase sections are present -->
+        </nav>
+      </div>
+    </div>
+
+    <!-- Project showcases -->
+    <div id="project-list" class="section-divider border-t">
+
+      <!--
+        ADD A PROJECT:
+        1. Copy a .project-showcase article below (or replace the empty state).
+        2. Set id="project-your-slug" and data-title="Display Name".
+        3. Drop images in screenshots/your-slug/ and wire <img> tags.
+        4. Fill What it shows / What I learned / Tools & libraries.
+      -->
+
+      <!-- Empty state — remove when the first real showcase is added -->
+      <section class="section-alt" aria-labelledby="projects-empty-heading">
+        <div class="relative mx-auto max-w-5xl px-5 py-16 sm:px-6 sm:py-24">
+          <div class="empty-state reveal mx-auto max-w-lg">
+            <div class="icon-well mx-auto mb-4 h-11 w-11 rounded-xl" aria-hidden="true">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
+              </svg>
+            </div>
+            <h2 id="projects-empty-heading" class="font-display text-lg font-semibold text-foreground">
+              Showcases coming soon
+            </h2>
+            <p class="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-subtle">
+              I'm collecting screenshots and writing full case studies for selected projects.
+              Each entry will include what the work shows, what I learned, and the stack I used.
+            </p>
+            <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer" class="btn btn-soft mt-5 cursor-pointer">
+              Browse code on GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!--
+      TEMPLATE — uncomment / duplicate when adding a project:
+
+      <article id="project-example" class="project-showcase scroll-mt-24" data-title="Example Project" aria-labelledby="project-example-title">
+        <div class="mx-auto max-w-5xl px-5 py-16 sm:px-6 sm:py-24">
+          <header class="reveal max-w-2xl">
+            <p class="section-label">Case study</p>
+            <h2 id="project-example-title" class="section-title !max-w-none">Example Project</h2>
+            <p class="mt-4 max-w-prose text-base leading-relaxed text-subtle">
+              One- or two-sentence summary of the project.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="badge">Python</span>
+              <span class="badge">Pandas</span>
+            </div>
+          </header>
+
+          <div class="project-showcase__media reveal reveal-delay-1 mt-10" role="group" aria-label="Screenshots">
+            <figure class="shot-frame">
+              <img src="screenshots/example/01.png" alt="Describe the screenshot" width="1280" height="800" loading="lazy" decoding="async">
+            </figure>
+            <figure class="shot-frame shot-frame--empty" aria-label="Screenshot pending">
+              <div class="shot-frame__placeholder">
+                <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
+                </svg>
+                <span>Screenshot pending</span>
+              </div>
+            </figure>
+          </div>
+
+          <div class="project-showcase__body mt-12 grid gap-6 lg:grid-cols-3">
+            <section class="project-showcase__block card reveal reveal-delay-1 p-6 sm:p-7" aria-labelledby="example-shows">
+              <div class="icon-well mb-4 h-10 w-10 rounded-xl" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <h3 id="example-shows" class="font-display text-base font-semibold text-foreground">What it shows</h3>
+              <p class="mt-3 text-sm leading-relaxed text-subtle">Describe the problem, approach, and outcome.</p>
+            </section>
+
+            <section class="project-showcase__block card reveal reveal-delay-2 p-6 sm:p-7" aria-labelledby="example-learned">
+              <div class="icon-well mb-4 h-10 w-10 rounded-xl" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.608-.332.75.75 0 00-.715.75v.001c0 1.036.84 1.875 1.875 1.875h.001a48.57 48.57 0 0115.042 0h.001c1.035 0 1.875-.84 1.875-1.875v-.001a.75.75 0 00-.715-.75 50.69 50.69 0 00-2.608.332m-15.482 0A50.697 50.697 0 0112 9.75c2.823 0 5.565.37 8.24 1.066" />
+                </svg>
+              </div>
+              <h3 id="example-learned" class="font-display text-base font-semibold text-foreground">What I learned</h3>
+              <p class="mt-3 text-sm leading-relaxed text-subtle">Key takeaways and skills gained.</p>
+            </section>
+
+            <section class="project-showcase__block card reveal reveal-delay-3 p-6 sm:p-7" aria-labelledby="example-tools">
+              <div class="icon-well mb-4 h-10 w-10 rounded-xl" aria-hidden="true">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
+                </svg>
+              </div>
+              <h3 id="example-tools" class="font-display text-base font-semibold text-foreground">Tools &amp; libraries</h3>
+              <ul class="mt-4 flex flex-wrap gap-2">
+                <li><span class="skill-pill tech">Python</span></li>
+                <li><span class="skill-pill tech">Pandas</span></li>
+                <li><span class="skill-pill tech">NumPy</span></li>
+              </ul>
+            </section>
+          </div>
+
+          <div class="reveal mt-8 flex flex-wrap gap-3">
+            <a href="https://github.com/BradyHerwig/example" target="_blank" rel="noopener noreferrer" class="btn btn-primary cursor-pointer">View on GitHub</a>
+          </div>
+        </div>
+      </article>
+      -->
+
+    </div>
+
+    <!-- Bottom CTA -->
+    <section class="section-divider border-t" aria-labelledby="projects-cta-heading">
+      <div class="mx-auto max-w-5xl px-5 py-16 sm:px-6 sm:py-20">
+        <div class="card reveal max-w-2xl p-6 sm:p-8">
+          <p class="section-label">Next</p>
+          <h2 id="projects-cta-heading" class="font-display text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+            Want to collaborate or chat data science?
+          </h2>
+          <p class="mt-3 max-w-prose text-sm leading-relaxed text-subtle">
+            I'm always open to connecting with students, mentors, and teams working with data.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="index.html#contact" class="btn btn-primary cursor-pointer">Contact</a>
+            <a href="index.html" class="btn btn-secondary cursor-pointer">Back to home</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="section-divider border-t">
+    <div class="mx-auto flex max-w-5xl flex-col gap-4 px-5 py-9 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <p class="text-xs text-muted">© 2026 Brady S. Herwig · Crafted with care</p>
+      <div class="flex gap-5 text-xs font-medium">
+        <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+        <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+        <a href="mailto:bradyherwig@outlook.com" class="footer-link">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script src="script.js"></script>
+</body>
+</html>

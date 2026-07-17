@@ -100,16 +100,18 @@ Respect `prefers-reduced-motion: reduce` (disables scroll animation, forces visi
 
 ## Layout Pattern
 
-**Portfolio Grid** (UI/UX Pro Max)
+**Home (`index.html`)** — no project listings
 
 1. Hero (name / role / stats / CTAs)  
 2. About philosophy cards  
-3. Project grid (live GitHub)  
-4. Skills  
-5. Education  
-6. Contact  
+3. Skills  
+4. Education  
+5. Contact  
 
-**CTA hierarchy:** Primary → View Projects · Secondary → LinkedIn / GitHub · Contact email + socials.
+**Projects (`projects.html`)** — curated case studies only  
+See `pages/projects.md` for section structure (screenshots, what it shows, learnings, tools).
+
+**CTA hierarchy:** Primary → View Projects (`projects.html`) · Secondary → LinkedIn / GitHub · Contact email + socials.
 
 ---
 
@@ -159,7 +161,7 @@ Respect `prefers-reduced-motion: reduce` (disables scroll animation, forces visi
 - [x] No emoji icons  
 - [x] Reveal has `@media (scripting: none)` fallback  
 - [x] Theme flash prevented via head script  
-- [x] `aria-live` on projects grid / toast  
+- [x] `aria-live` on toast; project jump nav on showcase page  
 
 ---
 
