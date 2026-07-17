@@ -160,32 +160,6 @@ function initNavScrollState() {
   window.addEventListener('scroll', onScroll, { passive: true });
 }
 
-function initActiveSection() {
-  // Only on home (in-page sections). Projects page uses aria-current on its nav link.
-  if (document.body.dataset.page !== 'home') return;
-
-  const sections = ['about', 'skills', 'education', 'contact']
-    .map((id) => document.getElementById(id))
-    .filter(Boolean);
-  const links = document.querySelectorAll('[data-nav]');
-  if (!sections.length || !links.length || !('IntersectionObserver' in window)) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          links.forEach((link) => {
-            link.classList.toggle('is-active', link.getAttribute('data-nav') === entry.target.id);
-          });
-        }
-      });
-    },
-    { rootMargin: '-35% 0px -55% 0px', threshold: 0 }
-  );
-
-  sections.forEach((s) => observer.observe(s));
-}
-
 // ----------------------
 // Skills (home only)
 function initSkills() {
@@ -288,7 +262,6 @@ function init() {
   initMobileMenu();
   initSmoothScroll();
   initNavScrollState();
-  initActiveSection();
   initSkills();
   initResumeButton();
   initProjectJumpNav();
