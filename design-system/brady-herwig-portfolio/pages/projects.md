@@ -16,7 +16,7 @@ Dedicated page for curated project deep-dives. Home (`index.html`) must **not** 
 Each project section includes:
 
 1. Title + short summary  
-2. Screenshot gallery (placeholder until assets land in `screenshots/`)  
+2. Screenshot carousel (`.shot-carousel` left ↔ right wheel)  
 3. **What it shows** — product / analysis narrative  
 4. **What I learned** — skills & takeaways  
 5. **Tools & libraries** — exact stack used  
@@ -47,11 +47,13 @@ Each project section includes:
 - Internal blocks: `.project-showcase__media`, `__body`, `__block`  
 - Tool chips reuse `.skill-pill.tech` / `.badge`  
 
-### Screenshot placeholders
+### Screenshot carousel
 
-- `.shot-frame` — fixed aspect (16:10), muted surface, dashed border until image  
-- Meaningful `alt` when images arrive; decorative placeholders `aria-hidden`  
-- Lazy-load images when added (`loading="lazy"`)  
+- `.shot-carousel` — single-frame viewport, horizontal track, prev/next + dots  
+- Slides reuse `.shot-frame` (16:10); plot images use `object-fit: contain`  
+- Keyboard: focus region, then ← / → (Home / End)  
+- Meaningful `alt` + captions; `aria-live` status for slide changes  
+- Lazy-load off-first slides (`loading="lazy"`)
 
 ### Jump nav
 

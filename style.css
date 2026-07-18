@@ -685,6 +685,184 @@ a.card:hover,
   color: var(--color-accent);
 }
 
+/* Screenshot carousel (left ↔ right wheel) */
+.shot-carousel {
+  position: relative;
+  max-width: 52rem;
+}
+
+.shot-carousel__viewport {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  touch-action: pan-y pinch-zoom;
+}
+
+.shot-carousel__track {
+  display: flex;
+  transition: transform var(--transition-slow);
+  will-change: transform;
+}
+
+.shot-carousel__slide {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  margin: 0;
+  aspect-ratio: 16 / 10;
+}
+
+.shot-carousel__slide img {
+  object-fit: contain;
+  object-position: center;
+  background: color-mix(in srgb, var(--color-muted) 55%, var(--color-surface));
+  padding: 0.75rem;
+}
+
+.shot-carousel__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0.55rem 0.9rem;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-subtle-fg);
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--color-surface) 92%, transparent),
+    color-mix(in srgb, var(--color-surface) 70%, transparent) 55%,
+    transparent
+  );
+  border-top: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
+  pointer-events: none;
+}
+
+.shot-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+}
+
+.shot-carousel__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-foreground);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: color var(--transition), background-color var(--transition),
+    border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.shot-carousel__btn:hover {
+  color: var(--color-accent);
+  border-color: color-mix(in srgb, var(--color-accent) 30%, var(--color-border));
+  background: color-mix(in srgb, var(--color-accent) 8%, var(--color-surface));
+  box-shadow: var(--shadow-md);
+}
+
+.shot-carousel__btn:active {
+  transform: scale(0.96);
+}
+
+.shot-carousel__btn:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+.shot-carousel__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.shot-carousel__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  min-height: 44px;
+}
+
+.shot-carousel__dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.shot-carousel__dot::after {
+  content: '';
+  display: block;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--color-muted-fg) 35%, var(--color-border));
+  transition: background-color var(--transition), width var(--transition), transform var(--transition);
+}
+
+.shot-carousel__dot:hover::after {
+  background: color-mix(in srgb, var(--color-accent) 50%, var(--color-muted-fg));
+}
+
+.shot-carousel__dot.is-active::after {
+  width: 1.35rem;
+  background: var(--color-accent);
+}
+
+.shot-carousel__dot:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+  border-radius: 9999px;
+}
+
+.inline-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  padding: 0.1em 0.35em;
+  border-radius: 0.3rem;
+  background: color-mix(in srgb, var(--color-muted) 80%, var(--color-surface));
+  color: var(--color-foreground);
+  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shot-carousel__track {
+    transition: none;
+  }
+}
+
 .project-showcase__block {
   height: 100%;
 }

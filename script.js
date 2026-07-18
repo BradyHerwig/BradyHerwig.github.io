@@ -1,5 +1,5 @@
 // Brady S. Herwig — Portfolio
-// Theme, nav, scroll reveal, project showcase jump nav
+// Theme, nav, scroll reveal, project jump nav, screenshot carousels
 
 const THEME_KEY = 'brady-theme';
 
@@ -184,6 +184,111 @@ function initSkills() {
 }
 
 // ----------------------
+// Screenshot carousel (left ↔ right)
+function initCarousels() {
+  document.querySelectorAll('[data-carousel]').forEach((root) => {
+    const track = root.querySelector('[data-carousel-track]');
+    const slides = Array.from(root.querySelectorAll('[data-carousel-slide]'));
+    const prevBtn = root.querySelector('[data-carousel-prev]');
+    const nextBtn = root.querySelector('[data-carousel-next]');
+    const dotsWrap = root.querySelector('[data-carousel-dots]');
+    const status = root.querySelector('[data-carousel-status]');
+    if (!track || slides.length < 2) return;
+
+    let index = 0;
+    let touchStartX = null;
+
+    if (dotsWrap) {
+      dotsWrap.innerHTML = slides
+        .map((_, i) => {
+          const label = `Go to screenshot ${i + 1} of ${slides.length}`;
+          return `<button type="button" class="shot-carousel__dot" role="tab" data-carousel-dot="${i}" aria-label="${escapeAttr(label)}" aria-selected="false"></button>`;
+        })
+        .join('');
+    }
+
+    const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll('[data-carousel-dot]')) : [];
+
+    function goTo(nextIndex, { announce = true } = {}) {
+      const total = slides.length;
+      index = ((nextIndex % total) + total) % total;
+      track.style.transform = `translate3d(-${index * 100}%, 0, 0)`;
+
+      slides.forEach((slide, i) => {
+        const active = i === index;
+        slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+        slide.setAttribute('aria-label', `${i + 1} of ${total}`);
+      });
+
+      dots.forEach((dot, i) => {
+        const active = i === index;
+        dot.classList.toggle('is-active', active);
+        dot.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+
+      if (status && announce) {
+        status.textContent = `Slide ${index + 1} of ${total}`;
+      }
+    }
+
+    prevBtn?.addEventListener('click', () => goTo(index - 1));
+    nextBtn?.addEventListener('click', () => goTo(index + 1));
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const i = Number(dot.getAttribute('data-carousel-dot'));
+        if (!Number.isNaN(i)) goTo(i);
+      });
+    });
+
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goTo(index - 1);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goTo(index + 1);
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        goTo(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        goTo(slides.length - 1);
+      }
+    });
+
+    // Make the region focusable for keyboard rotation without trapping tab order
+    if (!root.hasAttribute('tabindex')) {
+      root.setAttribute('tabindex', '0');
+    }
+
+    const viewport = root.querySelector('.shot-carousel__viewport');
+    if (viewport) {
+      viewport.addEventListener(
+        'touchstart',
+        (e) => {
+          touchStartX = e.changedTouches[0]?.clientX ?? null;
+        },
+        { passive: true }
+      );
+      viewport.addEventListener(
+        'touchend',
+        (e) => {
+          if (touchStartX == null) return;
+          const dx = (e.changedTouches[0]?.clientX ?? touchStartX) - touchStartX;
+          touchStartX = null;
+          if (Math.abs(dx) < 40) return;
+          goTo(index + (dx < 0 ? 1 : -1));
+        },
+        { passive: true }
+      );
+    }
+
+    goTo(0, { announce: false });
+  });
+}
+
+// ----------------------
 // Projects page: jump nav + active showcase tracking
 function initProjectJumpNav() {
   const showcases = document.querySelectorAll('.project-showcase[id]');
@@ -265,6 +370,7 @@ function init() {
   initSkills();
   initResumeButton();
   initProjectJumpNav();
+  initCarousels();
   initReveal();
 }
 
