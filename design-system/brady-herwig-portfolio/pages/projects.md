@@ -49,11 +49,14 @@ Each project section includes:
 
 ### Screenshot carousel
 
-- `.shot-carousel` — single-frame viewport, horizontal track, prev/next + dots  
-- Slides reuse `.shot-frame` (16:10); plot images use `object-fit: contain`  
-- Keyboard: focus region, then ← / → (Home / End)  
-- Meaningful `alt` + captions; `aria-live` status for slide changes  
-- Lazy-load off-first slides (`loading="lazy"`)
+- **Pattern:** CSS scroll-snap scroller (web.dev / Chrome gallery) + JS `scrollTo`  
+- `.shot-carousel__viewport` is the scroller (`overflow-x: auto`, `scroll-snap-type: x mandatory`)  
+- Slides are **direct flex children** (`flex: 0 0 100%`, `scroll-snap-align: start`, `scroll-snap-stop: always`)  
+- Do **not** use `transform: translateX(-N%)` on a multi-slide track — % is relative to full track width  
+- Prev/next + dots: `scrollTo({ left: index * clientWidth })`; scroll events sync active dot  
+- Keyboard on focused viewport: ← / → / Home / End; native touch/trackpad swipe  
+- Plot images: `object-fit: contain`; hidden scrollbar; 44px controls  
+- `prefers-reduced-motion` → `scroll-behavior: auto`
 
 ### Jump nav
 

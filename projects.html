@@ -157,53 +157,60 @@
           </header>
 
           <div class="shot-carousel reveal reveal-delay-1 mt-10" data-carousel role="region" aria-roledescription="carousel" aria-label="Project screenshots">
-            <div class="shot-carousel__viewport">
-              <div class="shot-carousel__track" data-carousel-track>
-                <figure class="shot-carousel__slide shot-frame" data-carousel-slide aria-roledescription="slide" aria-label="1 of 4">
-                  <img
-                    src="screenshots/NamUs_Project/model_comparison.png"
-                    alt="Bar chart comparing baseline, logistic regression, and decision tree on accuracy, juvenile recall, and juvenile F1"
-                    width="1280"
-                    height="800"
-                    loading="eager"
-                    decoding="async"
-                  >
-                  <figcaption class="shot-carousel__caption">Model comparison on the held-out test set</figcaption>
-                </figure>
-                <figure class="shot-carousel__slide shot-frame" data-carousel-slide aria-roledescription="slide" aria-label="2 of 4" aria-hidden="true">
-                  <img
-                    src="screenshots/NamUs_Project/logreg_confusion_matrix.png"
-                    alt="Logistic regression confusion matrix for adult versus juvenile predictions"
-                    width="1280"
-                    height="800"
-                    loading="lazy"
-                    decoding="async"
-                  >
-                  <figcaption class="shot-carousel__caption">Logistic regression confusion matrix</figcaption>
-                </figure>
-                <figure class="shot-carousel__slide shot-frame" data-carousel-slide aria-roledescription="slide" aria-label="3 of 4" aria-hidden="true">
-                  <img
-                    src="screenshots/NamUs_Project/tree_confusion_matrix.png"
-                    alt="Decision tree confusion matrix for adult versus juvenile predictions"
-                    width="1280"
-                    height="800"
-                    loading="lazy"
-                    decoding="async"
-                  >
-                  <figcaption class="shot-carousel__caption">Decision tree confusion matrix</figcaption>
-                </figure>
-                <figure class="shot-carousel__slide shot-frame" data-carousel-slide aria-roledescription="slide" aria-label="4 of 4" aria-hidden="true">
-                  <img
-                    src="screenshots/NamUs_Project/tree_plot.png"
-                    alt="Visual plot of the fitted decision tree splits"
-                    width="1280"
-                    height="800"
-                    loading="lazy"
-                    decoding="async"
-                  >
-                  <figcaption class="shot-carousel__caption">Fitted decision tree structure</figcaption>
-                </figure>
-              </div>
+            <!--
+              Scroll-snap carousel (web.dev / Chrome carousel pattern):
+              viewport is the scroller; each slide is flex: 0 0 100% of the viewport.
+              Buttons/dots call scrollTo — no transform% math (which is relative to track width).
+            -->
+            <div class="shot-carousel__viewport" data-carousel-viewport tabindex="0" aria-label="Screenshot gallery">
+              <figure class="shot-carousel__slide shot-frame" data-carousel-slide aria-roledescription="slide" aria-label="1 of 4">
+                <img
+                  src="screenshots/NamUs_Project/model_comparison.png"
+                  alt="Bar chart comparing baseline, logistic regression, and decision tree on accuracy, juvenile recall, and juvenile F1"
+                  width="1280"
+                  height="800"
+                  loading="eager"
+                  decoding="async"
+                  draggable="false"
+                >
+                <figcaption class="shot-carousel__caption">Model comparison on the held-out test set</figcaption>
+              </figure>
+              <figure class="shot-carousel__slide shot-frame" data-carousel-slide aria-roledescription="slide" aria-label="2 of 4">
+                <img
+                  src="screenshots/NamUs_Project/logreg_confusion_matrix.png"
+                  alt="Logistic regression confusion matrix for adult versus juvenile predictions"
+                  width="1280"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
+                  draggable="false"
+                >
+                <figcaption class="shot-carousel__caption">Logistic regression confusion matrix</figcaption>
+              </figure>
+              <figure class="shot-carousel__slide shot-frame" data-carousel-slide aria-roledescription="slide" aria-label="3 of 4">
+                <img
+                  src="screenshots/NamUs_Project/tree_confusion_matrix.png"
+                  alt="Decision tree confusion matrix for adult versus juvenile predictions"
+                  width="1280"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
+                  draggable="false"
+                >
+                <figcaption class="shot-carousel__caption">Decision tree confusion matrix</figcaption>
+              </figure>
+              <figure class="shot-carousel__slide shot-frame" data-carousel-slide aria-roledescription="slide" aria-label="4 of 4">
+                <img
+                  src="screenshots/NamUs_Project/tree_plot.png"
+                  alt="Visual plot of the fitted decision tree splits"
+                  width="1280"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
+                  draggable="false"
+                >
+                <figcaption class="shot-carousel__caption">Fitted decision tree structure</figcaption>
+              </figure>
             </div>
 
             <div class="shot-carousel__controls">
@@ -212,7 +219,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                 </svg>
               </button>
-              <div class="shot-carousel__dots" data-carousel-dots role="tablist" aria-label="Choose screenshot"></div>
+              <div class="shot-carousel__dots" data-carousel-dots role="group" aria-label="Choose screenshot"></div>
               <button type="button" class="shot-carousel__btn" data-carousel-next aria-label="Next screenshot">
                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />

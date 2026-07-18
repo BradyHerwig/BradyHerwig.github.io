@@ -685,30 +685,53 @@ a.card:hover,
   color: var(--color-accent);
 }
 
-/* Screenshot carousel (left ↔ right wheel) */
+/* Screenshot carousel — CSS scroll-snap + JS scrollTo (web.dev pattern)
+   Slides are direct flex children of the viewport so flex-basis: 100%
+   resolves against the visible scroller width, not a growing track. */
 .shot-carousel {
   position: relative;
   max-width: 52rem;
 }
 
 .shot-carousel__viewport {
-  overflow: hidden;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 0;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
   border-radius: var(--radius-lg);
-  touch-action: pan-y pinch-zoom;
+  /* Hide scrollbar; controls + swipe still work */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.shot-carousel__track {
-  display: flex;
-  transition: transform var(--transition-slow);
-  will-change: transform;
+.shot-carousel__viewport::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.shot-carousel__viewport:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 3px;
 }
 
 .shot-carousel__slide {
+  /* 100% of the viewport (scroller), not the track */
   flex: 0 0 100%;
   width: 100%;
   min-width: 100%;
+  max-width: 100%;
   margin: 0;
   aspect-ratio: 16 / 10;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  box-sizing: border-box;
 }
 
 .shot-carousel__slide img {
@@ -716,6 +739,9 @@ a.card:hover,
   object-position: center;
   background: color-mix(in srgb, var(--color-muted) 55%, var(--color-surface));
   padding: 0.75rem;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
 }
 
 .shot-carousel__caption {
@@ -780,13 +806,6 @@ a.card:hover,
 .shot-carousel__btn:focus-visible {
   outline: 2px solid var(--color-ring);
   outline-offset: 2px;
-}
-
-.shot-carousel__btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
 }
 
 .shot-carousel__dots {
@@ -858,7 +877,12 @@ a.card:hover,
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .shot-carousel__track {
+  .shot-carousel__viewport {
+    scroll-behavior: auto;
+  }
+
+  .shot-carousel__btn,
+  .shot-carousel__dot::after {
     transition: none;
   }
 }

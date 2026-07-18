@@ -184,51 +184,83 @@ function initSkills() {
 }
 
 // ----------------------
-// Screenshot carousel (left ↔ right)
+// Screenshot carousel — CSS scroll-snap scroller + JS navigation
+// Pattern: web.dev / Chrome scroll-snap galleries (viewport is the scroller;
+// each slide is flex: 0 0 100% of the viewport). Avoid transform: translateX(N%)
+// on a multi-slide track — % is relative to the track's full width, so one step
+// jumps by every slide at once.
 function initCarousels() {
   document.querySelectorAll('[data-carousel]').forEach((root) => {
-    const track = root.querySelector('[data-carousel-track]');
+    const viewport = root.querySelector('[data-carousel-viewport]');
     const slides = Array.from(root.querySelectorAll('[data-carousel-slide]'));
     const prevBtn = root.querySelector('[data-carousel-prev]');
     const nextBtn = root.querySelector('[data-carousel-next]');
     const dotsWrap = root.querySelector('[data-carousel-dots]');
     const status = root.querySelector('[data-carousel-status]');
-    if (!track || slides.length < 2) return;
+    if (!viewport || slides.length < 2) return;
 
     let index = 0;
-    let touchStartX = null;
+    let scrollRaf = 0;
 
     if (dotsWrap) {
       dotsWrap.innerHTML = slides
         .map((_, i) => {
           const label = `Go to screenshot ${i + 1} of ${slides.length}`;
-          return `<button type="button" class="shot-carousel__dot" role="tab" data-carousel-dot="${i}" aria-label="${escapeAttr(label)}" aria-selected="false"></button>`;
+          return `<button type="button" class="shot-carousel__dot" data-carousel-dot="${i}" aria-label="${escapeAttr(label)}" aria-current="false"></button>`;
         })
         .join('');
     }
 
     const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll('[data-carousel-dot]')) : [];
 
-    function goTo(nextIndex, { announce = true } = {}) {
+    function slideWidth() {
+      // Equal full-width slides: use measured clientWidth (handles subpixel + resize)
+      return viewport.clientWidth || 1;
+    }
+
+    function syncUi(active, { announce = true } = {}) {
       const total = slides.length;
-      index = ((nextIndex % total) + total) % total;
-      track.style.transform = `translate3d(-${index * 100}%, 0, 0)`;
+      index = active;
 
       slides.forEach((slide, i) => {
-        const active = i === index;
-        slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+        const on = i === index;
+        slide.setAttribute('aria-hidden', on ? 'false' : 'true');
         slide.setAttribute('aria-label', `${i + 1} of ${total}`);
       });
 
       dots.forEach((dot, i) => {
-        const active = i === index;
-        dot.classList.toggle('is-active', active);
-        dot.setAttribute('aria-selected', active ? 'true' : 'false');
+        const on = i === index;
+        dot.classList.toggle('is-active', on);
+        dot.setAttribute('aria-current', on ? 'true' : 'false');
       });
 
       if (status && announce) {
         status.textContent = `Slide ${index + 1} of ${total}`;
       }
+    }
+
+    function goTo(nextIndex, { announce = true, instant = false } = {}) {
+      const total = slides.length;
+      const target = ((nextIndex % total) + total) % total;
+      const behavior = instant || prefersReducedMotion() ? 'auto' : 'smooth';
+      const left = Math.round(target * slideWidth());
+
+      viewport.scrollTo({ left, behavior });
+      syncUi(target, { announce });
+    }
+
+    function indexFromScroll() {
+      const w = slideWidth();
+      const raw = viewport.scrollLeft / w;
+      return Math.max(0, Math.min(slides.length - 1, Math.round(raw)));
+    }
+
+    function onScroll() {
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = requestAnimationFrame(() => {
+        const next = indexFromScroll();
+        if (next !== index) syncUi(next, { announce: true });
+      });
     }
 
     prevBtn?.addEventListener('click', () => goTo(index - 1));
@@ -241,7 +273,8 @@ function initCarousels() {
       });
     });
 
-    root.addEventListener('keydown', (e) => {
+    // Keyboard when viewport is focused (also works for native horizontal keys)
+    viewport.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') {
         e.preventDefault();
         goTo(index - 1);
@@ -257,34 +290,23 @@ function initCarousels() {
       }
     });
 
-    // Make the region focusable for keyboard rotation without trapping tab order
-    if (!root.hasAttribute('tabindex')) {
-      root.setAttribute('tabindex', '0');
+    viewport.addEventListener('scroll', onScroll, { passive: true });
+
+    // Keep position correct after layout/resize
+    if (typeof ResizeObserver !== 'undefined') {
+      const ro = new ResizeObserver(() => {
+        goTo(index, { announce: false, instant: true });
+      });
+      ro.observe(viewport);
+    } else {
+      window.addEventListener('resize', () => goTo(index, { announce: false, instant: true }), {
+        passive: true,
+      });
     }
 
-    const viewport = root.querySelector('.shot-carousel__viewport');
-    if (viewport) {
-      viewport.addEventListener(
-        'touchstart',
-        (e) => {
-          touchStartX = e.changedTouches[0]?.clientX ?? null;
-        },
-        { passive: true }
-      );
-      viewport.addEventListener(
-        'touchend',
-        (e) => {
-          if (touchStartX == null) return;
-          const dx = (e.changedTouches[0]?.clientX ?? touchStartX) - touchStartX;
-          touchStartX = null;
-          if (Math.abs(dx) < 40) return;
-          goTo(index + (dx < 0 ? 1 : -1));
-        },
-        { passive: true }
-      );
-    }
-
-    goTo(0, { announce: false });
+    // Initial state (no announce on load)
+    syncUi(0, { announce: false });
+    viewport.scrollLeft = 0;
   });
 }
 
