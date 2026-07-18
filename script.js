@@ -347,13 +347,6 @@ function initProjectJumpNav() {
 }
 
 // ----------------------
-// Resume toast
-function initResumeButton() {
-  const btn = document.getElementById('resume-btn');
-  if (!btn) return;
-  btn.addEventListener('click', () => showToast('Resume PDF coming soon — check back shortly.'));
-}
-
 function showToast(message) {
   const toast = document.getElementById('toast');
   if (!toast) return;
@@ -390,7 +383,6 @@ function init() {
   initSmoothScroll();
   initNavScrollState();
   initSkills();
-  initResumeButton();
   initProjectJumpNav();
   initCarousels();
   initReveal();
