@@ -58,6 +58,13 @@ function initMobileMenu() {
     btn.setAttribute("aria-expanded", String(open));
     btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     if (iconOpen && iconClose) {
+      if (open) {
+        iconOpen.setAttribute("hidden", "");
+        iconClose.removeAttribute("hidden");
+      } else {
+        iconOpen.removeAttribute("hidden");
+        iconClose.setAttribute("hidden", "");
+      }
       iconOpen.hidden = open;
       iconClose.hidden = !open;
     }
