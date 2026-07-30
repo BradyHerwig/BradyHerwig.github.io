@@ -129,6 +129,8 @@ html {
   scroll-behavior: smooth;
   background: var(--color-midnight-canvas);
   color: var(--color-frost-glow);
+  /* clip (not hidden on body) so position:fixed side rails stay viewport-fixed */
+  overflow-x: clip;
 }
 
 body {
@@ -143,7 +145,8 @@ body {
   color: var(--color-frost-glow);
   -webkit-font-smoothing: antialiased;
   position: relative;
-  overflow-x: hidden;
+  /* Keep horizontal overflow visible on body so fixed side rails stay viewport-fixed */
+  overflow-x: visible;
 }
 
 img {
@@ -352,12 +355,18 @@ button:focus-visible {
 .side-ascii {
   display: none;
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   /* Above page chrome (not nav); pointer-events none so clicks pass through */
   z-index: 40;
   pointer-events: none;
   overflow: hidden;
   user-select: none;
+  transform: none; /* never create a containing-block trap for children */
 }
 
 /* Show once there is real side space (laptop+). */
@@ -399,10 +408,12 @@ button:focus-visible {
 
 .side-ascii__rail--left {
   left: 10px;
+  right: auto;
 }
 
 .side-ascii__rail--right {
   right: 10px;
+  left: auto;
 }
 
 .side-ascii__track {

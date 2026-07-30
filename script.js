@@ -378,7 +378,11 @@ function buildAsciiFigures(figures) {
 
 function buildAsciiRail(figures, side) {
   const rail = document.createElement("div");
-  rail.className = `side-ascii__rail side-ascii__rail--${side}`;
+  // Explicit side classes (not only template fragments) so rails pin left/right reliably
+  rail.className =
+    side === "right"
+      ? "side-ascii__rail side-ascii__rail--right"
+      : "side-ascii__rail side-ascii__rail--left";
   const track = document.createElement("div");
   track.className = "side-ascii__track";
   track.innerHTML = buildAsciiFigures(figures);
@@ -388,12 +392,14 @@ function buildAsciiRail(figures, side) {
 
 function initSideAscii() {
   if (document.querySelector(".side-ascii")) return;
+  if (!document.body) return;
 
   const root = document.createElement("div");
   root.className = "side-ascii";
   root.setAttribute("aria-hidden", "true");
   root.appendChild(buildAsciiRail(SIDE_ASCII_LEFT, "left"));
   root.appendChild(buildAsciiRail(SIDE_ASCII_RIGHT, "right"));
+  // Append at end of body so fixed rails paint above page flow (still under .nav)
   document.body.appendChild(root);
 }
 
