@@ -1,13 +1,14 @@
 # Brady S. Herwig — Personal Website
 
-Clean personal portfolio for a data science student at Liberty University.
+Editorial personal portfolio for a data science student at Liberty University.
 
 ## Design
 
-- **Style:** Soft UI Evolution · Minimal Swiss structure (UI/UX Pro Max)
-- **Palette:** Deep Ocean Mist (calm teal + slate indigo)
-- **Type:** Space Grotesk (headings) + Archivo (body)
-- **Modes:** Light & dark (system default + toggle + localStorage)
+- **Style:** Monad — editorial tech journal on warm parchment
+- **Palette:** Parchment canvas (`#f6f3f1`), Lake Blue primary CTA (`#2b59d1`), warm grayscale
+- **Type:** Instrument Serif (headings, weight 400) + JetBrains Mono (body / UI)
+- **Theme:** Light only
+- **Components:** Pill buttons (100px), soft cards (40px radius), 1px Ash hairline borders, no card shadows
 - **A11y:** SVG icons, 44px targets, focus rings, `prefers-reduced-motion`
 
 Design system: `design-system/brady-herwig-portfolio/MASTER.md`  
@@ -15,9 +16,9 @@ Projects page override: `design-system/brady-herwig-portfolio/pages/projects.md`
 
 ## Stack
 
-- HTML + Tailwind CSS (CDN) — config loaded **before** the CDN script
-- `style.css` for design tokens and components
-- Vanilla JS for theme, nav, scroll reveal, project jump nav
+- HTML + Tailwind CSS (CDN)
+- `style.css` for Monad design tokens and components
+- Vanilla JS for nav, scroll reveal, project jump nav, screenshot carousels
 
 ## Pages
 

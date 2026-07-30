@@ -1,7 +1,5 @@
 // Brady S. Herwig — Portfolio
-// Theme, nav, scroll reveal, project jump nav, screenshot carousels
-
-const THEME_KEY = 'brady-theme';
+// Monad light theme · nav · scroll reveal · project jump · carousels
 
 function prefersReducedMotion() {
   return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -36,67 +34,6 @@ function initReveal() {
   );
 
   nodes.forEach((el) => observer.observe(el));
-}
-
-// ----------------------
-// Theme
-function getSystemTheme() {
-  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light';
-}
-
-function getSavedTheme() {
-  try {
-    return localStorage.getItem(THEME_KEY);
-  } catch {
-    return null;
-  }
-}
-
-function applyTheme(theme) {
-  document.documentElement.classList.toggle('dark', theme === 'dark');
-  updateThemeIcon(theme);
-}
-
-function updateThemeIcon(theme) {
-  const el = document.getElementById('theme-icon');
-  if (!el) return;
-
-  if (theme === 'dark') {
-    el.innerHTML = `
-      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M12 3v1.5M12 19.5V21M4.5 12H3m18 0h-1.5m-2.136-6.364l-1.06 1.06M7.696 16.304l-1.06 1.06m12.728 0l-1.06-1.06M7.696 7.696l-1.06-1.06M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z" />
-      </svg>`;
-  } else {
-    el.innerHTML = `
-      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-      </svg>`;
-  }
-}
-
-function initTheme() {
-  applyTheme(getSavedTheme() || getSystemTheme());
-
-  if (!getSavedTheme() && window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      if (!getSavedTheme()) applyTheme(e.matches ? 'dark' : 'light');
-    });
-  }
-
-  const btn = document.getElementById('theme-toggle');
-  if (btn) {
-    btn.addEventListener('click', () => {
-      const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
-      applyTheme(next);
-      try {
-        localStorage.setItem(THEME_KEY, next);
-      } catch { /* ignore */ }
-    });
-  }
 }
 
 // ----------------------
@@ -141,7 +78,7 @@ function initSmoothScroll() {
       if (!target) return;
       e.preventDefault();
       const nav = document.getElementById('site-nav');
-      const offset = (nav ? nav.offsetHeight : 64) + 8;
+      const offset = (nav ? nav.offsetHeight : 80) + 8;
       const top = target.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({
         top,
@@ -185,10 +122,6 @@ function initSkills() {
 
 // ----------------------
 // Screenshot carousel — CSS scroll-snap scroller + JS navigation
-// Pattern: web.dev / Chrome scroll-snap galleries (viewport is the scroller;
-// each slide is flex: 0 0 100% of the viewport). Avoid transform: translateX(N%)
-// on a multi-slide track — % is relative to the track's full width, so one step
-// jumps by every slide at once.
 function initCarousels() {
   document.querySelectorAll('[data-carousel]').forEach((root) => {
     const viewport = root.querySelector('[data-carousel-viewport]');
@@ -214,7 +147,6 @@ function initCarousels() {
     const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll('[data-carousel-dot]')) : [];
 
     function slideWidth() {
-      // Equal full-width slides: use measured clientWidth (handles subpixel + resize)
       return viewport.clientWidth || 1;
     }
 
@@ -273,7 +205,6 @@ function initCarousels() {
       });
     });
 
-    // Keyboard when viewport is focused (also works for native horizontal keys)
     viewport.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') {
         e.preventDefault();
@@ -292,7 +223,6 @@ function initCarousels() {
 
     viewport.addEventListener('scroll', onScroll, { passive: true });
 
-    // Keep position correct after layout/resize
     if (typeof ResizeObserver !== 'undefined') {
       const ro = new ResizeObserver(() => {
         goTo(index, { announce: false, instant: true });
@@ -304,7 +234,6 @@ function initCarousels() {
       });
     }
 
-    // Initial state (no announce on load)
     syncUi(0, { announce: false });
     viewport.scrollLeft = 0;
   });
@@ -378,7 +307,12 @@ function escapeAttr(str) {
 
 // ----------------------
 function init() {
-  initTheme();
+  // Clear any leftover dark-mode class from previous theme system
+  document.documentElement.classList.remove('dark');
+  try {
+    localStorage.removeItem('brady-theme');
+  } catch { /* ignore */ }
+
   initMobileMenu();
   initSmoothScroll();
   initNavScrollState();
