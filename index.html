@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="font-sans antialiased" data-page="home">
+<body class="bg-paper font-sans antialiased text-headline-ink" data-page="home" style="background-color:#fafafa;color:#2a2722">
 
   <!-- Top ticker banner -->
   <div class="announcement-bar" role="region" aria-label="Site notice">
@@ -127,15 +127,15 @@
             <span id="plate-clock">00:00:00</span>
           </div>
           <div class="data-plate__body">
-            <!-- Pure CSS mono bar chart (memorable data mark) -->
-            <div class="mono-chart" role="img" aria-label="Stylized monochrome bar chart">
-              <div class="mono-chart__bar" style="height: 38%" data-label="EDA"></div>
-              <div class="mono-chart__bar" style="height: 62%" data-label="SQL"></div>
-              <div class="mono-chart__bar" style="height: 88%" data-label="PY"></div>
-              <div class="mono-chart__bar" style="height: 54%" data-label="ML"></div>
-              <div class="mono-chart__bar" style="height: 72%" data-label="VIS"></div>
-              <div class="mono-chart__bar" style="height: 46%" data-label="GIT"></div>
-              <div class="mono-chart__bar" style="height: 66%" data-label="STATS"></div>
+            <!-- Pure CSS mono bar chart — labels under bars so they never clip -->
+            <div class="mono-chart" role="img" aria-label="Stylized monochrome bar chart of skills">
+              <div class="mono-chart__col"><div class="mono-chart__track"><div class="mono-chart__bar" style="height:38%"></div></div><span class="mono-chart__label">EDA</span></div>
+              <div class="mono-chart__col"><div class="mono-chart__track"><div class="mono-chart__bar" style="height:62%"></div></div><span class="mono-chart__label">SQL</span></div>
+              <div class="mono-chart__col"><div class="mono-chart__track"><div class="mono-chart__bar" style="height:88%"></div></div><span class="mono-chart__label">PY</span></div>
+              <div class="mono-chart__col"><div class="mono-chart__track"><div class="mono-chart__bar" style="height:54%"></div></div><span class="mono-chart__label">ML</span></div>
+              <div class="mono-chart__col"><div class="mono-chart__track"><div class="mono-chart__bar" style="height:72%"></div></div><span class="mono-chart__label">VIS</span></div>
+              <div class="mono-chart__col"><div class="mono-chart__track"><div class="mono-chart__bar" style="height:46%"></div></div><span class="mono-chart__label">GIT</span></div>
+              <div class="mono-chart__col"><div class="mono-chart__track"><div class="mono-chart__bar" style="height:66%"></div></div><span class="mono-chart__label">STATS</span></div>
             </div>
 
             <!-- Halftone SVG scatter + ASCII python -->
@@ -220,25 +220,25 @@
           <h2 class="section-title">A data-driven mindset with a human touch.</h2>
         </div>
 
-        <div class="grid gap-4 md:grid-cols-3">
-          <article class="card card--feature reveal reveal-delay-1">
+        <div class="grid gap-4 md:grid-cols-3 md:items-stretch">
+          <article class="card card--feature reveal reveal-delay-1 h-full">
             <p class="section-label">01</p>
-            <h3 class="font-display text-2xl text-headline-ink">Who I am</h3>
-            <p class="mt-3 text-base leading-[1.5] tracking-[-0.16px] text-sepia">
+            <h3 class="font-display text-2xl leading-tight text-headline-ink">Who I am</h3>
+            <p class="text-base">
               Friendly, understanding, and determined Computer Science: Data Science student at Liberty University.
             </p>
           </article>
-          <article class="card card--feature reveal reveal-delay-2">
+          <article class="card card--feature reveal reveal-delay-2 h-full">
             <p class="section-label">02</p>
-            <h3 class="font-display text-2xl text-headline-ink">What drives me</h3>
-            <p class="mt-3 text-base leading-[1.5] tracking-[-0.16px] text-sepia">
+            <h3 class="font-display text-2xl leading-tight text-headline-ink">What drives me</h3>
+            <p class="text-base">
               Leading teams, clear communication, and diving deep into data to uncover meaningful patterns and insights.
             </p>
           </article>
-          <article class="card card--feature reveal reveal-delay-3">
+          <article class="card card--feature reveal reveal-delay-3 h-full">
             <p class="section-label">03</p>
-            <h3 class="font-display text-2xl text-headline-ink">My approach</h3>
-            <p class="mt-3 text-base leading-[1.5] tracking-[-0.16px] text-sepia">
+            <h3 class="font-display text-2xl leading-tight text-headline-ink">My approach</h3>
+            <p class="text-base">
               Combining technical skills with storytelling so data drives real decisions. Focused on practical ML and data projects.
             </p>
           </article>
@@ -278,14 +278,14 @@ dtype: int64</span>
           <h2 class="section-title mb-12">Tools &amp; strengths</h2>
         </div>
 
-        <div class="grid gap-4 md:grid-cols-2">
-          <div class="card card--feature reveal reveal-delay-1">
-            <h3 class="text-xs font-bold uppercase tracking-tight text-ash">Technical</h3>
-            <div id="tech-skills" class="mt-6 flex flex-wrap gap-2"></div>
+        <div class="grid gap-4 md:grid-cols-2 md:items-stretch">
+          <div class="card card--feature reveal reveal-delay-1 h-full">
+            <h3 class="section-label !mb-0" style="color:var(--color-ash)">Technical</h3>
+            <div id="tech-skills" class="mt-5 flex flex-wrap gap-2 content-start"></div>
           </div>
-          <div class="card card--feature reveal reveal-delay-2">
-            <h3 class="text-xs font-bold uppercase tracking-tight text-ash">Soft skills</h3>
-            <div id="soft-skills" class="mt-6 flex flex-wrap gap-2"></div>
+          <div class="card card--feature reveal reveal-delay-2 h-full">
+            <h3 class="section-label !mb-0" style="color:var(--color-ash)">Soft skills</h3>
+            <div id="soft-skills" class="mt-5 flex flex-wrap gap-2 content-start"></div>
           </div>
         </div>
       </div>
@@ -338,14 +338,14 @@ dtype: int64</span>
         </div>
 
         <article class="card card--feature accent-border reveal reveal-delay-1 max-w-3xl">
-          <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-            <div>
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+            <div class="min-w-0 flex-1">
               <h3 class="font-display text-[clamp(1.75rem,4vw,2.5rem)] leading-tight text-headline-ink">Liberty University</h3>
-              <p class="mt-2 text-base tracking-tight text-sepia">Bachelor of Science — Computer Science: Data Science</p>
+              <p class="mt-2 text-base">Bachelor of Science — Computer Science: Data Science</p>
             </div>
-            <span class="status-chip w-fit">Expected 2028</span>
+            <span class="status-chip w-fit shrink-0">Expected 2028</span>
           </div>
-          <p class="mt-6 text-base leading-[1.5] tracking-[-0.16px] text-sepia">
+          <p class="mt-6 text-base">
             Developing expertise in data analysis, statistical modeling, machine learning, and communicating insights effectively.
             Emphasis on practical projects and clear problem-solving.
           </p>
@@ -369,18 +369,18 @@ dtype: int64</span>
           </p>
         </div>
 
-        <div class="card card--feature reveal reveal-delay-1 mt-12 max-w-xl space-y-6">
+        <div class="card card--feature reveal reveal-delay-1 mt-12 max-w-xl">
           <a href="mailto:bradyherwig@outlook.com"
-             class="link-accent inline-flex min-h-[44px] items-center text-xl text-headline-ink">
+             class="link-accent inline-flex min-h-[44px] max-w-full items-center break-all text-lg sm:text-xl text-headline-ink">
             bradyherwig@outlook.com
           </a>
 
-          <div class="flex flex-wrap gap-3">
+          <div class="mt-6 flex flex-wrap gap-3">
             <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost cursor-pointer">LinkedIn</a>
             <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer" class="btn btn-ghost cursor-pointer">GitHub</a>
           </div>
 
-          <div class="section-divider border-t pt-6">
+          <div class="section-divider mt-6 border-t pt-6">
             <a
               href="resume/HerwigBradyResume.pdf"
               class="btn btn-primary cursor-pointer"
@@ -390,7 +390,7 @@ dtype: int64</span>
               Download Resume
               <span aria-hidden="true">→</span>
             </a>
-            <p id="resume-note" class="meta-line mt-3 text-ash">PDF · Brady S. Herwig</p>
+            <p id="resume-note" class="meta-line mt-3" style="color:var(--color-ash)">PDF · Brady S. Herwig</p>
           </div>
         </div>
       </div>

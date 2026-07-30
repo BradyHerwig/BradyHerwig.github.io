@@ -126,6 +126,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* Paper canvas — set on html so browser chrome / overscroll never shows pure white */
+  background-color: #fafafa;
+  background-color: var(--color-paper);
+  color: var(--color-headline-ink);
 }
 
 body {
@@ -134,11 +138,33 @@ body {
   font-weight: var(--font-weight-regular);
   line-height: var(--leading-body);
   letter-spacing: var(--tracking-body);
-  background-color: var(--color-paper);
+  /* Explicit paper fill (literal + token) so Tailwind preflight cannot leave a white page */
+  background-color: #fafafa !important;
+  background-color: var(--color-paper) !important;
+  background-image: none !important;
   color: var(--color-headline-ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  background-color: transparent;
+  color: inherit;
+}
+
+/* Text in every box: wrap long tokens (emails, code) instead of overflowing */
+p,
+h1, h2, h3, h4, h5, h6,
+.card,
+.project-card,
+.project-showcase__block,
+.repl-block,
+.link-accent,
+.stat-card {
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -210,6 +236,7 @@ button:focus-visible {
   gap: var(--spacing-16);
   min-height: 28px;
   padding: 5px 16px;
+  background: #fafafa;
   background: var(--color-paper);
   color: var(--color-headline-ink);
   border-bottom: 1px solid var(--color-headline-ink);
@@ -224,6 +251,8 @@ button:focus-visible {
 .announcement-bar__text {
   flex: 1;
   text-align: center;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .announcement-bar__pill {
@@ -254,6 +283,7 @@ button:focus-visible {
    --------------------------------------------------------- */
 #site-nav {
   border-color: transparent;
+  background-color: #fafafa;
   background-color: var(--color-nav-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -263,6 +293,7 @@ button:focus-visible {
 
 #site-nav.is-scrolled {
   border-bottom: 1px solid var(--color-midstone);
+  background-color: #fafafa;
   background-color: rgba(250, 250, 250, 0.97);
 }
 
@@ -362,12 +393,13 @@ button:focus-visible {
 
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 4.8rem);
+  font-size: clamp(1.85rem, 4.5vw, 3.75rem);
   font-weight: var(--font-weight-regular);
   letter-spacing: 0;
-  line-height: 0.95;
+  line-height: 1.05;
   color: var(--color-headline-ink);
-  max-width: 18ch;
+  max-width: min(18ch, 100%);
+  text-wrap: balance;
 }
 
 .section-divider {
@@ -392,12 +424,40 @@ button:focus-visible {
    --------------------------------------------------------- */
 .card {
   background: var(--color-paper);
+  background-color: #fafafa;
+  background-color: var(--color-paper);
   border: 1px solid var(--color-hairline);
   border-radius: var(--radius-cards);
   box-shadow: none;
   transition: border-color var(--transition);
   position: relative;
-  padding: var(--card-padding);
+  padding: var(--spacing-24);
+  min-width: 0; /* grid children can shrink; text wraps instead of overflowing */
+  display: flex;
+  flex-direction: column;
+}
+
+.card p {
+  margin: 0;
+  max-width: 100%;
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-body);
+  color: var(--color-sepia);
+}
+
+.card p.section-label,
+.card .section-label {
+  color: var(--color-ash);
+  line-height: var(--leading-caption);
+  letter-spacing: var(--tracking-caption);
+  margin-bottom: var(--spacing-8);
+}
+
+.card h3,
+.card .font-display {
+  max-width: 100%;
+  line-height: 1.15;
+  color: var(--color-headline-ink);
 }
 
 .card--lift:hover,
@@ -409,9 +469,24 @@ a.card:hover,
 }
 
 .card--feature {
-  overflow: hidden;
-  padding: var(--spacing-24);
+  /* Do not use overflow:hidden — clips multi-line copy and focus rings */
+  overflow: visible;
+  padding: var(--spacing-32);
   border-color: var(--color-headline-ink);
+  gap: 0;
+}
+
+.card--feature > .section-label {
+  margin-bottom: var(--spacing-8);
+}
+
+.card--feature > h3 {
+  margin: 0 0 var(--spacing-12);
+}
+
+.card--feature > p {
+  margin-top: 0;
+  flex: 1;
 }
 
 .card--elevated {
@@ -422,6 +497,11 @@ a.card:hover,
 .card--ink {
   background: var(--surface-ink);
   border-color: var(--color-sepia);
+  color: var(--color-paper);
+}
+
+.card--ink p,
+.card--ink h3 {
   color: var(--color-paper);
 }
 
@@ -553,7 +633,7 @@ a.card:hover,
   display: inline-flex;
   align-items: center;
   min-height: 2rem;
-  padding: 4px 10px;
+  padding: 6px 12px;
   font-family: var(--font-body);
   font-size: var(--text-caption);
   font-weight: var(--font-weight-regular);
@@ -564,6 +644,10 @@ a.card:hover,
   background: transparent;
   color: var(--color-headline-ink);
   transition: background-color var(--transition), color var(--transition);
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.3;
 }
 
 .skill-pill:hover {
@@ -622,11 +706,13 @@ a.card:hover,
 
 .hero-display {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 10vw, 7.5rem);
+  font-size: clamp(2.75rem, 9vw, 6.5rem);
   font-weight: var(--font-weight-regular);
-  line-height: 0.85;
+  line-height: 0.9;
   letter-spacing: 0;
   color: var(--color-headline-ink);
+  max-width: 100%;
+  text-wrap: balance;
 }
 
 .hero-display em {
@@ -634,15 +720,17 @@ a.card:hover,
   font-size: 0.42em;
   vertical-align: baseline;
   letter-spacing: 0;
+  white-space: nowrap;
 }
 
 .hero-sub {
   font-family: var(--font-louize);
-  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
   font-weight: var(--font-weight-regular);
-  line-height: 1.25;
+  line-height: 1.35;
   letter-spacing: -0.01em;
   color: var(--color-sepia);
+  max-width: 36ch;
 }
 
 .hero-rule {
@@ -672,11 +760,13 @@ a.card:hover,
   position: relative;
   border: 1px solid var(--color-headline-ink);
   border-radius: 0; /* square corners per imagery rules */
+  background: #fafafa;
   background: var(--color-paper);
   overflow: hidden;
   min-height: 280px;
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .data-plate__header {
@@ -701,40 +791,64 @@ a.card:hover,
   min-height: 0;
 }
 
-/* CSS monochrome bar chart */
+/* CSS monochrome bar chart — labels BELOW bars so they never clip */
 .mono-chart {
   display: flex;
-  align-items: flex-end;
-  gap: 6px;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 8px;
   height: 100%;
-  min-height: 140px;
-  padding: 8px 4px 0;
-  border-bottom: 1px solid var(--color-midstone);
+  min-height: 168px;
+  padding: 8px 2px 0;
+  border-bottom: none;
+}
+
+.mono-chart__col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  height: 100%;
+}
+
+.mono-chart__track {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 110px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .mono-chart__bar {
-  flex: 1;
+  width: 100%;
+  max-width: 28px;
   background: var(--color-headline-ink);
   border-radius: 0;
-  min-width: 0;
-  position: relative;
+  min-height: 4px;
   opacity: 0.92;
-  transition: height 0.6s var(--ease-out);
+  /* height % is relative to .mono-chart__track */
 }
 
-.mono-chart__bar::after {
-  content: attr(data-label);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
+.mono-chart__label {
+  flex: 0 0 auto;
   font-family: var(--font-body);
   font-size: 9px;
+  line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: -0.01em;
   color: var(--color-ash);
+  text-align: center;
   white-space: nowrap;
-  margin-bottom: 4px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mono-chart__bar::after {
+  content: none;
 }
 
 /* Dot-matrix / scatter layer */
@@ -770,27 +884,35 @@ a.card:hover,
   color: var(--color-headline-ink);
   margin: 0;
   overflow: hidden;
+  max-width: 100%;
   user-select: none;
 }
 
 .ascii-art--plate {
   text-align: center;
-  padding: 8px 4px;
-  border-top: 1px solid var(--color-hairline);
+  padding: 8px 4px 4px;
+  border-top: none;
+  align-self: center;
 }
 
 /* Python REPL decorative block */
 .repl-block {
   font-family: ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
-  font-size: 11px;
-  line-height: 1.45;
+  font-size: clamp(10px, 2.4vw, 12px);
+  line-height: 1.5;
   letter-spacing: -0.02em;
   color: var(--color-headline-ink);
   background: var(--color-paper);
+  background-color: #fafafa;
   border: 1px solid var(--color-headline-ink);
   border-radius: 0;
-  padding: 16px;
+  padding: clamp(12px, 3vw, 20px);
   overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  min-width: 0;
+  white-space: pre;
+  tab-size: 2;
 }
 
 .repl-block .prompt {
@@ -807,9 +929,10 @@ a.card:hover,
 
 /* Inverted editorial letter */
 .editorial-letter {
+  background: #2a2722;
   background: var(--surface-ink);
   color: var(--color-paper);
-  padding: clamp(48px, 8vw, 80px) 24px;
+  padding: clamp(48px, 8vw, 80px) clamp(20px, 5vw, 48px);
   text-align: center;
 }
 
@@ -826,12 +949,13 @@ a.card:hover,
 
 .editorial-letter__body {
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 3.2vw, 2rem);
+  font-size: clamp(1.25rem, 3vw, 1.85rem);
   font-weight: var(--font-weight-regular);
-  line-height: 1.25;
+  line-height: 1.3;
   color: var(--color-paper);
-  max-width: 28ch;
+  max-width: min(32ch, 100%);
   margin: 0 auto;
+  text-wrap: balance;
 }
 
 .editorial-letter__body + .editorial-letter__eyebrow {
@@ -840,17 +964,18 @@ a.card:hover,
 
 /* Stamped Manuka section header */
 .stamp-header {
+  background: #2a2722;
   background: var(--surface-ink);
   color: var(--color-paper);
-  padding: clamp(32px, 5vw, 56px) 16px;
+  padding: clamp(28px, 4vw, 48px) 0;
   overflow: hidden;
 }
 
 .stamp-header__text {
   font-family: var(--font-manuka);
-  font-size: clamp(3.5rem, 14vw, 14rem);
+  font-size: clamp(3rem, 12vw, 10rem);
   font-weight: var(--font-weight-regular);
-  line-height: 0.78;
+  line-height: 0.8;
   text-transform: uppercase;
   color: var(--color-paper);
   letter-spacing: -0.02em;
@@ -859,6 +984,8 @@ a.card:hover,
   display: flex;
   align-items: center;
   gap: 0.15em;
+  overflow: hidden;
+  max-width: 100%;
 }
 
 .stamp-header__rule {
@@ -871,12 +998,13 @@ a.card:hover,
 
 /* Brand / skills ticker strip */
 .ticker {
+  background: #2a2722;
   background: var(--surface-ink);
   color: var(--color-paper);
   overflow: hidden;
   border-top: 1px solid var(--color-headline-ink);
   border-bottom: 1px solid var(--color-headline-ink);
-  padding: 20px 0;
+  padding: 18px 0;
 }
 
 .ticker__track {
@@ -924,15 +1052,17 @@ a.card:hover,
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: var(--spacing-24);
+  padding: var(--spacing-32);
   border-radius: var(--radius-cards);
-  background: transparent;
+  background: var(--color-paper);
   border: 1px solid var(--color-headline-ink);
   box-shadow: none;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
   transition: background-color var(--transition), color var(--transition);
+  min-width: 0;
+  gap: var(--spacing-8);
 }
 
 .project-card:hover {
@@ -961,17 +1091,18 @@ a.card:hover,
 }
 
 .project-card__desc {
-  margin-top: 0.55rem;
+  margin-top: 0.35rem;
   font-size: var(--text-body);
   line-height: var(--leading-body);
   letter-spacing: var(--tracking-body);
   color: var(--color-sepia);
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   flex: 1;
+  max-width: 100%;
 }
 
 .project-card__meta {
@@ -1221,20 +1352,39 @@ a.card:hover,
 
 .project-showcase__block {
   height: 100%;
+  min-width: 0;
 }
 
 .project-showcase__block h3 {
   font-family: var(--font-display);
   font-weight: var(--font-weight-regular);
-  font-size: var(--text-heading-sm);
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   letter-spacing: 0;
-  line-height: 1.15;
+  line-height: 1.2;
+  margin: 0 0 var(--spacing-12);
+  max-width: 100%;
+}
+
+.project-showcase__block p {
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-body);
+  color: var(--color-sepia);
+  max-width: 100%;
 }
 
 .project-showcase__block ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.project-showcase__body {
+  min-width: 0;
+}
+
+.project-showcase header p {
+  max-width: min(62ch, 100%);
 }
 
 /* Jump links */
@@ -1298,6 +1448,11 @@ a.card:hover,
   opacity: 0.7;
 }
 
+footer {
+  background-color: #fafafa;
+  background-color: var(--color-paper);
+}
+
 .footer-link {
   color: var(--color-ash);
   font-family: var(--font-body);
@@ -1344,6 +1499,8 @@ a.card:hover,
   text-transform: uppercase;
   color: var(--color-headline-ink);
   line-height: 1.5;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .coord-footer .sep {
