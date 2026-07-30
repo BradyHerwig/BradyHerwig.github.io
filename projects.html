@@ -7,11 +7,117 @@
   <meta name="description" content="Selected data science projects by Brady S. Herwig — write-ups, figures, learnings, and tools.">
   <meta name="theme-color" content="#05060f">
   <link rel="stylesheet" href="assets/fonts/fonts.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=side-ascii-2">
 </head>
 <body data-page="projects">
   <div class="bg-grid" aria-hidden="true"></div>
   <div class="bg-halo" aria-hidden="true"></div>
+
+  <!-- Fixed side rails: static markup so visibility never depends on JS alone -->
+  <div class="side-ascii" aria-hidden="true">
+    <div class="side-ascii__rail side-ascii__rail--left">
+      <div class="side-ascii__track">
+        <pre class="side-ascii__fig">  #####
+ ##...##  scatter
+## . . ##
+# .. .. #
+ ##...##
+  #####
+ x -&gt; y ^</pre>
+        <pre class="side-ascii__fig side-ascii__fig--2">  [ neural ]
+   o   o
+  / \ / \
+ o---o---o
+  \ / \ /
+   o   o
+ w·x+b -&gt; y</pre>
+        <pre class="side-ascii__fig side-ascii__fig--3">########  92%
+######    78%
+########## 99%
+####      51%
+#######   84%
+  accuracy</pre>
+        <pre class="side-ascii__fig">  [matrix]
+  0.9 .1 0
+  .2 0.7.1
+  0 .3 0.8
+  det != 0</pre>
+        <pre class="side-ascii__fig side-ascii__fig--2">$ train.py
+&gt; epoch 12
+&gt; loss .084
+&gt; acc 0.91
+_</pre>
+        <pre class="side-ascii__fig side-ascii__fig--3">  #####
+ ##...##  scatter
+## . . ##
+# .. .. #
+ ##...##
+  #####
+ x -&gt; y ^</pre>
+        <pre class="side-ascii__fig">  [ neural ]
+   o   o
+  / \ / \
+ o---o---o
+  \ / \ /
+   o   o
+ w·x+b -&gt; y</pre>
+        <pre class="side-ascii__fig side-ascii__fig--2">########  92%
+######    78%
+########## 99%
+####      51%
+#######   84%
+  accuracy</pre>
+      </div>
+    </div>
+    <div class="side-ascii__rail side-ascii__rail--right">
+      <div class="side-ascii__track">
+        <pre class="side-ascii__fig">  /-- box --\
+  |  ...    |
+  |--[+]----|
+  |  ...    |
+  \---------/
+  Q1 med Q3</pre>
+        <pre class="side-ascii__fig side-ascii__fig--2">    /\
+   /  \/\
+  /      \
+ /~~~~~~~~\
+  waveform</pre>
+        <pre class="side-ascii__fig side-ascii__fig--3">  .  .  .
+ . .. . .
+.  .  .  .
+  pca map</pre>
+        <pre class="side-ascii__fig">  [ tree ]
+    (?)
+   /   \
+ yes    no
+  |      |
+ [A]    [B]</pre>
+        <pre class="side-ascii__fig side-ascii__fig--2">01 ##====
+02 ###===
+03 #####=
+04 ##====
+05 ####==
+ sparklines</pre>
+        <pre class="side-ascii__fig side-ascii__fig--3">  /-- box --\
+  |  ...    |
+  |--[+]----|
+  |  ...    |
+  \---------/
+  Q1 med Q3</pre>
+        <pre class="side-ascii__fig">    /\
+   /  \/\
+  /      \
+ /~~~~~~~~\
+  waveform</pre>
+        <pre class="side-ascii__fig side-ascii__fig--2">  [ tree ]
+    (?)
+   /   \
+ yes    no
+  |      |
+ [A]    [B]</pre>
+      </div>
+    </div>
+  </div>
 
   <nav class="nav" id="site-nav">
     <div class="shell nav__inner">
@@ -258,6 +364,6 @@
   </footer>
 
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
-  <script src="script.js"></script>
+  <script src="script.js?v=side-ascii-2"></script>
 </body>
 </html>

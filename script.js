@@ -391,6 +391,7 @@ function buildAsciiRail(figures, side) {
 }
 
 function initSideAscii() {
+  // Prefer static HTML rails (index/projects). Only inject if markup is missing.
   if (document.querySelector(".side-ascii")) return;
   if (!document.body) return;
 
@@ -399,7 +400,6 @@ function initSideAscii() {
   root.setAttribute("aria-hidden", "true");
   root.appendChild(buildAsciiRail(SIDE_ASCII_LEFT, "left"));
   root.appendChild(buildAsciiRail(SIDE_ASCII_RIGHT, "right"));
-  // Append at end of body so fixed rails paint above page flow (still under .nav)
   document.body.appendChild(root);
 }
 

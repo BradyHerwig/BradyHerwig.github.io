@@ -175,8 +175,9 @@ class Structure(unittest.TestCase):
 
     def test_style_and_script_linked(self):
         for html in (INDEX, PROJECTS):
-            self.assertIn('href="style.css"', html)
-            self.assertIn('src="script.js"', html)
+            # Allow cache-busting query strings (style.css?v=...)
+            self.assertRegex(html, r'href="style\.css(\?[^"]*)?"')
+            self.assertRegex(html, r'src="script\.js(\?[^"]*)?"')
 
 
 class Script(unittest.TestCase):
