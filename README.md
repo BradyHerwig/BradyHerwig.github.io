@@ -4,27 +4,27 @@ Editorial personal portfolio for a data science student at Liberty University.
 
 ## Design
 
-- **Style:** Monad — editorial tech journal on warm parchment
-- **Palette:** Parchment canvas (`#f6f3f1`), Lake Blue primary CTA (`#2b59d1`), warm grayscale
-- **Type:** Instrument Serif (headings, weight 400) + JetBrains Mono (body / UI)
-- **Theme:** Light only
-- **Components:** Pill buttons (100px), soft cards (40px radius), 1px Ash hairline borders, no card shadows
-- **A11y:** SVG icons, 44px targets, focus rings, `prefers-reduced-motion`
+- **Style:** Henry — gothic broadside on warm cream paper
+- **Palette:** Paper (`#fafafa`) / Headline Ink (`#2a2722`) — 100% warm monochrome, no chromatic accent
+- **Type:** Fraunces (display serif) + Inter (UI) + Antonio (stamped mastheads)
+- **Theme:** Light only · shadowless · 12px radius only
+- **Layout:** Alternating Paper/Ink full-bleed bands; type is the brand
+- **Data art:** CSS mono charts, SVG scatter, ASCII plate, Python REPL block, skills ticker
+- **A11y:** 44px targets, monochrome focus rings, `prefers-reduced-motion`
 
-Design system: `design-system/brady-herwig-portfolio/MASTER.md`  
-Projects page override: `design-system/brady-herwig-portfolio/pages/projects.md`
+Design system: `design-system/brady-herwig-portfolio/MASTER.md`
 
 ## Stack
 
 - HTML + Tailwind CSS (CDN)
-- `style.css` for Monad design tokens and components
-- Vanilla JS for nav, scroll reveal, project jump nav, screenshot carousels
+- `style.css` for Henry design tokens and components
+- Vanilla JS for nav, scroll reveal, ticker, clocks, project jump nav, screenshot carousels
 
 ## Pages
 
 | File | Role |
 |------|------|
-| `index.html` | Home — about, skills, education, contact (**no project list**) |
+| `index.html` | Home — hero data plate, about letter, skills, education, contact |
 | `projects.html` | Curated project showcases only |
 
 ## Local development
@@ -43,9 +43,9 @@ Deploy from `main` / root → live on your Pages URL.
 
 Showcase write-ups live only on `projects.html`. Each case study has:
 
-1. Screenshots  
-2. What it shows  
-3. What I learned  
-4. Tools & libraries  
+1. Screenshots (rendered grayscale for monochrome cohesion)
+2. What it shows
+3. What I learned
+4. Tools & libraries
 
 Drop images in `screenshots/<project-slug>/` (see `screenshots/README.md`), then ask to wire them into the page.

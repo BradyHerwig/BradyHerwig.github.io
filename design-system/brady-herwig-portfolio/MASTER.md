@@ -9,126 +9,153 @@
 **Project:** Brady Herwig Portfolio  
 **Updated:** 2026-07-30  
 **Category:** Data Science / Personal Portfolio  
-**Style:** Monad — editorial tech journal on warm parchment  
-**Mood:** Calm, literary, technical-manual  
-**Theme:** Light only  
+**Style:** Henry — gothic broadside poster on warm cream paper  
+**Mood:** Editorial, austere, typographic  
+**Theme:** Light only · 100% warm monochrome  
 
 ---
 
 ## Global Rules
 
-### Color Palette — Monad Parchment
+### Color Palette — Henry Monochrome
 
-Warm off-white canvas with a single Lake Blue primary action. Everything else is warm grayscale; pastels are decorative-only.
+Warm paper canvas with warm near-black ink. **No chromatic accent.** Every visual move comes from scale, weight, and inversion.
 
 | Name | Value | Token | Role |
 |------|-------|-------|------|
-| Parchment | `#f6f3f1` | `--color-parchment` | Page canvas — never pure white |
-| Lake Blue | `#2b59d1` | `--color-lake-blue` | Single primary CTA fill only |
-| Periwinkle Mist | `#cfdaf5` | `--color-periwinkle-mist` | Elevated card surface |
-| Sky Blue | `#a0b5eb` | `--color-sky-blue` | Gradient wash (decorative) |
-| Mint | `#a7fccd` | `--color-mint` | Decorative accent |
-| Coral | `#ff9473` | `--color-coral` | Gradient wash (decorative) |
-| Gold | `#ecda98` | `--color-gold` | Gradient wash (decorative) |
-| Off-Black | `#242424` | `--color-off-black` | Primary text, black pills |
-| Ink | `#000000` | `--color-ink` | Announcement bar |
-| Graphite | `#4e4d4d` | `--color-graphite` | Body / secondary text |
-| Smoke | `#797776` | `--color-smoke` | Helper / tertiary text |
-| Ash | `#cecac8` | `--color-ash` | Hairline borders |
+| Paper | `#fafafa` | `--color-paper` | Page background, card surfaces, inverted-section type |
+| Hairline | `#eeeeee` | `--color-hairline` | Card and tile borders on Paper |
+| Midstone | `#9f9f9f` | `--color-midstone` | Nav borders, muted borders on dark sections |
+| Ash | `#666666` | `--color-ash` | Secondary borders, muted UI text |
+| Pebble | `#b3b3b3` | `--color-pebble` | Inactive nav text and borders |
+| Sepia | `#3e3b36` | `--color-sepia` | Strong borders, secondary heading text |
+| Headline Ink | `#2a2722` | `--color-headline-ink` | Primary text, body ink, dominant borders |
 
 ### Typography
 
-- **Display / Headings:** Instrument Serif (Untitled Serif substitute) — weight **400 only**
-- **Body / UI:** JetBrains Mono (ABC Diatype Mono substitute) — weights 400, 500
-- **Philosophy:** Serif announces, mono instructs. Never bold headings.
+| Role | Family (sub) | Weights | Notes |
+|------|--------------|---------|-------|
+| UI / body / nav | Inter (Neue Montreal) | 400, 700 | 12–32px, -0.01em tracking |
+| Display serif | Fraunces (Louize Display) | 400 | Headlines 77–132px; editorial blocks 32px |
+| Secondary serif | Fraunces (Louize) | 400 | Short editorial copy, link text |
+| Stamped masthead | Antonio (Manuka) | 400 | Uppercase only, 226–371px, line-height 0.75 |
+
+### Type Scale
 
 | Role | Size | Line Height | Letter Spacing |
 |------|------|-------------|----------------|
-| caption | 12px | 1.2 | -0.4px |
-| body-sm | 14px | 1.35 | -0.28px |
-| body | 16px | 1.35 | -0.4px |
-| label | 18px | 1.2 | -0.4px |
-| body-lg | 20px | 1.35 | -0.4px |
-| subheading | 24px | 1.2 | -0.48px |
-| heading-sm | 32px | 1.2 | -0.64px |
-| heading | 40px | 1.2 | -0.8px |
-| heading-lg | 48px | 1.2 | -0.96px |
-| display | 80px | 1.2 | -1.6px |
+| caption | 12px | 1.5 | -0.12px |
+| body | 16px | 1.5 | -0.16px |
+| subheading | 20px | 1.3 | -0.2px |
+| heading-sm | 24px | 1.2 | -0.24px |
+| heading | 32px | 1.1 | -0.32px |
+| heading-lg | 77px | 0.9 | — |
+| display | 132px | 0.8 | — |
+| display-xl | 371px | 0.75 | — |
 
 ### Spacing & Layout
 
-- Base unit: 8px
-- Page max-width: `1432px`
-- Section gap: `64px`
-- Card padding: `40px`
-- Element gap: `16px`
+- Base unit: **4px**
+- Section gap: 64–96px
+- Card padding: 16px
+- Element gap: 16px
+- Soft max-width: ~1400px (editorial full-bleed feel)
+- No traditional card grids of features; prefer editorial bands
 
 ### Radius
 
 | Element | Value |
 |---------|-------|
-| tags / pills | 9999px |
-| cards | 40px |
-| buttons | 100px |
+| tags / cards / buttons | **12px only** |
+
+No pills (9999px), no square 0px on UI chrome. **Exception:** data/imagery plates use square corners (0).
 
 ### Elevation
 
-- Cards: **no drop shadows** — use 1px Ash borders
-- Ambient only: `rgba(0, 0, 0, 0.1) 0px 0px 10px 0px`
+**Shadowless by design.** Hierarchy via type scale, Paper/Ink inversion, and 1px rules.
+
+### Surfaces
+
+| Level | Name | Value |
+|-------|------|-------|
+| 1 | Paper | `#fafafa` |
+| 2 | Ink | `#2a2722` |
+
+Alternate full-bleed bands. Never gradient-blend; never place a card across the boundary.
 
 ---
 
 ## Components
 
-### Announcement Bar
-Full-width Ink bar, mono 14px parchment text, small white pill CTA right.
+### Masthead Display Headline
+Fraunces 116–132px (clamped), weight 400, line-height ~0.85. Optional italic half-size phrase inline.
 
-### Primary Pill (Blue)
-Lake Blue fill, white mono 14px uppercase, 100px radius, 16×32 padding, trailing ▸.
+### Stamped Display Section Header
+Antonio uppercase at architectural scale on Ink band, trailing rule.
 
-### Primary Pill (Black)
-Off-Black fill, parchment text, same geometry, no arrow.
+### Top Ticker Banner
+Inter 12px uppercase on Paper, hairline rules top/bottom.
 
-### Ghost Pill
-Transparent, 1px Off-Black border, Off-Black mono uppercase.
+### Inverted Editorial Letter
+Full-bleed Ink, centered Fraunces 32px prose, Neue-Montreal-style 12px eyebrows.
 
-### Feature Card
-Transparent/Parchment, 1px Ash, 40px radius, 40px padding. Title: serif 24px. Body: mono 16px Graphite.
+### Nav Link (Uppercase)
+Inter 12px bold uppercase. Active = larger size (16px), same color/weight.
 
-### Elevated Feature Card
-Periwinkle Mist fill — the one colored card that draws the eye.
+### Brand / Skills Ticker Strip
+Ink band, Fraunces tool names marquee, optional ghost COMING SOON tags.
 
-### Navigation
-~80px height, parchment/transparent, mono 18px uppercase links, blue pill CTA right.
+### Coming Soon Tag
+Outlined ghost pill, 12px radius, 1px Paper border on Ink.
 
-### Hero
-Centered stack: serif display 80px weight 400, mono subtext 20px Graphite, two pill buttons. Soft gradient atmospheric washes only.
+### Coordinate Footer
+12px uppercase single-line meta with em-dash separators + live clock.
+
+### Hero Data Plate
+Right-side monochrome plate: pure CSS bars, SVG scatter, ASCII art. Square corners, ink-on-paper only.
+
+### Buttons
+- **Primary:** Ink fill, Paper text (inversion, not a brand color)
+- **Ghost:** 1px Ink border, transparent fill  
+Never a chromatic CTA.
+
+---
+
+## Imagery & Data Art
+
+- Monochrome only: grayscale screenshots, SVG dots, CSS bars, ASCII
+- No photography, no product color, no gradients
+- Iconography largely absent; type does the work
+- Screenshots: `filter: grayscale(1)` for cohesion
+
+Memorable data treatments used on this site:
+1. **CSS mono bar chart** — pure height bars labeled EDA/SQL/PY…
+2. **SVG halftone scatter** — ink dots + dashed regression line
+3. **ASCII plate** — small monospaced figure as typographic counterweight
+4. **Python REPL block** — monochrome code as editorial decoration
+5. **Skills marquee** — tool names as brand ticker wordmarks
 
 ---
 
 ## Do's and Don'ts
 
 ### Do
-- Untitled Serif / Instrument Serif at weight 400 for all headings
-- JetBrains Mono for all body, nav, buttons, badges
-- Pill radii (100px / 9999px) on buttons and tags
-- Parchment canvas always
-- Lake Blue for **one** primary action per screen
-- 1px Ash borders only
+- Louize/Fraunces at large scale for section-defining headlines
+- Alternate Paper and Ink full-bleed bands
+- 12px radius only on UI chrome
+- Manuka/Antonio only for largest mastheads, always uppercase
+- Let ~90% of the page be empty Paper or Ink
 
 ### Don't
-- Never bold headings (600+)
-- Never pure white (`#ffffff`) page background
-- Never scatter Lake Blue beyond primary CTA
-- Never sans-serif body
-- Never card drop shadows
-- Never corner radii below 16px cards / 100px buttons
-- Never functional UI in pastel gradient colors
+- Never introduce blue/red/green accents
+- Never use filled colored CTA buttons
+- Never apply box-shadow or glow
+- Never use border-radius other than 12px (except square image plates)
+- Never break Paper/Ink binary with gray panels or gradients
+- Never center-align Neue Montreal body; only editorial serif blocks on Ink
 
 ---
 
-## Stack Notes
+## Similar Brands
 
-- Static HTML + Tailwind CDN + `style.css` tokens
-- No dark mode (light-only Monad theme)
-- Fonts via Google Fonts: Instrument Serif + JetBrains Mono
+Pentagram · Manual · Locomotive · Cereal magazine · Rauno Freiberg

@@ -1,14 +1,13 @@
 // Brady S. Herwig — Portfolio
-// Monad light theme · nav · scroll reveal · project jump · carousels
+// Henry broadside · nav · scroll reveal · ticker · carousels · clocks
 
 function prefersReducedMotion() {
   return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 }
 
 // ----------------------
-// Scroll reveal (subtle fade-up; skipped when reduced-motion)
+// Scroll reveal
 function initReveal() {
-  // Above-the-fold hero should never flash empty
   document.querySelectorAll('.hero .reveal:not(.is-visible)').forEach((el) => {
     el.classList.add('is-visible');
   });
@@ -78,7 +77,7 @@ function initSmoothScroll() {
       if (!target) return;
       e.preventDefault();
       const nav = document.getElementById('site-nav');
-      const offset = (nav ? nav.offsetHeight : 80) + 8;
+      const offset = (nav ? nav.offsetHeight : 64) + 8;
       const top = target.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({
         top,
@@ -121,7 +120,60 @@ function initSkills() {
 }
 
 // ----------------------
-// Screenshot carousel — CSS scroll-snap scroller + JS navigation
+// Skills ticker — seamless marquee duplicate
+function initTicker() {
+  const track = document.getElementById('skills-ticker');
+  if (!track) return;
+
+  const items = [
+    'Python', 'Pandas', 'NumPy', 'Scikit-learn', 'SQL',
+    'Jupyter', 'Matplotlib', 'Seaborn', 'Git', 'Statistics',
+    'EDA', 'Machine Learning', 'Data Storytelling',
+  ];
+
+  const sep = ' · ';
+  const makeItem = (label, soon = false) => {
+    const tag = soon
+      ? ` <span class="coming-soon-tag">Soon</span>`
+      : '';
+    return `<span class="ticker__item">${escapeHtml(label)}${tag}</span>`;
+  };
+
+  // Duplicate set twice for seamless CSS loop
+  const half = items.map((label, i) => makeItem(label, i === items.length - 1)).join('');
+  track.innerHTML = half + half;
+
+  if (prefersReducedMotion()) {
+    track.style.animation = 'none';
+  }
+}
+
+// ----------------------
+// Coordinate / plate clocks
+function initClocks() {
+  const plate = document.getElementById('plate-clock');
+  const footer = document.getElementById('footer-clock');
+  if (!plate && !footer) return;
+
+  function tick() {
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2, '0');
+    const mm = String(now.getMinutes()).padStart(2, '0');
+    const ss = String(now.getSeconds()).padStart(2, '0');
+    const full = `${hh}:${mm}:${ss}`;
+    const short = `${hh}:${mm}`;
+    if (plate) plate.textContent = full;
+    if (footer) footer.textContent = short;
+  }
+
+  tick();
+  // Avoid busy timers when reduced motion / hidden tab
+  const interval = prefersReducedMotion() ? 60000 : 1000;
+  setInterval(tick, interval);
+}
+
+// ----------------------
+// Screenshot carousel
 function initCarousels() {
   document.querySelectorAll('[data-carousel]').forEach((root) => {
     const viewport = root.querySelector('[data-carousel-viewport]');
@@ -240,7 +292,7 @@ function initCarousels() {
 }
 
 // ----------------------
-// Projects page: jump nav + active showcase tracking
+// Projects page jump nav
 function initProjectJumpNav() {
   const showcases = document.querySelectorAll('.project-showcase[id]');
   const jumpWrap = document.getElementById('project-jump');
@@ -307,7 +359,6 @@ function escapeAttr(str) {
 
 // ----------------------
 function init() {
-  // Clear any leftover dark-mode class from previous theme system
   document.documentElement.classList.remove('dark');
   try {
     localStorage.removeItem('brady-theme');
@@ -317,6 +368,8 @@ function init() {
   initSmoothScroll();
   initNavScrollState();
   initSkills();
+  initTicker();
+  initClocks();
   initProjectJumpNav();
   initCarousels();
   initReveal();

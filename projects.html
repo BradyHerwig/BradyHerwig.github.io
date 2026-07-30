@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects | Brady S. Herwig</title>
   <meta name="description" content="Selected data science and software projects by Brady S. Herwig — in-depth write-ups, screenshots, learnings, and tools used.">
-  <meta name="theme-color" content="#f6f3f1">
+  <meta name="theme-color" content="#fafafa">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -13,39 +13,23 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
-            mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
-            display: ['"Instrument Serif"', 'ui-serif', 'Georgia', 'serif'],
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            display: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
+            manuka: ['Antonio', 'Arial Narrow', 'sans-serif'],
           },
           colors: {
-            parchment: '#f6f3f1',
-            'lake-blue': '#2b59d1',
-            'periwinkle-mist': '#cfdaf5',
-            'sky-blue': '#a0b5eb',
-            mint: '#a7fccd',
-            coral: '#ff9473',
-            gold: '#ecda98',
-            'off-black': '#242424',
-            ink: '#000000',
-            graphite: '#4e4d4d',
-            smoke: '#797776',
-            ash: '#cecac8',
+            paper: '#fafafa',
+            hairline: '#eeeeee',
+            midstone: '#9f9f9f',
+            ash: '#666666',
+            pebble: '#b3b3b3',
+            sepia: '#3e3b36',
+            'headline-ink': '#2a2722',
             canvas: 'var(--color-background)',
-            brand: {
-              primary: 'var(--color-primary)',
-              secondary: 'var(--color-secondary)',
-              accent: 'var(--color-accent)',
-              muted: 'var(--color-muted)',
-              border: 'var(--color-border)',
-              surface: 'var(--color-surface)',
-            },
-          },
-          maxWidth: {
-            page: '1432px',
           },
           borderRadius: {
-            card: '40px',
-            pill: '100px',
+            card: '12px',
+            pill: '12px',
           },
         },
       },
@@ -58,19 +42,19 @@
 </head>
 <body class="font-sans antialiased" data-page="projects">
 
-  <!-- Announcement bar -->
+  <!-- Top ticker banner -->
   <div class="announcement-bar" role="region" aria-label="Site notice">
     <p class="announcement-bar__text">Selected work · documented in depth</p>
-    <a href="index.html#contact" class="announcement-bar__pill">Contact ▸</a>
+    <a href="index.html#contact" class="announcement-bar__pill">Contact —</a>
   </div>
 
   <!-- Nav -->
   <nav id="site-nav" class="sticky top-0 z-50 border-b transition-colors duration-200">
     <div class="page-shell mx-auto px-5 sm:px-8">
-      <div class="flex h-20 items-center justify-between">
+      <div class="flex h-16 items-center justify-between">
         <a href="index.html" class="group flex min-h-[44px] items-center gap-3 cursor-pointer" aria-label="Home">
-          <span class="logo-mark flex h-9 w-9 items-center justify-center text-xs tracking-tight">BH</span>
-          <span class="hidden font-mono text-sm uppercase tracking-tight text-off-black sm:inline">Brady S. Herwig</span>
+          <span class="logo-mark">BH</span>
+          <span class="hidden text-xs font-bold uppercase tracking-tight text-headline-ink sm:inline">Brady S. Herwig</span>
         </a>
 
         <div class="hidden items-center gap-1 md:flex">
@@ -81,9 +65,8 @@
         </div>
 
         <div class="flex items-center gap-2">
-          <a href="index.html#contact" class="btn btn-primary hidden sm:inline-flex !min-h-[44px] !px-6 !py-2.5 text-xs">
+          <a href="index.html#contact" class="btn btn-ghost hidden sm:inline-flex !min-h-[40px] !px-4 !py-2 text-xs">
             Get in touch
-            <span aria-hidden="true">▸</span>
           </a>
           <button id="mobile-menu-btn" type="button" class="icon-btn md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
             <svg id="menu-icon-open" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
@@ -103,31 +86,26 @@
         <a href="projects.html" class="mobile-link is-active" aria-current="page">Projects</a>
         <a href="index.html#about" class="mobile-link">About</a>
         <a href="index.html#contact" class="mobile-link">Contact</a>
-        <a href="index.html#contact" class="btn btn-primary mt-2 w-full">
-          Get in touch
-          <span aria-hidden="true">▸</span>
-        </a>
+        <a href="index.html#contact" class="btn btn-primary mt-2 w-full">Get in touch</a>
       </div>
     </div>
   </nav>
 
   <main>
-    <!-- Page hero — centered typographic -->
-    <header class="hero hero--centered page-shell mx-auto px-5 pb-14 pt-14 sm:px-8 sm:pb-20 sm:pt-20">
-      <div class="hero__glow" aria-hidden="true"></div>
-
-      <div class="relative mx-auto max-w-3xl">
+    <!-- Page hero -->
+    <header class="hero page-shell mx-auto px-5 pb-12 pt-12 sm:px-8 sm:pb-16 sm:pt-16">
+      <div class="relative max-w-3xl">
         <p class="section-label reveal">Projects</p>
-        <h1 class="hero-display reveal reveal-delay-1 !text-[clamp(2.5rem,6vw,3.5rem)]">
-          Selected work, documented in depth
+        <h1 class="hero-display reveal reveal-delay-1 !text-[clamp(2.75rem,8vw,5.5rem)]">
+          Selected work,<br><em>documented</em>
         </h1>
         <div class="hero-rule reveal reveal-delay-1" aria-hidden="true"></div>
-        <p class="hero-sub reveal reveal-delay-2 mx-auto mt-6 max-w-xl">
+        <p class="hero-sub reveal reveal-delay-2 mt-6 max-w-xl">
           Each showcase covers what the project demonstrates, what I learned building it,
           and the exact tools and libraries I put to use — with a walkthrough of key figures.
         </p>
-        <div class="reveal reveal-delay-3 mt-10 flex flex-wrap items-center justify-center gap-4">
-          <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer" class="btn btn-dark cursor-pointer">
+        <div class="reveal reveal-delay-3 mt-10 flex flex-wrap items-center gap-3">
+          <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer" class="btn btn-primary cursor-pointer">
             GitHub
             <span aria-hidden="true">→</span>
           </a>
@@ -136,7 +114,15 @@
       </div>
     </header>
 
-    <!-- Jump nav: shown when showcase sections exist -->
+    <!-- Stamped masthead -->
+    <div class="stamp-header full-bleed" aria-hidden="true">
+      <p class="stamp-header__text page-shell mx-auto px-5 sm:px-8">
+        <span>CASES</span>
+        <span class="stamp-header__rule"></span>
+      </p>
+    </div>
+
+    <!-- Jump nav -->
     <div id="project-jump" class="section-divider border-t" hidden>
       <div class="page-shell mx-auto px-5 py-5 sm:px-8">
         <nav aria-label="Project sections" class="project-jump-nav reveal">
@@ -159,9 +145,9 @@
       <article id="project-namus-missing" class="project-showcase scroll-mt-28" data-title="NamUs Missing Persons Analysis" aria-labelledby="project-namus-title">
         <div class="page-shell mx-auto px-5 py-16 sm:px-8 sm:py-24">
           <header class="reveal max-w-3xl">
-            <p class="section-label">Case study</p>
+            <p class="section-label">Case study 01</p>
             <h2 id="project-namus-title" class="section-title !max-w-none">NamUs Missing Persons Analysis</h2>
-            <p class="mt-5 max-w-prose font-mono text-base leading-[1.35] tracking-[-0.4px] text-graphite">
+            <p class="mt-5 max-w-prose text-base leading-[1.5] tracking-[-0.16px] text-sepia">
               How do demographic and geographic characteristics of NamUs missing-person listings
               differ between juveniles and adults—and which factors best distinguish the two groups
               when modeled with logistic regression versus a decision tree?
@@ -243,15 +229,10 @@
           </div>
 
           <div class="project-showcase__body mt-14 grid gap-4 lg:grid-cols-3">
-            <section class="project-showcase__block card reveal reveal-delay-1 !p-10" aria-labelledby="namus-shows">
-              <div class="icon-well mb-5 h-10 w-10 rounded-full" aria-hidden="true">
-                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <h3 id="namus-shows" class="font-display text-2xl tracking-[-0.48px] text-off-black">What it shows</h3>
-              <p class="mt-3 font-mono text-base leading-[1.35] tracking-[-0.4px] text-graphite">
+            <section class="project-showcase__block card card--feature reveal reveal-delay-1" aria-labelledby="namus-shows">
+              <p class="section-label">What it shows</p>
+              <h3 id="namus-shows" class="font-display text-2xl text-headline-ink">Patterns in public listings</h3>
+              <p class="mt-3 text-base leading-[1.5] tracking-[-0.16px] text-sepia">
                 End-to-end analysis of public NamUs missing-person listings: clean the extract, explore
                 juvenile vs adult profiles (age, sex, race/ethnicity, geography, year), then classify
                 <code class="inline-code">age_group</code> from sex, state, and race/ethnicity only—never age,
@@ -261,14 +242,10 @@
               </p>
             </section>
 
-            <section class="project-showcase__block card card--elevated reveal reveal-delay-2 !p-10" aria-labelledby="namus-learned">
-              <div class="icon-well mb-5 h-10 w-10 rounded-full !border-0" aria-hidden="true">
-                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.608-.332.75.75 0 00-.715.75v.001c0 1.036.84 1.875 1.875 1.875h.001a48.57 48.57 0 0115.042 0h.001c1.035 0 1.875-.84 1.875-1.875v-.001a.75.75 0 00-.715-.75 50.69 50.69 0 00-2.608.332m-15.482 0A50.697 50.697 0 0112 9.75c2.823 0 5.565.37 8.24 1.066" />
-                </svg>
-              </div>
-              <h3 id="namus-learned" class="font-display text-2xl tracking-[-0.48px] text-off-black">What I learned</h3>
-              <p class="mt-3 font-mono text-base leading-[1.35] tracking-[-0.4px] text-graphite">
+            <section class="project-showcase__block card card--feature reveal reveal-delay-2" aria-labelledby="namus-learned">
+              <p class="section-label">What I learned</p>
+              <h3 id="namus-learned" class="font-display text-2xl text-headline-ink">Metrics that matter</h3>
+              <p class="mt-3 text-base leading-[1.5] tracking-[-0.16px] text-sepia">
                 Accuracy alone can hide minority-class failure—here adults dominate the data, so a
                 majority baseline looks strong while juveniles are under-recalled. Comparing an additive
                 logistic model to a tree makes the cost of ignoring interactions concrete. I also
@@ -277,13 +254,9 @@
               </p>
             </section>
 
-            <section class="project-showcase__block card reveal reveal-delay-3 !p-10" aria-labelledby="namus-tools">
-              <div class="icon-well mb-5 h-10 w-10 rounded-full" aria-hidden="true">
-                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
-                </svg>
-              </div>
-              <h3 id="namus-tools" class="font-display text-2xl tracking-[-0.48px] text-off-black">Tools &amp; libraries</h3>
+            <section class="project-showcase__block card card--feature reveal reveal-delay-3" aria-labelledby="namus-tools">
+              <p class="section-label">Stack</p>
+              <h3 id="namus-tools" class="font-display text-2xl text-headline-ink">Tools &amp; libraries</h3>
               <ul class="mt-5 flex flex-wrap gap-2">
                 <li><span class="skill-pill tech">Python</span></li>
                 <li><span class="skill-pill tech">Pandas</span></li>
@@ -301,45 +274,44 @@
           <div class="reveal mt-10 flex flex-wrap gap-4">
             <a href="https://github.com/BradyHerwig/NamUs_Missing" target="_blank" rel="noopener noreferrer" class="btn btn-primary cursor-pointer">
               View on GitHub
-              <span aria-hidden="true">▸</span>
+              <span aria-hidden="true">→</span>
             </a>
             <a href="https://namus.nij.ojp.gov/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost cursor-pointer">NamUs data source</a>
           </div>
+          <p class="meta-line reveal mt-6">
+            Read the repository on github.com/BradyHerwig
+          </p>
         </div>
       </article>
 
     </div>
 
-    <!-- Bottom CTA -->
-    <section class="section-divider border-t" aria-labelledby="projects-cta-heading">
-      <div class="page-shell mx-auto px-5 py-16 sm:px-8 sm:py-20">
-        <div class="card card--elevated reveal max-w-2xl !p-10">
-          <p class="section-label">Next</p>
-          <h2 id="projects-cta-heading" class="font-display text-[32px] tracking-[-0.64px] text-off-black sm:text-[40px] sm:tracking-[-0.8px]">
-            Want to collaborate or chat data science?
-          </h2>
-          <p class="mt-4 max-w-prose font-mono text-base leading-[1.35] tracking-[-0.4px] text-graphite">
-            I'm always open to connecting with students, mentors, and teams working with data.
-          </p>
-          <div class="mt-8 flex flex-wrap gap-4">
-            <a href="index.html#contact" class="btn btn-primary cursor-pointer">
-              Contact
-              <span aria-hidden="true">▸</span>
-            </a>
-            <a href="index.html" class="btn btn-ghost cursor-pointer">Back to home</a>
-          </div>
-        </div>
+    <!-- Bottom CTA — inverted band -->
+    <section class="editorial-letter full-bleed" aria-labelledby="projects-cta-heading">
+      <p class="editorial-letter__eyebrow">Next</p>
+      <p id="projects-cta-heading" class="editorial-letter__body">
+        Want to collaborate or chat data science? I'm always open to connecting with students, mentors, and teams working with data.
+      </p>
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+        <a href="index.html#contact" class="btn btn-primary cursor-pointer">Contact</a>
+        <a href="index.html" class="btn btn-ghost cursor-pointer">Back to home</a>
       </div>
     </section>
   </main>
 
   <footer class="section-divider border-t">
-    <div class="page-shell mx-auto flex flex-col gap-4 px-5 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-      <p class="font-mono text-xs uppercase tracking-[-0.4px] text-smoke">© 2026 Brady S. Herwig · Editorial portfolio</p>
-      <div class="flex gap-6">
-        <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
-        <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
-        <a href="mailto:bradyherwig@outlook.com" class="footer-link">Email</a>
+    <div class="page-shell mx-auto flex flex-col gap-4 px-5 py-10 sm:px-8">
+      <p class="coord-footer">
+        ° LIBERTY UNIVERSITY — DATA SCIENCE — CLASS OF 2028 —
+        <span id="footer-clock">--:--</span>
+      </p>
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <p class="text-xs uppercase tracking-tight text-ash">© 2026 Brady S. Herwig · Broadside portfolio</p>
+        <div class="flex gap-6">
+          <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+          <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+          <a href="mailto:bradyherwig@outlook.com" class="footer-link">Email</a>
+        </div>
       </div>
     </div>
   </footer>
