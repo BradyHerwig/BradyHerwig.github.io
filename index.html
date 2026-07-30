@@ -6,187 +6,92 @@
   <title>Brady S. Herwig | Data Science Student</title>
   <meta name="description" content="Brady S. Herwig — Data Science student at Liberty University. Turning complex data into clear, actionable insights.">
   <meta name="theme-color" content="#fafafa">
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-            display: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
-            manuka: ['Antonio', 'Arial Narrow', 'sans-serif'],
-          },
-          colors: {
-            paper: '#fafafa',
-            hairline: '#eeeeee',
-            midstone: '#9f9f9f',
-            ash: '#666666',
-            pebble: '#b3b3b3',
-            sepia: '#3e3b36',
-            'headline-ink': '#2a2722',
-            canvas: 'var(--color-background)',
-          },
-          borderRadius: {
-            card: '12px',
-            pill: '12px',
-          },
-        },
-      },
-    };
-  </script>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-paper font-sans antialiased text-headline-ink" data-page="home" style="background-color:#fafafa;color:#2a2722">
+<body class="bg-paper" data-page="home" style="background-color:#fafafa;color:#2a2722">
 
-  <!-- Top ticker banner -->
-  <div class="announcement-bar" role="region" aria-label="Site notice">
-    <p class="announcement-bar__text">Data science portfolio · Class of 2028 · Liberty University</p>
-    <a href="projects.html" class="announcement-bar__pill">View work —</a>
+  <div class="topbar" role="region" aria-label="Site notice">
+    <p class="topbar__text">Data science portfolio · Class of 2028 · Liberty University</p>
+    <a href="projects.html">View work —</a>
   </div>
 
-  <!-- Nav -->
-  <nav id="site-nav" class="sticky top-0 z-50 border-b transition-colors duration-200">
-    <div class="page-shell mx-auto px-5 sm:px-8">
-      <div class="flex h-16 items-center justify-between">
-        <a href="#top" class="group flex min-h-[44px] items-center gap-3 cursor-pointer" aria-label="Home">
-          <span class="logo-mark">BH</span>
-          <span class="hidden text-xs font-bold uppercase tracking-tight text-headline-ink sm:inline">Brady S. Herwig</span>
-        </a>
+  <nav class="nav" id="site-nav">
+    <div class="shell nav__inner">
+      <a class="nav__brand" href="#top" aria-label="Home">
+        <span class="nav__mark">BH</span>
+        <span class="nav__name">Brady S. Herwig</span>
+      </a>
 
-        <div class="hidden items-center gap-1 md:flex">
-          <a href="index.html" class="nav-link is-active" aria-current="page">Home</a>
-          <a href="projects.html" class="nav-link">Projects</a>
-          <a href="#about" class="nav-link">About</a>
-          <a href="#contact" class="nav-link">Contact</a>
-        </div>
-
-        <div class="flex items-center gap-2">
-          <a href="projects.html" class="btn btn-ghost hidden sm:inline-flex !min-h-[40px] !px-4 !py-2 text-xs">
-            View work
-          </a>
-          <button id="mobile-menu-btn" type="button" class="icon-btn md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-            <svg id="menu-icon-open" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
-            </svg>
-            <svg id="menu-icon-close" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
+      <div class="nav__links">
+        <a class="nav__link is-active" href="index.html" aria-current="page">Home</a>
+        <a class="nav__link" href="projects.html">Projects</a>
+        <a class="nav__link" href="#about">About</a>
+        <a class="nav__link" href="#contact">Contact</a>
       </div>
+
+      <button class="nav__menu-btn" id="mobile-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg id="menu-icon-open" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+        <svg id="menu-icon-close" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true" hidden>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
     </div>
-
-    <div id="mobile-menu" class="section-divider hidden border-t md:hidden" hidden>
-      <div class="page-shell mx-auto flex flex-col gap-1 px-5 py-4">
-        <a href="index.html" class="mobile-link is-active" aria-current="page">Home</a>
-        <a href="projects.html" class="mobile-link">Projects</a>
-        <a href="#about" class="mobile-link">About</a>
-        <a href="#contact" class="mobile-link">Contact</a>
-        <a href="projects.html" class="btn btn-primary mt-2 w-full">View work</a>
-      </div>
+    <div class="shell nav__mobile" id="mobile-menu" hidden>
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
     </div>
   </nav>
 
   <main id="top">
-    <!-- Hero — split: masthead type + data plate -->
-    <header class="hero page-shell mx-auto px-5 pb-16 pt-12 sm:px-8 sm:pb-24 sm:pt-16">
-      <div class="hero-split">
-        <div class="relative flex flex-col justify-center">
-          <p class="badge-pill reveal w-fit">
-            <span class="badge-pill__dot" aria-hidden="true"></span>
-            Class of 2028
-          </p>
-
-          <h1 class="hero-display reveal reveal-delay-1 mt-6">
-            Data<br>
-            <em>into</em> Insight
+    <!-- Hero: type first, one monochrome plate -->
+    <header class="hero">
+      <div class="shell hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow reveal">Liberty University · B.S. Computer Science: Data Science</p>
+          <h1 class="display reveal d1">
+            Brady<br>Herwig
           </h1>
-
-          <div class="hero-rule reveal reveal-delay-1" aria-hidden="true"></div>
-
-          <p class="hero-sub reveal reveal-delay-2 mt-6 max-w-md">
-            Brady S. Herwig — Data Science student at Liberty University.
-            Turning complex data into clear, actionable insights.
+          <div class="hero__rule reveal d1" aria-hidden="true"></div>
+          <p class="lede reveal d2">
+            Data science student. Turning complex data into clear, honest insight.
           </p>
-
-          <div class="reveal reveal-delay-3 mt-10 flex flex-wrap items-center gap-3">
-            <a href="projects.html" class="btn btn-primary cursor-pointer">View projects</a>
-            <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer" class="btn btn-ghost cursor-pointer">GitHub</a>
-            <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost cursor-pointer">LinkedIn</a>
+          <div class="btn-row reveal d3">
+            <a class="btn btn--fill" href="projects.html">View projects</a>
+            <a class="btn btn--ghost" href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a class="btn btn--ghost" href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
         </div>
 
-        <!-- Right plate: monochrome data depiction + ASCII -->
-        <aside class="data-plate reveal reveal-delay-2" aria-label="Decorative data plate">
-          <div class="data-plate__header">
-            <span>fig. 01 — signal</span>
-            <span id="plate-clock">00:00:00</span>
+        <aside class="plate reveal d2" aria-label="Decorative monochrome figure">
+          <div class="plate__meta">
+            <span>fig. 01 — python</span>
+            <span id="plate-clock">00:00</span>
           </div>
-          <div class="data-plate__body">
-            <!-- Pure CSS mono bar chart — labels under bars so they never clip -->
-            <div class="mono-chart" role="img" aria-label="Stylized monochrome bar chart of skills">
-              <div class="mono-chart__col"><div class="mono-chart__track"><div class="mono-chart__bar" style="height:38%"></div></div><span class="mono-chart__label">EDA</span></div>
-              <div class="mono-chart__col"><div class="mono-chart__track"><div class="mono-chart__bar" style="height:62%"></div></div><span class="mono-chart__label">SQL</span></div>
-              <div class="mono-chart__col"><div class="mono-chart__track"><div class="mono-chart__bar" style="height:88%"></div></div><span class="mono-chart__label">PY</span></div>
-              <div class="mono-chart__col"><div class="mono-chart__track"><div class="mono-chart__bar" style="height:54%"></div></div><span class="mono-chart__label">ML</span></div>
-              <div class="mono-chart__col"><div class="mono-chart__track"><div class="mono-chart__bar" style="height:72%"></div></div><span class="mono-chart__label">VIS</span></div>
-              <div class="mono-chart__col"><div class="mono-chart__track"><div class="mono-chart__bar" style="height:46%"></div></div><span class="mono-chart__label">GIT</span></div>
-              <div class="mono-chart__col"><div class="mono-chart__track"><div class="mono-chart__bar" style="height:66%"></div></div><span class="mono-chart__label">STATS</span></div>
-            </div>
-
-            <!-- Halftone SVG scatter + ASCII python -->
-            <div class="grid gap-3 sm:grid-cols-2">
-              <svg class="halftone-viz" viewBox="0 0 160 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <!-- Dot-matrix scatter / confusion-matrix vibe -->
-                <g fill="#2a2722">
-                  <circle cx="12" cy="62" r="2.2" opacity="0.9"/>
-                  <circle cx="22" cy="48" r="1.6" opacity="0.55"/>
-                  <circle cx="32" cy="55" r="2.4" opacity="0.85"/>
-                  <circle cx="42" cy="36" r="1.8" opacity="0.6"/>
-                  <circle cx="52" cy="42" r="2.6" opacity="0.95"/>
-                  <circle cx="62" cy="28" r="1.5" opacity="0.45"/>
-                  <circle cx="72" cy="34" r="2.2" opacity="0.8"/>
-                  <circle cx="82" cy="22" r="1.7" opacity="0.5"/>
-                  <circle cx="92" cy="30" r="2.8" opacity="1"/>
-                  <circle cx="102" cy="18" r="1.4" opacity="0.4"/>
-                  <circle cx="112" cy="26" r="2.1" opacity="0.75"/>
-                  <circle cx="122" cy="14" r="1.9" opacity="0.55"/>
-                  <circle cx="132" cy="20" r="2.5" opacity="0.9"/>
-                  <circle cx="142" cy="12" r="1.6" opacity="0.45"/>
-                  <circle cx="28" cy="68" r="1.3" opacity="0.35"/>
-                  <circle cx="48" cy="58" r="1.5" opacity="0.4"/>
-                  <circle cx="68" cy="50" r="1.4" opacity="0.35"/>
-                  <circle cx="88" cy="44" r="1.6" opacity="0.4"/>
-                  <circle cx="108" cy="38" r="1.3" opacity="0.3"/>
-                  <circle cx="128" cy="32" r="1.5" opacity="0.35"/>
-                  <!-- regression line as dashes -->
-                  <path d="M8 70 L150 10" stroke="#2a2722" stroke-width="0.8" stroke-dasharray="2 3" fill="none" opacity="0.35"/>
-                </g>
-                <text x="8" y="10" fill="#2a2722" font-family="Inter,sans-serif" font-size="6" letter-spacing="0.08em" opacity="0.55">SCATTER · R²≈0.91</text>
-              </svg>
-
-              <pre class="ascii-art ascii-art--plate" aria-hidden="true">    .--.
-   /    \      &lt;py&gt;
-  |  o o |    data
-   \  &gt;  /    science
-   /`--'\
-  /  ||  \
- (   ||   )
-  `------'</pre>
-            </div>
+          <div class="plate__art">
+            <pre aria-hidden="true">    ____
+   /.__.\
+   \ \/ /
+   /   /__
+   \  /  /
+    \/__/
+   Python
+   ──────
+   data → model
+   model → story</pre>
           </div>
         </aside>
       </div>
     </header>
 
-    <!-- Skills ticker band -->
-    <div class="ticker" aria-label="Tools and skills">
+    <!-- Skills marquee on ink -->
+    <div class="band-ink ticker" aria-label="Tools and skills">
       <div class="ticker__track" id="skills-ticker">
-        <!-- duplicated in JS for seamless loop; fallback content -->
         <span class="ticker__item">Python</span>
         <span class="ticker__item">Pandas</span>
         <span class="ticker__item">NumPy</span>
@@ -195,220 +100,140 @@
         <span class="ticker__item">Jupyter</span>
         <span class="ticker__item">Matplotlib</span>
         <span class="ticker__item">Seaborn</span>
-        <span class="ticker__item">Git</span>
         <span class="ticker__item">Statistics</span>
         <span class="ticker__item">EDA</span>
         <span class="ticker__item">Machine Learning</span>
+        <span class="ticker__item">Git</span>
       </div>
     </div>
 
-    <!-- Inverted editorial letter -->
-    <section class="editorial-letter full-bleed" id="about" aria-labelledby="letter-heading">
-      <p class="editorial-letter__eyebrow">A brief letter from the desk</p>
-      <p id="letter-heading" class="editorial-letter__body">
+    <!-- Editorial letter -->
+    <section class="band-ink letter" id="about" aria-labelledby="letter-heading">
+      <p class="letter__eye">A brief letter from the desk</p>
+      <p class="letter__body" id="letter-heading">
         Curiosity, clarity, and craft — applied to every dataset and every conversation.
-        I study data science to turn noise into narrative and models into decisions people can trust.
       </p>
-      <p class="editorial-letter__eyebrow">Brady S. Herwig · Liberty University</p>
+      <p class="letter__eye">Brady S. Herwig · Class of 2028</p>
     </section>
 
-    <!-- About slabs -->
-    <section class="scroll-mt-24 border-t section-divider">
-      <div class="page-shell mx-auto px-5 py-16 sm:px-8 sm:py-24">
-        <div class="reveal mb-12">
-          <p class="section-label">About</p>
+    <!-- About as editorial rows -->
+    <section class="section">
+      <div class="shell">
+        <div class="section__head reveal">
+          <p class="eyebrow">About</p>
           <h2 class="section-title">A data-driven mindset with a human touch.</h2>
         </div>
-
-        <div class="grid gap-4 md:grid-cols-3 md:items-stretch">
-          <article class="card card--feature reveal reveal-delay-1 h-full">
-            <p class="section-label">01</p>
-            <h3 class="font-display text-2xl leading-tight text-headline-ink">Who I am</h3>
-            <p class="text-base">
-              Friendly, understanding, and determined Computer Science: Data Science student at Liberty University.
-            </p>
+        <div class="rows">
+          <article class="row reveal d1">
+            <p class="row__num">01</p>
+            <div>
+              <h3 class="row__title">Who I am</h3>
+              <p class="row__body">Friendly, understanding, and determined Computer Science: Data Science student at Liberty University.</p>
+            </div>
           </article>
-          <article class="card card--feature reveal reveal-delay-2 h-full">
-            <p class="section-label">02</p>
-            <h3 class="font-display text-2xl leading-tight text-headline-ink">What drives me</h3>
-            <p class="text-base">
-              Leading teams, clear communication, and diving deep into data to uncover meaningful patterns and insights.
-            </p>
+          <article class="row reveal d2">
+            <p class="row__num">02</p>
+            <div>
+              <h3 class="row__title">What drives me</h3>
+              <p class="row__body">Leading teams, clear communication, and diving deep into data to uncover meaningful patterns.</p>
+            </div>
           </article>
-          <article class="card card--feature reveal reveal-delay-3 h-full">
-            <p class="section-label">03</p>
-            <h3 class="font-display text-2xl leading-tight text-headline-ink">My approach</h3>
-            <p class="text-base">
-              Combining technical skills with storytelling so data drives real decisions. Focused on practical ML and data projects.
-            </p>
+          <article class="row reveal d3">
+            <p class="row__num">03</p>
+            <div>
+              <h3 class="row__title">My approach</h3>
+              <p class="row__body">Technical skill with storytelling — so findings drive real decisions, not hype.</p>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Python / data code plate -->
-    <section class="border-t section-divider" aria-label="Code sample">
-      <div class="page-shell mx-auto px-5 py-16 sm:px-8 sm:py-20">
-        <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
-          <div class="reveal">
-            <p class="section-label">How I work</p>
-            <h2 class="section-title !max-w-[14ch]">Clean data. Honest models. Clear prose.</h2>
-            <p class="mt-5 max-w-prose text-base leading-[1.5] text-sepia">
-              From exploratory analysis to classification pipelines — I favor leakage-aware features,
-              stratified evaluation, and framing results so findings stay about the data, not hype.
-            </p>
-          </div>
-          <pre class="repl-block reveal reveal-delay-1" aria-label="Python session example"><span class="prompt">&gt;&gt;&gt;</span> <span class="kw">import</span> pandas <span class="kw">as</span> pd
-<span class="prompt">&gt;&gt;&gt;</span> df = pd.read_csv(<span class="out">"listings.csv"</span>)
-<span class="prompt">&gt;&gt;&gt;</span> df.groupby(<span class="out">"age_group"</span>).size()
-<span class="out">adult       14821
-juvenile     3104
-dtype: int64</span>
-<span class="prompt">&gt;&gt;&gt;</span> <span class="kw">print</span>(<span class="out">"signal found."</span>)
-<span class="out">signal found.</span></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills" class="scroll-mt-24 border-t section-divider">
-      <div class="page-shell mx-auto px-5 py-16 sm:px-8 sm:py-24">
-        <div class="reveal">
-          <p class="section-label">Skills</p>
-          <h2 class="section-title mb-12">Tools &amp; strengths</h2>
-        </div>
-
-        <div class="grid gap-4 md:grid-cols-2 md:items-stretch">
-          <div class="card card--feature reveal reveal-delay-1 h-full">
-            <h3 class="section-label !mb-0" style="color:var(--color-ash)">Technical</h3>
-            <div id="tech-skills" class="mt-5 flex flex-wrap gap-2 content-start"></div>
-          </div>
-          <div class="card card--feature reveal reveal-delay-2 h-full">
-            <h3 class="section-label !mb-0" style="color:var(--color-ash)">Soft skills</h3>
-            <div id="soft-skills" class="mt-5 flex flex-wrap gap-2 content-start"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Stamped section header -->
-    <div class="stamp-header full-bleed" aria-hidden="true">
-      <p class="stamp-header__text page-shell mx-auto px-5 sm:px-8">
+    <!-- Stamped WORK -->
+    <div class="band-ink stamp" aria-hidden="true">
+      <p class="stamp__row">
         <span>WORK</span>
-        <span class="stamp-header__rule"></span>
+        <span class="stamp__rule"></span>
       </p>
     </div>
 
-    <!-- Featured project teaser -->
-    <section class="border-t section-divider">
-      <div class="page-shell mx-auto px-5 py-16 sm:px-8 sm:py-24">
-        <div class="reveal mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p class="section-label">Selected work</p>
-            <h2 class="section-title">Case studies on the page.</h2>
-          </div>
-          <a href="projects.html" class="link-arrow">All projects →</a>
+    <!-- Selected work -->
+    <section class="section" id="work">
+      <div class="shell">
+        <div class="section__head reveal">
+          <p class="eyebrow">Selected work</p>
+          <h2 class="section-title">Case studies on the page.</h2>
         </div>
 
-        <a href="projects.html#project-namus-missing" class="project-card reveal reveal-delay-1 max-w-3xl">
-          <p class="section-label">Case study</p>
-          <h3 class="project-card__title">NamUs Missing Persons Analysis</h3>
-          <p class="project-card__desc">
+        <a class="work-link reveal d1" href="projects.html#project-namus-missing">
+          <p class="eyebrow">Case study 01</p>
+          <h3 class="work-link__title">NamUs Missing Persons Analysis</h3>
+          <p class="prose">
             Juvenile vs adult classification on public NamUs listings — logistic regression vs decision tree,
-            leakage-aware features, and careful framing of sensitive public data.
+            leakage-aware features, careful framing of sensitive public data.
           </p>
-          <div class="project-card__meta">
-            <span class="badge">Classification</span>
-            <span class="badge">Scikit-learn</span>
-            <span class="badge">EDA</span>
+          <div class="tags">
+            <span class="tag">Classification</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">EDA</span>
           </div>
         </a>
-        <p class="meta-line reveal reveal-delay-2 mt-6">
-          Read the case study on this site — projects
-        </p>
       </div>
     </section>
 
     <!-- Education -->
-    <section id="education" class="scroll-mt-24 border-t section-divider">
-      <div class="page-shell mx-auto px-5 py-16 sm:px-8 sm:py-24">
-        <div class="reveal">
-          <p class="section-label">Education</p>
-          <h2 class="section-title mb-12">Building a strong foundation</h2>
+    <section class="section" id="education">
+      <div class="shell">
+        <div class="section__head reveal">
+          <p class="eyebrow">Education</p>
+          <h2 class="section-title">Building a strong foundation.</h2>
         </div>
-
-        <article class="card card--feature accent-border reveal reveal-delay-1 max-w-3xl">
-          <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-            <div class="min-w-0 flex-1">
-              <h3 class="font-display text-[clamp(1.75rem,4vw,2.5rem)] leading-tight text-headline-ink">Liberty University</h3>
-              <p class="mt-2 text-base">Bachelor of Science — Computer Science: Data Science</p>
-            </div>
-            <span class="status-chip w-fit shrink-0">Expected 2028</span>
-          </div>
-          <p class="mt-6 text-base">
-            Developing expertise in data analysis, statistical modeling, machine learning, and communicating insights effectively.
-            Emphasis on practical projects and clear problem-solving.
+        <div class="block reveal d1">
+          <h3 class="block__title">Liberty University</h3>
+          <p class="block__meta">Bachelor of Science — Computer Science: Data Science</p>
+          <span class="chip">Expected 2028</span>
+          <p class="prose" style="margin-top:20px">
+            Data analysis, statistical modeling, machine learning, and communicating insights —
+            with emphasis on practical projects and clear problem-solving.
           </p>
-        </article>
-
-        <p class="reveal reveal-delay-2 mt-8 max-w-2xl text-xs uppercase tracking-tight text-ash">
-          Actively seeking opportunities to apply classroom learning in real-world data science settings.
-        </p>
+        </div>
       </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="scroll-mt-24 border-t section-divider">
-      <div class="page-shell mx-auto px-5 py-16 sm:px-8 sm:py-24">
-        <div class="reveal">
-          <p class="section-label">Contact</p>
-          <h2 class="section-title">Let's talk data science</h2>
-          <p class="mt-5 max-w-xl text-base leading-[1.5] tracking-[-0.16px] text-sepia">
-            I'm always happy to connect with fellow students, professionals, or anyone interested in data science.
-            Feel free to reach out.
+    <section class="section" id="contact">
+      <div class="shell">
+        <div class="section__head reveal">
+          <p class="eyebrow">Contact</p>
+          <h2 class="section-title">Let's talk data science.</h2>
+          <p class="prose">
+            Always happy to connect with students, mentors, and anyone building with data.
           </p>
         </div>
-
-        <div class="card card--feature reveal reveal-delay-1 mt-12 max-w-xl">
-          <a href="mailto:bradyherwig@outlook.com"
-             class="link-accent inline-flex min-h-[44px] max-w-full items-center break-all text-lg sm:text-xl text-headline-ink">
-            bradyherwig@outlook.com
-          </a>
-
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost cursor-pointer">LinkedIn</a>
-            <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer" class="btn btn-ghost cursor-pointer">GitHub</a>
-          </div>
-
-          <div class="section-divider mt-6 border-t pt-6">
-            <a
-              href="resume/HerwigBradyResume.pdf"
-              class="btn btn-primary cursor-pointer"
-              download="HerwigBradyResume.pdf"
-              aria-describedby="resume-note"
-            >
-              Download Resume
-              <span aria-hidden="true">→</span>
-            </a>
-            <p id="resume-note" class="meta-line mt-3" style="color:var(--color-ash)">PDF · Brady S. Herwig</p>
+        <div class="block reveal d1">
+          <a class="contact-mail" href="mailto:bradyherwig@outlook.com">bradyherwig@outlook.com</a>
+          <div class="btn-row">
+            <a class="btn btn--ghost" href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a class="btn btn--ghost" href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a class="btn btn--fill" href="resume/HerwigBradyResume.pdf" download="HerwigBradyResume.pdf">Download resume</a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="section-divider border-t">
-    <div class="page-shell mx-auto flex flex-col gap-4 px-5 py-10 sm:px-8">
-      <p class="coord-footer" id="coord-footer" aria-live="off">
-        ° LIBERTY UNIVERSITY — DATA SCIENCE — CLASS OF 2028 —
+  <footer class="footer">
+    <div class="shell">
+      <p class="footer__coord">
+        ° Liberty University — Data Science — Class of 2028 —
         <span id="footer-clock">--:--</span>
       </p>
-      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p class="text-xs uppercase tracking-tight text-ash">© 2026 Brady S. Herwig · Broadside portfolio</p>
-        <div class="flex gap-6">
-          <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
-          <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
-          <a href="mailto:bradyherwig@outlook.com" class="footer-link">Email</a>
+      <div class="footer__row">
+        <p class="footer__copy">© 2026 Brady S. Herwig</p>
+        <div class="footer__links">
+          <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="mailto:bradyherwig@outlook.com">Email</a>
         </div>
       </div>
     </div>
