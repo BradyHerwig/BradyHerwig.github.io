@@ -365,32 +365,36 @@ const SIDE_ASCII_RIGHT = [
    time series`,
 ];
 
-function buildAsciiRail(figures, side) {
-  const rail = document.createElement("div");
-  rail.className = `side-ascii__rail side-ascii__rail--${side}`;
-  // Repeat the set so tall pages stay filled while scrolling
-  const cycle = [...figures, ...figures, ...figures];
-  rail.innerHTML = cycle
+function buildAsciiFigures(figures) {
+  // Double the list so the CSS drift loop can translate -50% seamlessly
+  const cycle = [...figures, ...figures];
+  return cycle
     .map(
       (art, i) =>
         `<pre class="side-ascii__fig side-ascii__fig--${(i % 3) + 1}">${escapeHtml(art)}</pre>`
     )
     .join("");
+}
+
+function buildAsciiRail(figures, side) {
+  const rail = document.createElement("div");
+  rail.className = `side-ascii__rail side-ascii__rail--${side}`;
+  const track = document.createElement("div");
+  track.className = "side-ascii__track";
+  track.innerHTML = buildAsciiFigures(figures);
+  rail.appendChild(track);
   return rail;
 }
 
 function initSideAscii() {
   if (document.querySelector(".side-ascii")) return;
-  if (window.matchMedia && !window.matchMedia("(min-width: 1280px)").matches) {
-    // Still inject markup; CSS hides below breakpoint (resize / print ok)
-  }
 
   const root = document.createElement("div");
   root.className = "side-ascii";
   root.setAttribute("aria-hidden", "true");
   root.appendChild(buildAsciiRail(SIDE_ASCII_LEFT, "left"));
   root.appendChild(buildAsciiRail(SIDE_ASCII_RIGHT, "right"));
-  document.body.insertBefore(root, document.body.firstChild);
+  document.body.appendChild(root);
 }
 
 function init() {
