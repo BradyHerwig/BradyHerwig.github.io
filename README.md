@@ -1,14 +1,17 @@
 # Brady S. Herwig — Personal Website
 
-Editorial personal portfolio (Henry broadside system).
+Dark frosted-glass data science portfolio (AuthKit system).
 
 ## Design
 
-- **Style:** Gothic broadside on warm paper — type is the brand
-- **Palette:** Paper `#fafafa` / Ink `#2a2722` only (no chromatic accent)
-- **Type:** Fraunces (display) · Inter (UI) · Antonio (stamped mastheads)
-- **Layout:** Full-bleed Paper/Ink bands, sparse sections, no SaaS card grids
-- **Stack:** Plain HTML + CSS + vanilla JS (no Tailwind)
+- **Canvas:** Midnight `#05060f` with blueprint grid + spotlight halo  
+- **Surfaces:** Frosted glass cards, deep-glass panels  
+- **Accent:** Void Violet `#663af3` for primary CTAs only  
+- **Type:** Space Grotesk (display) · Inter (UI) · JetBrains Mono (eyebrows)  
+
+## Stack
+
+Plain HTML + CSS + vanilla JS. No Tailwind.
 
 ## Pages
 
@@ -26,9 +29,5 @@ python -m http.server 8000
 ## Tests
 
 ```bash
-python -m unittest tests.test_henry_site -v
+python -m unittest tests.test_authkit_site -v
 ```
-
-## Projects
-
-Drop screenshots in `screenshots/<slug>/`, then wire them into `projects.html`.

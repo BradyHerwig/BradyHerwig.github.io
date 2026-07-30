@@ -1,4 +1,4 @@
-// Brady S. Herwig — Henry broadside
+// Brady S. Herwig — AuthKit portfolio
 
 function prefersReducedMotion() {
   return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -101,49 +101,36 @@ function initNavScrollState() {
   window.addEventListener("scroll", onScroll, { passive: true });
 }
 
-function initTicker() {
-  const track = document.getElementById("skills-ticker");
-  if (!track) return;
-
-  const items = [
+function initSkills() {
+  const tech = [
     "Python",
+    "SQL",
     "Pandas",
     "NumPy",
-    "Scikit-learn",
-    "SQL",
     "Jupyter",
-    "Matplotlib",
-    "Seaborn",
+    "Git & GitHub",
+    "Data Visualization",
+    "Scikit-learn",
     "Statistics",
-    "EDA",
-    "Machine Learning",
-    "Git",
+    "Exploratory Data Analysis",
+  ];
+  const soft = [
+    "Leadership",
+    "Communication",
+    "Collaboration",
+    "Problem Solving",
+    "Determined",
+    "Friendly & Understanding",
   ];
 
-  const half = items.map((label) => `<span class="ticker__item">${escapeHtml(label)}</span>`).join("");
-  track.innerHTML = half + half;
-
-  if (prefersReducedMotion()) {
-    track.style.animation = "none";
+  const techEl = document.getElementById("tech-skills");
+  const softEl = document.getElementById("soft-skills");
+  if (techEl) {
+    techEl.innerHTML = tech.map((s) => `<span class="skill-pill">${escapeHtml(s)}</span>`).join("");
   }
-}
-
-function initClocks() {
-  const plate = document.getElementById("plate-clock");
-  const footer = document.getElementById("footer-clock");
-  if (!plate && !footer) return;
-
-  function tick() {
-    const now = new Date();
-    const hh = String(now.getHours()).padStart(2, "0");
-    const mm = String(now.getMinutes()).padStart(2, "0");
-    const full = `${hh}:${mm}`;
-    if (plate) plate.textContent = full;
-    if (footer) footer.textContent = full;
+  if (softEl) {
+    softEl.innerHTML = soft.map((s) => `<span class="skill-pill">${escapeHtml(s)}</span>`).join("");
   }
-
-  tick();
-  setInterval(tick, prefersReducedMotion() ? 60000 : 30000);
 }
 
 function initCarousels() {
@@ -278,11 +265,17 @@ function initProjectJumpNav() {
 }
 
 function init() {
+  document.documentElement.classList.remove("dark");
+  try {
+    localStorage.removeItem("brady-theme");
+  } catch {
+    /* ignore */
+  }
+
   initMobileMenu();
   initSmoothScroll();
   initNavScrollState();
-  initTicker();
-  initClocks();
+  initSkills();
   initProjectJumpNav();
   initCarousels();
   initReveal();

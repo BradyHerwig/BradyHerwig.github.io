@@ -5,23 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brady S. Herwig | Data Science Student</title>
   <meta name="description" content="Brady S. Herwig — Data Science student at Liberty University. Turning complex data into clear, actionable insights.">
-  <meta name="theme-color" content="#fafafa">
+  <meta name="theme-color" content="#05060f">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-paper" data-page="home" style="background-color:#fafafa;color:#2a2722">
-
-  <div class="topbar" role="region" aria-label="Site notice">
-    <p class="topbar__text">Data science portfolio · Class of 2028 · Liberty University</p>
-    <a href="projects.html">View work —</a>
-  </div>
+<body data-page="home">
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-halo" aria-hidden="true"></div>
 
   <nav class="nav" id="site-nav">
     <div class="shell nav__inner">
       <a class="nav__brand" href="#top" aria-label="Home">
         <span class="nav__mark">BH</span>
-        <span class="nav__name">Brady S. Herwig</span>
+        Brady S. Herwig
       </a>
 
       <div class="nav__links">
@@ -31,17 +28,20 @@
         <a class="nav__link" href="#contact">Contact</a>
       </div>
 
-      <button class="nav__menu-btn" id="mobile-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-        <svg id="menu-icon-open" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
-        </svg>
-        <svg id="menu-icon-close" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true" hidden>
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
+      <div class="nav__actions">
+        <a class="btn btn--ghost nav__cta-desktop" href="projects.html">View work</a>
+        <button class="nav__menu-btn" id="mobile-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg id="menu-icon-open" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+          <svg id="menu-icon-close" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true" hidden>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
     </div>
     <div class="shell nav__mobile" id="mobile-menu" hidden>
-      <a href="index.html" aria-current="page">Home</a>
+      <a class="is-active" href="index.html" aria-current="page">Home</a>
       <a href="projects.html">Projects</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
@@ -49,113 +49,134 @@
   </nav>
 
   <main id="top">
-    <!-- Hero: type first, one monochrome plate -->
+    <!-- Hero -->
     <header class="hero">
-      <div class="shell hero__grid">
-        <div class="hero__copy">
-          <p class="eyebrow reveal">Liberty University · B.S. Computer Science: Data Science</p>
-          <h1 class="display reveal d1">
-            Brady<br>Herwig
-          </h1>
-          <div class="hero__rule reveal d1" aria-hidden="true"></div>
-          <p class="lede reveal d2">
-            Data science student. Turning complex data into clear, honest insight.
-          </p>
-          <div class="btn-row reveal d3">
-            <a class="btn btn--fill" href="projects.html">View projects</a>
-            <a class="btn btn--ghost" href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a class="btn btn--ghost" href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </div>
+      <div class="shell">
+        <p class="hero__badge reveal">
+          <span class="hero__badge-dot" aria-hidden="true"></span>
+          Class of 2028 · Liberty University
+        </p>
+        <p class="eyebrow reveal d1">Introducing</p>
+        <h1 class="display display--hero reveal d1">Brady Herwig</h1>
+        <p class="hero__sub reveal d2">
+          Data science student turning complex data into clear, actionable insights.
+        </p>
+        <div class="hero__actions reveal d3">
+          <a class="btn btn--violet" href="projects.html">View projects</a>
+          <a class="btn btn--ghost" href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn btn--outline" href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
 
-        <aside class="plate reveal d2" aria-label="Decorative monochrome figure">
-          <div class="plate__meta">
-            <span>fig. 01 — python</span>
-            <span id="plate-clock">00:00</span>
-          </div>
-          <div class="plate__art">
-            <pre aria-hidden="true">    ____
-   /.__.\
-   \ \/ /
-   /   /__
-   \  /  /
-    \/__/
-   Python
-   ──────
-   data → model
-   model → story</pre>
-          </div>
-        </aside>
+        <div class="hero-cards">
+          <article class="glass-card reveal d1">
+            <p class="glass-card__label">University</p>
+            <p class="glass-card__value">Liberty University</p>
+            <p class="glass-card__body">Lynchburg, VA</p>
+          </article>
+          <article class="glass-card reveal d2">
+            <p class="glass-card__label">Focus</p>
+            <p class="glass-card__value">Data Science &amp; ML</p>
+            <p class="glass-card__body">Models, EDA, storytelling</p>
+          </article>
+          <article class="glass-card reveal d3">
+            <p class="glass-card__label">Graduation</p>
+            <p class="glass-card__value">Expected 2028</p>
+            <p class="glass-card__body">B.S. Computer Science</p>
+          </article>
+        </div>
       </div>
     </header>
 
-    <!-- Skills marquee on ink -->
-    <div class="band-ink ticker" aria-label="Tools and skills">
-      <div class="ticker__track" id="skills-ticker">
-        <span class="ticker__item">Python</span>
-        <span class="ticker__item">Pandas</span>
-        <span class="ticker__item">NumPy</span>
-        <span class="ticker__item">Scikit-learn</span>
-        <span class="ticker__item">SQL</span>
-        <span class="ticker__item">Jupyter</span>
-        <span class="ticker__item">Matplotlib</span>
-        <span class="ticker__item">Seaborn</span>
-        <span class="ticker__item">Statistics</span>
-        <span class="ticker__item">EDA</span>
-        <span class="ticker__item">Machine Learning</span>
-        <span class="ticker__item">Git</span>
+    <!-- Skills strip -->
+    <section class="section" id="skills" style="padding-top: 40px; padding-bottom: 40px;">
+      <div class="shell">
+        <p class="eyebrow reveal">Built with</p>
+        <div class="feature-row reveal d1" role="list">
+          <div class="feature-tile" role="listitem">
+            <div class="feature-tile__icon" aria-hidden="true">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
+            </div>
+            <p class="feature-tile__label">Python</p>
+          </div>
+          <div class="feature-tile" role="listitem">
+            <div class="feature-tile__icon" aria-hidden="true">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"/></svg>
+            </div>
+            <p class="feature-tile__label">SQL</p>
+          </div>
+          <div class="feature-tile" role="listitem">
+            <div class="feature-tile__icon" aria-hidden="true">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
+            </div>
+            <p class="feature-tile__label">Pandas</p>
+          </div>
+          <div class="feature-tile" role="listitem">
+            <div class="feature-tile__icon" aria-hidden="true">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+            </div>
+            <p class="feature-tile__label">Scikit-learn</p>
+          </div>
+          <div class="feature-tile" role="listitem">
+            <div class="feature-tile__icon" aria-hidden="true">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg>
+            </div>
+            <p class="feature-tile__label">Visualization</p>
+          </div>
+          <div class="feature-tile" role="listitem">
+            <div class="feature-tile__icon" aria-hidden="true">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75a4.5 4.5 0 01-4.5 4.5h-3a4.5 4.5 0 110-9h3a4.5 4.5 0 014.5 4.5zM3.75 18a4.5 4.5 0 014.5-4.5h3a4.5 4.5 0 110 9h-3a4.5 4.5 0 01-4.5-4.5z"/></svg>
+            </div>
+            <p class="feature-tile__label">Git &amp; GitHub</p>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <!-- Editorial letter -->
-    <section class="band-ink letter" id="about" aria-labelledby="letter-heading">
-      <p class="letter__eye">A brief letter from the desk</p>
-      <p class="letter__body" id="letter-heading">
-        Curiosity, clarity, and craft — applied to every dataset and every conversation.
-      </p>
-      <p class="letter__eye">Brady S. Herwig · Class of 2028</p>
     </section>
 
-    <!-- About as editorial rows -->
-    <section class="section">
+    <!-- About -->
+    <section class="section" id="about">
       <div class="shell">
         <div class="section__head reveal">
           <p class="eyebrow">About</p>
           <h2 class="section-title">A data-driven mindset with a human touch.</h2>
+          <p class="lede">Curiosity, clarity, and craft — applied to every dataset and every conversation.</p>
         </div>
-        <div class="rows">
-          <article class="row reveal d1">
-            <p class="row__num">01</p>
-            <div>
-              <h3 class="row__title">Who I am</h3>
-              <p class="row__body">Friendly, understanding, and determined Computer Science: Data Science student at Liberty University.</p>
-            </div>
+        <div class="about-grid">
+          <article class="glass-card reveal d1">
+            <h3>Who I am</h3>
+            <p>Friendly, understanding, and determined Computer Science: Data Science student at Liberty University.</p>
           </article>
-          <article class="row reveal d2">
-            <p class="row__num">02</p>
-            <div>
-              <h3 class="row__title">What drives me</h3>
-              <p class="row__body">Leading teams, clear communication, and diving deep into data to uncover meaningful patterns.</p>
-            </div>
+          <article class="glass-card reveal d2">
+            <h3>What drives me</h3>
+            <p>Leading teams, clear communication, and diving deep into data to uncover meaningful patterns and insights.</p>
           </article>
-          <article class="row reveal d3">
-            <p class="row__num">03</p>
-            <div>
-              <h3 class="row__title">My approach</h3>
-              <p class="row__body">Technical skill with storytelling — so findings drive real decisions, not hype.</p>
-            </div>
+          <article class="glass-card reveal d3">
+            <h3>My approach</h3>
+            <p>Combining technical skills with storytelling so data drives real decisions. Focused on practical ML and data projects.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Stamped WORK -->
-    <div class="band-ink stamp" aria-hidden="true">
-      <p class="stamp__row">
-        <span>WORK</span>
-        <span class="stamp__rule"></span>
-      </p>
-    </div>
+    <!-- Tools detail -->
+    <section class="section" id="tools" style="padding-top: 0;">
+      <div class="shell">
+        <div class="section__head reveal">
+          <p class="eyebrow">Toolkit</p>
+          <h2 class="section-title">Tools &amp; strengths</h2>
+          <p class="lede">Technical depth paired with communication that teams can act on.</p>
+        </div>
+        <div class="skills-grid">
+          <div class="glass-card reveal d1">
+            <h3>Technical</h3>
+            <div id="tech-skills" class="skill-list"></div>
+          </div>
+          <div class="glass-card reveal d2">
+            <h3>Soft skills</h3>
+            <div id="soft-skills" class="skill-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Selected work -->
     <section class="section" id="work">
@@ -163,21 +184,24 @@
         <div class="section__head reveal">
           <p class="eyebrow">Selected work</p>
           <h2 class="section-title">Case studies on the page.</h2>
+          <p class="lede">Documented projects with figures, learnings, and the exact stack I used.</p>
         </div>
-
-        <a class="work-link reveal d1" href="projects.html#project-namus-missing">
-          <p class="eyebrow">Case study 01</p>
-          <h3 class="work-link__title">NamUs Missing Persons Analysis</h3>
+        <a class="work-card reveal d1" href="projects.html#project-namus-missing">
+          <p class="glass-card__label">Case study 01</p>
+          <h3 class="work-card__title">NamUs Missing Persons Analysis</h3>
           <p class="prose">
             Juvenile vs adult classification on public NamUs listings — logistic regression vs decision tree,
-            leakage-aware features, careful framing of sensitive public data.
+            leakage-aware features, and careful framing of sensitive public data.
           </p>
-          <div class="tags">
-            <span class="tag">Classification</span>
-            <span class="tag">Scikit-learn</span>
-            <span class="tag">EDA</span>
+          <div class="work-card__meta">
+            <span class="badge">Classification</span>
+            <span class="badge">Scikit-learn</span>
+            <span class="badge">EDA</span>
           </div>
         </a>
+        <div class="hero__actions reveal d2" style="margin-top: 28px;">
+          <a class="btn btn--ghost" href="projects.html">All projects</a>
+        </div>
       </div>
     </section>
 
@@ -188,13 +212,13 @@
           <p class="eyebrow">Education</p>
           <h2 class="section-title">Building a strong foundation.</h2>
         </div>
-        <div class="block reveal d1">
-          <h3 class="block__title">Liberty University</h3>
-          <p class="block__meta">Bachelor of Science — Computer Science: Data Science</p>
+        <div class="deep-card block-card reveal d1">
+          <h3 class="block-card__title">Liberty University</h3>
+          <p class="block-card__meta">Bachelor of Science — Computer Science: Data Science</p>
           <span class="chip">Expected 2028</span>
-          <p class="prose" style="margin-top:20px">
-            Data analysis, statistical modeling, machine learning, and communicating insights —
-            with emphasis on practical projects and clear problem-solving.
+          <p class="prose" style="margin-top: 20px;">
+            Developing expertise in data analysis, statistical modeling, machine learning, and communicating insights effectively.
+            Emphasis on practical projects and clear problem-solving.
           </p>
         </div>
       </div>
@@ -206,16 +230,14 @@
         <div class="section__head reveal">
           <p class="eyebrow">Contact</p>
           <h2 class="section-title">Let's talk data science.</h2>
-          <p class="prose">
-            Always happy to connect with students, mentors, and anyone building with data.
-          </p>
+          <p class="lede">Happy to connect with students, mentors, and anyone building with data.</p>
         </div>
-        <div class="block reveal d1">
+        <div class="deep-card block-card reveal d1" style="text-align: center;">
           <a class="contact-mail" href="mailto:bradyherwig@outlook.com">bradyherwig@outlook.com</a>
-          <div class="btn-row">
+          <div class="btn-row" style="justify-content: center;">
+            <a class="btn btn--violet" href="resume/HerwigBradyResume.pdf" download="HerwigBradyResume.pdf">Download resume</a>
             <a class="btn btn--ghost" href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a class="btn btn--ghost" href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a class="btn btn--fill" href="resume/HerwigBradyResume.pdf" download="HerwigBradyResume.pdf">Download resume</a>
+            <a class="btn btn--outline" href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer">GitHub</a>
           </div>
         </div>
       </div>
@@ -223,18 +245,12 @@
   </main>
 
   <footer class="footer">
-    <div class="shell">
-      <p class="footer__coord">
-        ° Liberty University — Data Science — Class of 2028 —
-        <span id="footer-clock">--:--</span>
-      </p>
-      <div class="footer__row">
-        <p class="footer__copy">© 2026 Brady S. Herwig</p>
-        <div class="footer__links">
-          <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="mailto:bradyherwig@outlook.com">Email</a>
-        </div>
+    <div class="shell footer__row">
+      <p class="footer__copy">© 2026 Brady S. Herwig · Data Science portfolio</p>
+      <div class="footer__links">
+        <a href="https://github.com/BradyHerwig" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/brady-herwig-8a77a4304/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:bradyherwig@outlook.com">Email</a>
       </div>
     </div>
   </footer>
