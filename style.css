@@ -410,12 +410,12 @@ button:focus-visible {
   flex-direction: column;
   align-items: center;
   gap: 36px;
-  animation: side-ascii-drift 70s linear infinite;
+  animation: side-ascii-drift 35s linear infinite;
 }
 
 .side-ascii__rail--right .side-ascii__track {
   animation-direction: reverse;
-  animation-duration: 85s;
+  animation-duration: 42s;
 }
 
 @keyframes side-ascii-drift {
