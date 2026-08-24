@@ -188,7 +188,6 @@ class Script(unittest.TestCase):
             "initCarousels",
             "initProjectJumpNav",
             "initReveal",
-            "initSideAscii",
         ):
             self.assertIn(f"function {name}", SCRIPT)
 

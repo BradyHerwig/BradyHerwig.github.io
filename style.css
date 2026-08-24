@@ -328,7 +328,6 @@ button:focus-visible {
 /* ---------- layer stack (critical — never put bg at negative z-index) ----------
    0  bg-grid / bg-halo   (ambient, under everything)
    2  main / footer       (page content)
-   3  side-ascii          (fixed gutters — ABOVE bg + content, under nav)
    50 nav                 (sticky chrome)
    ------------------------------------------------------------------ */
 .bg-grid {
@@ -356,111 +355,7 @@ button:focus-visible {
     radial-gradient(ellipse 35% 28% at 15% 60%, rgba(2, 125, 234, 0.08), transparent 50%);
 }
 
-/* ---------- cool ASCII side rails (fixed; above ambient bg) ---------- */
-.side-ascii {
-  display: none;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  height: 100dvh;
-  z-index: 3;
-  pointer-events: none;
-  overflow: hidden;
-  user-select: none;
-}
-
-/* Show when there is side space (tablet landscape / laptop+) */
-@media (min-width: 900px) {
-  .side-ascii {
-    display: block;
-  }
-}
-
-.side-ascii__rail {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: clamp(120px, 14vw, 180px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 36px;
-  padding: 80px 8px 40px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.side-ascii__rail--left {
-  left: 8px;
-  right: auto;
-}
-
-.side-ascii__rail--right {
-  right: 8px;
-  left: auto;
-}
-
-.side-ascii__track {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 36px;
-  animation: side-ascii-drift 18s linear infinite;
-}
-
-.side-ascii__rail--right .side-ascii__track {
-  animation-direction: reverse;
-  animation-duration: 22s;
-}
-
-@keyframes side-ascii-drift {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-50%);
-  }
-}
-
-.side-ascii__fig {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-jetbrains-mono), ui-monospace, Consolas, "Courier New", monospace;
-  font-size: clamp(11px, 1vw, 13px);
-  line-height: 1.35;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  white-space: pre;
-  color: #c7d3ea;
-  opacity: 0.85;
-  text-shadow: 0 0 16px rgba(186, 215, 247, 0.35);
-}
-
-.side-ascii__fig--2 {
-  color: #d1e4fa;
-  opacity: 0.8;
-}
-
-.side-ascii__fig--3 {
-  color: #b6d9fc;
-  opacity: 0.78;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .side-ascii__track {
-    animation: none;
-  }
-  .side-ascii__fig {
-    text-shadow: none;
-  }
-}
-
-/* Content above ambient + side rails */
+/* Content above ambient background */
 main,
 .footer {
   position: relative;
