@@ -169,6 +169,34 @@ class Structure(unittest.TestCase):
         # screenshots + maybe icon imgs
         self.assertGreaterEqual(len([a for a in alts if a.strip()]), 4)
 
+    def test_internship_and_cscn421(self):
+        self.assertIn("summer internship", INDEX.lower())
+        for pid in (
+            "project-nhtsa-complaints",
+            "project-churn-classification",
+            "project-cifar10-cnn",
+        ):
+            self.assertIn(f'id="{pid}"', PROJECTS)
+        self.assertIn("work/cscn421/churn/knn_train.py", PROJECTS)
+        self.assertIn("work/cscn421/nhtsa/HerwigB_Lab3.knwf", PROJECTS)
+        self.assertIn("work/cscn421/cifar10/Assignment5_DeepNeuralNet.ipynb", PROJECTS)
+        for rel in (
+            "work/cscn421/churn/knn_train.py",
+            "work/cscn421/churn/svm_train.py",
+            "work/cscn421/churn/voting_train.py",
+            "work/cscn421/churn/HerwigB_Lab1.knwf",
+            "work/cscn421/churn-network/model_train.py",
+            "work/cscn421/churn-network/model_test.py",
+            "work/cscn421/nhtsa/HerwigB_Lab3.knwf",
+            "work/cscn421/cifar10/Assignment5_DeepNeuralNet.ipynb",
+            "screenshots/cifar10/part_a_curves.png",
+            "screenshots/cifar10/part_b_curves.png",
+            "screenshots/cifar10/part_c_curves.png",
+        ):
+            path = ROOT / rel
+            self.assertTrue(path.is_file(), f"missing {rel}")
+            self.assertGreater(path.stat().st_size, 100, rel)
+
     def test_email_and_resume(self):
         self.assertIn("bradyherwig@outlook.com", INDEX)
         self.assertIn("resume/HerwigBradyResume.pdf", INDEX)

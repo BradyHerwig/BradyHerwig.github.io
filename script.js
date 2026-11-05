@@ -111,23 +111,22 @@ function initNavScrollState() {
 function initSkills() {
   const tech = [
     "Python",
-    "SQL",
     "Pandas",
     "NumPy",
+    "Scikit-learn",
+    "PyTorch",
+    "KNIME",
+    "SQL",
+    "Matplotlib",
     "Jupyter",
     "Git & GitHub",
-    "Data Visualization",
-    "Scikit-learn",
-    "Statistics",
-    "Exploratory Data Analysis",
   ];
   const soft = [
-    "Leadership",
+    "Written analysis",
+    "Metric choice",
     "Communication",
     "Collaboration",
-    "Problem Solving",
-    "Determined",
-    "Friendly & Understanding",
+    "Problem solving",
   ];
 
   const techEl = document.getElementById("tech-skills");
