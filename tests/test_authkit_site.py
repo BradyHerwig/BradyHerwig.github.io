@@ -28,9 +28,7 @@ REQUIRED_FONTS = [
     "inter/inter-latin-400-normal.woff2",
     "inter/inter-latin-500-normal.woff2",
     "inter/inter-latin-600-normal.woff2",
-    "inter/inter-latin-700-normal.woff2",
-    "space-grotesk/space-grotesk-latin-400-normal.woff2",
-    "space-grotesk/space-grotesk-latin-500-normal.woff2",
+    "source-serif-4/source-serif-4-latin-600-normal.woff2",
     "jetbrains-mono/jetbrains-mono-latin-400-normal.woff2",
     "jetbrains-mono/jetbrains-mono-latin-500-normal.woff2",
 ]
@@ -72,7 +70,7 @@ class LocalAssets(unittest.TestCase):
         css = css_path.read_text(encoding="utf-8")
         self.assertIn("@font-face", css)
         self.assertIn("Inter", css)
-        self.assertIn("Space Grotesk", css)
+        self.assertIn("Source Serif 4", css)
         self.assertIn("JetBrains Mono", css)
         self.assertIn(".woff2", css)
 
@@ -98,28 +96,26 @@ class NoExternalFontCdn(unittest.TestCase):
             self.assertIn('href="assets/fonts/fonts.css"', html, name)
 
 
-class AuthKitTokens(unittest.TestCase):
-    def test_midnight_and_violet(self):
-        self.assertIn("--color-midnight-canvas: #05060f", STYLE)
-        self.assertIn("--color-void-violet: #663af3", STYLE)
-        self.assertIn("background: var(--color-midnight-canvas)", STYLE)
+class ReportTokens(unittest.TestCase):
+    def test_paper_and_navy(self):
+        self.assertIn("--color-bg: #FAFAF7", STYLE)
+        self.assertIn("--color-accent: #1D4ED8", STYLE)
+        self.assertIn("--color-positive: #047857", STYLE)
+        self.assertNotIn("--color-void-violet", STYLE)
 
-    def test_glass_and_radii(self):
-        self.assertIn("--radius-cards: 16px", STYLE)
-        self.assertIn("--radius-buttons: 999px", STYLE)
-        self.assertIn("--shadow-feature-card", STYLE)
-        self.assertIn(".glass-card", STYLE)
-        self.assertIn(".btn--violet", STYLE)
+    def test_dark_theme_tokens(self):
+        self.assertIn('[data-theme="dark"]', STYLE)
+        self.assertIn("--color-bg: #0B1120", STYLE)
 
     def test_local_font_families_in_css(self):
         self.assertIn('"Inter"', STYLE)
-        self.assertIn('"Space Grotesk"', STYLE)
+        self.assertIn('"Source Serif 4"', STYLE)
         self.assertIn('"JetBrains Mono"', STYLE)
 
-    def test_no_henry_ascii(self):
+    def test_no_framework_cdn(self):
         blob = STYLE + INDEX + PROJECTS
-        for bad in ("#fafafa", "ascii-art", "cdn.tailwindcss.com"):
-            self.assertNotIn(bad, blob)
+        self.assertNotIn("cdn.tailwindcss.com", blob)
+        self.assertNotIn("ascii-art", blob)
 
 
 class LucideInMarkup(unittest.TestCase):
@@ -131,16 +127,11 @@ class LucideInMarkup(unittest.TestCase):
             "pages should use Lucide assets",
         )
 
-    def test_social_icons_present(self):
-        # GitHub / LinkedIn should use lucide assets on home
-        self.assertTrue(
-            "lucide/github" in INDEX or 'data-icon="github"' in INDEX,
-            "github lucide icon missing on index",
-        )
-        self.assertTrue(
-            "lucide/linkedin" in INDEX or 'data-icon="linkedin"' in INDEX,
-            "linkedin lucide icon missing on index",
-        )
+    def test_profile_links_hidden_by_default(self):
+        self.assertIn("showGitHub: false", SCRIPT)
+        self.assertIn("showLinkedIn: false", SCRIPT)
+        self.assertNotIn("github.com/BradyHerwig", INDEX)
+        self.assertNotIn("linkedin.com", INDEX)
 
     def test_nav_menu_uses_lucide(self):
         self.assertTrue(
@@ -151,12 +142,13 @@ class LucideInMarkup(unittest.TestCase):
 
 class Structure(unittest.TestCase):
     def test_theme_color(self):
-        self.assertIn('content="#05060f"', INDEX)
-        self.assertIn('content="#05060f"', PROJECTS)
+        self.assertIn('content="#FAFAF7"', INDEX)
+        self.assertIn('content="#0B1120"', INDEX)
+        self.assertIn('content="#FAFAF7"', PROJECTS)
 
-    def test_ambient_layers(self):
-        self.assertIn("bg-grid", INDEX)
-        self.assertIn("bg-halo", INDEX)
+    def test_no_glass_background(self):
+        self.assertNotIn("bg-grid", INDEX)
+        self.assertNotIn("bg-halo", INDEX)
 
     def test_sections(self):
         for needle in ('id="about"', 'id="contact"', 'id="education"', "Brady"):
@@ -164,7 +156,7 @@ class Structure(unittest.TestCase):
 
     def test_projects_namus(self):
         self.assertIn('id="project-namus-missing"', PROJECTS)
-        self.assertIn("data-carousel", PROJECTS)
+        self.assertNotIn("data-carousel", PROJECTS)
         alts = re.findall(r'<img[^>]+alt="([^"]*)"', PROJECTS)
         # screenshots + maybe icon imgs
         self.assertGreaterEqual(len([a for a in alts if a.strip()]), 4)

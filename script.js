@@ -1,106 +1,80 @@
-// Brady S. Herwig — AuthKit portfolio
+const PROFILE_LINKS = {
+  showLinkedIn: false,
+  linkedInUrl: "",
+  showGitHub: false,
+  gitHubUrl: "",
+  showProjectCode: false,
+};
 
 function prefersReducedMotion() {
-  return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
-function escapeAttr(str) {
-  return escapeHtml(str).replace(/'/g, "&#39;");
-}
-
-function initReveal() {
-  document.querySelectorAll(".hero .reveal:not(.is-visible)").forEach((el) => {
-    el.classList.add("is-visible");
+function initTheme() {
+  const btn = document.getElementById("theme-toggle");
+  const icon = document.getElementById("theme-icon");
+  if (!btn || !icon) return;
+  const apply = (theme) => {
+    document.documentElement.setAttribute("data-theme", theme);
+    icon.setAttribute("data-icon", theme === "dark" ? "sun" : "moon");
+    btn.setAttribute("aria-label", theme === "dark" ? "Switch to light theme" : "Switch to dark theme");
+  };
+  apply(document.documentElement.getAttribute("data-theme") || "light");
+  btn.addEventListener("click", () => {
+    const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    apply(next);
+    try { localStorage.setItem("theme", next); } catch (e) { /* ignore */ }
   });
-
-  const nodes = document.querySelectorAll(".reveal:not(.is-visible)");
-  if (!nodes.length) return;
-
-  if (prefersReducedMotion() || !("IntersectionObserver" in window)) {
-    nodes.forEach((el) => el.classList.add("is-visible"));
-    return;
-  }
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
-  );
-
-  nodes.forEach((el) => observer.observe(el));
 }
 
 function initMobileMenu() {
   const btn = document.getElementById("mobile-menu-btn");
   const menu = document.getElementById("mobile-menu");
-  const iconOpen = document.getElementById("menu-icon-open");
-  const iconClose = document.getElementById("menu-icon-close");
+  const openIcon = document.getElementById("menu-icon-open");
+  const closeIcon = document.getElementById("menu-icon-close");
   if (!btn || !menu) return;
-
-  function setOpen(open) {
+  const setOpen = (open) => {
+    menu.hidden = !open;
     menu.classList.toggle("is-open", open);
-    if (open) menu.removeAttribute("hidden");
-    else menu.setAttribute("hidden", "");
     btn.setAttribute("aria-expanded", String(open));
     btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    if (iconOpen && iconClose) {
-      if (open) {
-        iconOpen.setAttribute("hidden", "");
-        iconClose.removeAttribute("hidden");
-      } else {
-        iconOpen.removeAttribute("hidden");
-        iconClose.setAttribute("hidden", "");
-      }
-      iconOpen.hidden = open;
-      iconClose.hidden = !open;
+    if (openIcon) openIcon.hidden = open;
+    if (closeIcon) closeIcon.hidden = !open;
+    if (open) {
+      const first = menu.querySelector("a, button");
+      if (first) first.focus();
     }
-  }
-
-  btn.addEventListener("click", () => {
-    setOpen(btn.getAttribute("aria-expanded") !== "true");
+  };
+  btn.addEventListener("click", () => setOpen(menu.hidden));
+  menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
+  menu.addEventListener("keydown", (event) => {
+    if (event.key !== "Tab" || menu.hidden) return;
+    const focusable = Array.from(menu.querySelectorAll("a, button"));
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   });
-
-  menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") setOpen(false);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !menu.hidden) {
+      setOpen(false);
+      btn.focus();
+    }
   });
-}
-
-function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      const id = this.getAttribute("href");
-      if (!id || id === "#") return;
-      const target = document.querySelector(id);
-      if (!target) return;
-      e.preventDefault();
-      const nav = document.getElementById("site-nav");
-      const offset = (nav ? nav.offsetHeight : 64) + 8;
-      const top = target.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({
-        top,
-        behavior: prefersReducedMotion() ? "auto" : "smooth",
-      });
-      history.pushState(null, "", id);
-    });
+  document.addEventListener("click", (event) => {
+    if (menu.hidden) return;
+    if (menu.contains(event.target) || btn.contains(event.target)) return;
+    setOpen(false);
   });
 }
 
-function initNavScrollState() {
+function initNavScroll() {
   const nav = document.getElementById("site-nav");
   if (!nav) return;
   const onScroll = () => nav.classList.toggle("is-scrolled", window.scrollY > 8);
@@ -108,183 +82,135 @@ function initNavScrollState() {
   window.addEventListener("scroll", onScroll, { passive: true });
 }
 
-function initSkills() {
-  const tech = [
-    "Python",
-    "Pandas",
-    "NumPy",
-    "Scikit-learn",
-    "PyTorch",
-    "KNIME",
-    "SQL",
-    "Matplotlib",
-    "Jupyter",
-    "Git & GitHub",
-  ];
-  const soft = [
-    "Written analysis",
-    "Metric choice",
-    "Communication",
-    "Collaboration",
-    "Problem solving",
-  ];
-
-  const techEl = document.getElementById("tech-skills");
-  const softEl = document.getElementById("soft-skills");
-  if (techEl) {
-    techEl.innerHTML = tech.map((s) => `<span class="skill-pill">${escapeHtml(s)}</span>`).join("");
-  }
-  if (softEl) {
-    softEl.innerHTML = soft.map((s) => `<span class="skill-pill">${escapeHtml(s)}</span>`).join("");
-  }
+function initScrollSpy() {
+  const links = document.querySelectorAll('.nav__links a[href^="#"]');
+  if (!links.length) return;
+  const map = new Map();
+  links.forEach((link) => {
+    const id = link.getAttribute("href").slice(1);
+    const section = document.getElementById(id);
+    if (section) map.set(section, link);
+  });
+  if (!map.size || !("IntersectionObserver" in window)) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      links.forEach((link) => {
+        const on = link === map.get(entry.target);
+        link.classList.toggle("is-active", on);
+        if (on) link.setAttribute("aria-current", "true");
+        else link.removeAttribute("aria-current");
+      });
+    });
+  }, { rootMargin: "-40% 0px -50% 0px", threshold: 0 });
+  map.forEach((_, section) => observer.observe(section));
 }
 
-function initCarousels() {
-  document.querySelectorAll("[data-carousel]").forEach((root) => {
-    const viewport = root.querySelector("[data-carousel-viewport]");
-    const slides = Array.from(root.querySelectorAll("[data-carousel-slide]"));
-    const prevBtn = root.querySelector("[data-carousel-prev]");
-    const nextBtn = root.querySelector("[data-carousel-next]");
-    const dotsWrap = root.querySelector("[data-carousel-dots]");
-    const status = root.querySelector("[data-carousel-status]");
-    if (!viewport || slides.length < 2) return;
+function initSkills() {
+  const tech = ["Python", "Pandas", "NumPy", "Scikit-learn", "PyTorch", "KNIME", "SQL", "Matplotlib", "Jupyter", "Git"];
+  const soft = ["Clear writing", "Checking my work", "Communication", "Collaboration", "Problem solving"];
+  const techEl = document.getElementById("tech-skills");
+  const softEl = document.getElementById("soft-skills");
+  const pill = (label) => `<span class="skill-pill">${label.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</span>`;
+  if (techEl) techEl.innerHTML = tech.map(pill).join("");
+  if (softEl) softEl.innerHTML = soft.map(pill).join("");
+}
 
-    let index = 0;
-    let scrollRaf = 0;
-
-    if (dotsWrap) {
-      dotsWrap.innerHTML = slides
-        .map((_, i) => {
-          const label = `Go to screenshot ${i + 1} of ${slides.length}`;
-          return `<button type="button" class="carousel__dot" data-carousel-dot="${i}" aria-label="${escapeAttr(label)}" aria-current="false"></button>`;
-        })
-        .join("");
-    }
-
-    const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll("[data-carousel-dot]")) : [];
-
-    function slideWidth() {
-      return viewport.clientWidth || 1;
-    }
-
-    function syncUi(active, { announce = true } = {}) {
-      const total = slides.length;
-      index = active;
-      slides.forEach((slide, i) => {
-        const on = i === index;
-        slide.setAttribute("aria-hidden", on ? "false" : "true");
-        slide.setAttribute("aria-label", `${i + 1} of ${total}`);
-      });
-      dots.forEach((dot, i) => {
-        const on = i === index;
-        dot.classList.toggle("is-active", on);
-        dot.setAttribute("aria-current", on ? "true" : "false");
-      });
-      if (status && announce) status.textContent = `Slide ${index + 1} of ${total}`;
-    }
-
-    function goTo(nextIndex, { announce = true, instant = false } = {}) {
-      const total = slides.length;
-      const target = ((nextIndex % total) + total) % total;
-      const behavior = instant || prefersReducedMotion() ? "auto" : "smooth";
-      viewport.scrollTo({ left: Math.round(target * slideWidth()), behavior });
-      syncUi(target, { announce });
-    }
-
-    function indexFromScroll() {
-      const w = slideWidth();
-      return Math.max(0, Math.min(slides.length - 1, Math.round(viewport.scrollLeft / w)));
-    }
-
-    prevBtn?.addEventListener("click", () => goTo(index - 1));
-    nextBtn?.addEventListener("click", () => goTo(index + 1));
-    dots.forEach((dot) => {
-      dot.addEventListener("click", () => {
-        const i = Number(dot.getAttribute("data-carousel-dot"));
-        if (!Number.isNaN(i)) goTo(i);
-      });
+function initReveal() {
+  const nodes = document.querySelectorAll(".reveal");
+  if (!nodes.length) return;
+  if (prefersReducedMotion() || !("IntersectionObserver" in window)) {
+    nodes.forEach((node) => node.classList.add("is-visible"));
+    return;
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
     });
+  }, { threshold: 0.15 });
+  nodes.forEach((node) => observer.observe(node));
+}
 
-    viewport.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        goTo(index - 1);
-      } else if (e.key === "ArrowRight") {
-        e.preventDefault();
-        goTo(index + 1);
-      }
-    });
-
-    viewport.addEventListener(
-      "scroll",
-      () => {
-        if (scrollRaf) cancelAnimationFrame(scrollRaf);
-        scrollRaf = requestAnimationFrame(() => {
-          const next = indexFromScroll();
-          if (next !== index) syncUi(next);
-        });
-      },
-      { passive: true }
-    );
-
-    if (typeof ResizeObserver !== "undefined") {
-      new ResizeObserver(() => goTo(index, { announce: false, instant: true })).observe(viewport);
+function initCopyEmail() {
+  const btn = document.getElementById("copy-email");
+  const status = document.getElementById("copy-status");
+  const icon = document.getElementById("copy-icon");
+  if (!btn) return;
+  btn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText("bradyherwig@outlook.com");
+      if (status) status.textContent = "Copied";
+      if (icon) icon.setAttribute("data-icon", "check");
+      window.setTimeout(() => {
+        if (status) status.textContent = "";
+        if (icon) icon.setAttribute("data-icon", "copy");
+      }, 1500);
+    } catch (e) {
+      if (status) status.textContent = "Copy failed";
     }
-
-    syncUi(0, { announce: false });
-    viewport.scrollLeft = 0;
   });
+}
+
+function initProfileLinks() {
+  document.querySelectorAll("[data-slot]").forEach((node) => {
+    const slot = node.getAttribute("data-slot");
+    let show = false;
+    let url = "";
+    if (slot === "linkedin") {
+      show = PROFILE_LINKS.showLinkedIn;
+      url = PROFILE_LINKS.linkedInUrl;
+    } else if (slot === "github") {
+      show = PROFILE_LINKS.showGitHub;
+      url = PROFILE_LINKS.gitHubUrl;
+    } else if (slot === "code") {
+      show = PROFILE_LINKS.showProjectCode;
+      url = node.getAttribute("href") || "";
+    }
+    if (show && url) {
+      node.hidden = false;
+      if (slot !== "code") node.setAttribute("href", url);
+    } else {
+      node.hidden = true;
+    }
+  });
+}
+
+function initYear() {
+  const year = document.getElementById("year");
+  if (year) year.textContent = String(new Date().getFullYear());
 }
 
 function initProjectJumpNav() {
   const showcases = document.querySelectorAll(".project-showcase[id]");
-  const jumpWrap = document.getElementById("project-jump");
-  const jumpNav = jumpWrap && jumpWrap.querySelector(".project-jump-nav");
-  if (!showcases.length || !jumpWrap || !jumpNav) return;
+  const jump = document.getElementById("project-jump");
+  const nav = jump && jump.querySelector(".project-jump-nav");
+  if (!showcases.length || !jump || !nav) return;
+  jump.hidden = false;
+  nav.innerHTML = Array.from(showcases).map((section) => {
+    const id = section.id;
+    const title = section.getAttribute("data-title") || id;
+    return `<a href="#${id}">${title}</a>`;
+  }).join("");
+}
 
-  jumpWrap.hidden = false;
-  jumpNav.innerHTML = Array.from(showcases)
-    .map((section) => {
-      const id = section.id;
-      const title = section.getAttribute("data-title") || id;
-      return `<a href="#${escapeAttr(id)}" data-jump="${escapeAttr(id)}">${escapeHtml(title)}</a>`;
-    })
-    .join("");
-
-  const links = jumpNav.querySelectorAll("[data-jump]");
-  if (!links.length || !("IntersectionObserver" in window)) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const id = entry.target.id;
-        links.forEach((link) => {
-          link.classList.toggle("is-active", link.getAttribute("data-jump") === id);
-        });
-      });
-    },
-    { rootMargin: "-30% 0px -55% 0px", threshold: 0 }
-  );
-
-  showcases.forEach((s) => observer.observe(s));
+function initCarousels() {
+  /* Carousels are not used. Figures are static. */
 }
 
 function init() {
-  document.documentElement.classList.remove("dark");
-  try {
-    localStorage.removeItem("brady-theme");
-  } catch {
-    /* ignore */
-  }
-
+  initTheme();
   initMobileMenu();
-  initSmoothScroll();
-  initNavScrollState();
+  initNavScroll();
+  initScrollSpy();
   initSkills();
+  initReveal();
+  initCopyEmail();
+  initProfileLinks();
+  initYear();
   initProjectJumpNav();
   initCarousels();
-  initReveal();
 }
 
 if (document.readyState === "loading") {
